@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -63,12 +64,18 @@ public class UserController {
 
     @FXML
     private TableView<?> tvListaCanciones1;
+    @FXML
+    private TableColumn<?, ?> codListCan1, nomListCan1, artListCan1, albumListCan1, anioListCan1, duraLisCan1;
 
     @FXML
     private TableView<?> tvListaCanciones2;
+    @FXML
+    private TableColumn<?, ?> codListCan2, nomListCan2, artListCan2, albumListCan2, anioListCan2, duraLisCan2;
 
     @FXML
     private TableView<?> tvListaCanciones3;
+    @FXML
+    private TableColumn<?, ?> codListCan3, nomListCan3, artListCan3, albumListCan3, anioListCan3, duraLisCan3;
 
     @FXML
     private VBox vbBArtista, vbBusquedaOY, vbIncio, vbSugerencias, vbBuscar;
@@ -111,6 +118,7 @@ public class UserController {
         System.exit(0);
     }
 
+
     //Metodos del reproductor y ventana de visualizacion de video
 
     @FXML
@@ -143,6 +151,15 @@ public class UserController {
     @FXML
     void onActionBtnVolumen(ActionEvent event) {
 
+    }
+    @FXML
+    void onDraggedProgreso(MouseEvent event) {
+        pbProgreso.setProgress(sliderProgreso.getValue()/ sliderProgreso.getMax());
+    }
+
+    @FXML
+    void onDraggedVolume(MouseEvent event) {
+        pbVolumen.setProgress(sliderVolumen.getValue()/ sliderVolumen.getMax());
     }
 
     //Metodos que sirven para todas las ventanas que contengan un boton de reproducir cancion, rehacer, deshacer y eliminar

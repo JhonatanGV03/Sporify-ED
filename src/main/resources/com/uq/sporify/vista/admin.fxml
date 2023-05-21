@@ -123,7 +123,7 @@
                   <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="303.0">
                      <children>
                         <ProgressBar id="progressBar_Reproductor" fx:id="pbProgreso" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="303.0" progress="0.0" stylesheets="@../css/style.css" />
-                        <Slider id="slider_Reproductor" fx:id="sliderProgreso" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="310.0" stylesheets="@../css/style.css">
+                        <Slider id="slider_Reproductor" fx:id="sliderProgreso" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onDraggedProgreso" onMousePressed="#onDraggedProgreso" prefHeight="5.0" prefWidth="310.0" stylesheets="@../css/style.css">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -138,7 +138,7 @@
             <Pane layoutX="905.0" layoutY="47.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="42.0">
                <children>
                   <ProgressBar id="progressBar_Reproductor" fx:id="pbVolumen" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="100.0" progress="0.0" stylesheets="@../css/style.css" />
-                  <Slider id="slider_Reproductor" fx:id="sliderVolumen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="100.0" stylesheets="@../css/style.css">
+                  <Slider id="slider_Reproductor" fx:id="sliderVolumen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onDraggedVolume" onMousePressed="#onDraggedVolume" prefHeight="5.0" prefWidth="100.0" stylesheets="@../css/style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -393,12 +393,12 @@
                            </font>
                         </Label>
                         <TextField fx:id="tfAnioAE" layoutX="142.0" layoutY="84.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="76.0" promptText="Año" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfGeneroAE" layoutX="87.0" layoutY="200.0" onAction="#onActionTFAg_EdCan"  prefHeight="25.0" prefWidth="125.0" promptText="Género" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfNomCancionAE" layoutX="89.0" layoutY="135.0" onAction="#onActionTFAg_EdCan"  prefHeight="25.0" prefWidth="123.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfGeneroAE" layoutX="87.0" layoutY="200.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="125.0" promptText="Género" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfNomCancionAE" layoutX="89.0" layoutY="135.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="123.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <TextField fx:id="tfArtCancionAE" layoutX="77.0" layoutY="167.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="135.0" promptText="Artista" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <TextField fx:id="tfAlbumAE" layoutX="82.0" layoutY="231.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="130.0" promptText="Albúm" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfDuracionAE" layoutX="93.0" layoutY="264.0" onAction="#onActionTFAg_EdCan"  prefHeight="25.0" prefWidth="119.0" promptText="Duración" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfUrlAE" layoutX="59.0" layoutY="298.0" onAction="#onActionTFAg_EdCan"  prefHeight="25.0" prefWidth="151.0" promptText="YoutubeURL" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfDuracionAE" layoutX="93.0" layoutY="264.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="119.0" promptText="Duración" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfUrlAE" layoutX="59.0" layoutY="298.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="151.0" promptText="YoutubeURL" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <Button fx:id="btnGuardarCan" alignment="CENTER" layoutX="127.0" layoutY="333.0" mnemonicParsing="false" onAction="#onActionBtnGuardar" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;" text="Guardar">
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -447,7 +447,7 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfNomArtAE" layoutX="34.0" layoutY="167.0" onAction="#onActionTFAg_EdNomArt"  prefHeight="27.0" prefWidth="165.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfNomArtAE" layoutX="34.0" layoutY="167.0" onAction="#onActionTFAg_EdNomArt" prefHeight="27.0" prefWidth="165.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <TextField fx:id="tfNacioArtAE" layoutX="31.0" layoutY="228.0" onAction="#onActionTFAg_EdNacioArt" prefHeight="27.0" prefWidth="169.0" promptText="Artista" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <Button fx:id="btnGuardarArt" alignment="CENTER" layoutX="127.0" layoutY="331.0" mnemonicParsing="false" onAction="#onActionBtnGuardar" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;" text="Guardar">
                            <cursor>
@@ -630,10 +630,10 @@
                   </HBox>
                   <TableView id="tableView-Lista" fx:id="tvListaArtistas" prefHeight="363.0" prefWidth="705.0" stylesheets="@../css/style.css">
                      <columns>
-                        <TableColumn prefWidth="91.0" text="Código" />
-                        <TableColumn prefWidth="299.0" text="Nombre" />
-                        <TableColumn prefWidth="189.0" text="Nacionalidad" />
-                        <TableColumn prefWidth="117.0" text="Artista/Grupo" />
+                        <TableColumn fx:id="codListArt" prefWidth="91.0" text="Código" />
+                        <TableColumn fx:id="nomListArt" prefWidth="299.0" text="Nombre" />
+                        <TableColumn fx:id="nacioListArt" prefWidth="189.0" text="Nacionalidad" />
+                        <TableColumn fx:id="tipoListArt" prefWidth="117.0" text="Artista/Grupo" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
@@ -743,12 +743,12 @@
                   </HBox>
                   <TableView id="tableView-Lista" fx:id="tvListaCanciones" prefHeight="248.0" prefWidth="728.0" stylesheets="@../css/style.css">
                      <columns>
-                        <TableColumn prefWidth="69.0" text="Código" />
-                        <TableColumn prefWidth="214.0" text="Nombre" />
-                        <TableColumn prefWidth="118.0" text="Artista" />
-                        <TableColumn prefWidth="139.0" text="Álbum" />
-                        <TableColumn prefWidth="61.0" text="Año" />
-                        <TableColumn minWidth="9.0" prefWidth="88.0" text="Duración" />
+                        <TableColumn fx:id="codListCan" prefWidth="69.0" text="Código" />
+                        <TableColumn fx:id="nomListCan" prefWidth="214.0" text="Nombre" />
+                        <TableColumn fx:id="artListCan" prefWidth="118.0" text="Artista" />
+                        <TableColumn fx:id="albumListCan" prefWidth="139.0" text="Álbum" />
+                        <TableColumn fx:id="anioListCan" prefWidth="61.0" text="Año" />
+                        <TableColumn fx:id="duraListCan" minWidth="9.0" prefWidth="88.0" text="Duración" />
                      </columns>
                   </TableView>
                </children>

@@ -3,14 +3,9 @@ package com.uq.sporify.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -62,6 +57,15 @@ public class AdminController {
 
     @FXML
     private TableView<?> tvListaArtistas, tvListaCanciones;
+
+    @FXML
+    private TableColumn<?, ?> codListArt, nomListArt, nacioListArt, tipoListArt;
+
+    @FXML
+    private TableColumn<?, ?> codListCan, nomListCan, artListCan, albumListCan, anioListCan, duraListCan;
+
+
+
 
     @FXML
     private VBox vbArtistas, vbCanArtista;
@@ -169,7 +173,6 @@ public class AdminController {
     }
     @FXML
     void onActionBtnVolumen(ActionEvent event) {
-
     }
     @FXML
     void onActionBtnSiguiente(ActionEvent event) {
@@ -186,6 +189,16 @@ public class AdminController {
         }else {
             cambiarVNodo(btnPausar,btnPlayR);
         }
+    }
+
+    @FXML
+    void onDraggedProgreso(MouseEvent event) {
+        pbProgreso.setProgress(sliderProgreso.getValue()/ sliderProgreso.getMax());
+    }
+
+    @FXML
+    void onDraggedVolume(MouseEvent event) {
+        pbVolumen.setProgress(sliderVolumen.getValue()/ sliderVolumen.getMax());
     }
 
 

@@ -14,7 +14,8 @@
 
 #slider_Reproductor .thumb { -fx-background-color: transparent; }
 
-#slider_Reproductor:hover .thumb { -fx-background-color: white; }
+#slider_Reproductor:hover .thumb { -fx-background-color: white;}
+#slider_Reproductor:pressed .thumb { -fx-background-color: white;}
 
 /*-------------------------------------*/
 

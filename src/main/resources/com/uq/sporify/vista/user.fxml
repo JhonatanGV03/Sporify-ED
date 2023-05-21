@@ -123,7 +123,7 @@
                   <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="303.0">
                      <children>
                         <ProgressBar id="progressBar_Reproductor" fx:id="pbProgreso" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="303.0" progress="0.0" stylesheets="@../css/style.css" />
-                        <Slider id="slider_Reproductor" fx:id="sliderProgreso" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="310.0" stylesheets="@../css/style.css">
+                        <Slider id="slider_Reproductor" fx:id="sliderProgreso" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onDraggedProgreso" onMousePressed="#onDraggedProgreso" prefHeight="5.0" prefWidth="310.0" stylesheets="@../css/style.css">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -138,7 +138,7 @@
             <Pane layoutX="905.0" layoutY="47.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="42.0">
                <children>
                   <ProgressBar id="progressBar_Reproductor" fx:id="pbVolumen" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="100.0" progress="0.0" stylesheets="@../css/style.css" />
-                  <Slider id="slider_Reproductor" fx:id="sliderVolumen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="100.0" stylesheets="@../css/style.css">
+                  <Slider id="slider_Reproductor" fx:id="sliderVolumen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onDraggedVolume" onMousePressed="#onDraggedVolume" prefHeight="5.0" prefWidth="100.0" stylesheets="@../css/style.css">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -458,12 +458,12 @@
                   </HBox>
                   <TableView id="tableView-Lista" fx:id="tvListaCanciones1" prefHeight="363.0" prefWidth="705.0" stylesheets="@../css/style.css">
                      <columns>
-                        <TableColumn prefWidth="69.0" text="Código" />
-                        <TableColumn prefWidth="214.0" text="Nombre" />
-                        <TableColumn prefWidth="118.0" text="Artista" />
-                        <TableColumn prefWidth="139.0" text="Álbum" />
-                        <TableColumn prefWidth="61.0" text="Año" />
-                        <TableColumn minWidth="9.0" prefWidth="88.0" text="Duración" />
+                        <TableColumn fx:id="codListCan1" prefWidth="69.0" text="Código" />
+                        <TableColumn fx:id="nomListCan1" prefWidth="214.0" text="Nombre" />
+                        <TableColumn fx:id="artListCan1" prefWidth="118.0" text="Artista" />
+                        <TableColumn fx:id="albumListCan1" prefWidth="139.0" text="Álbum" />
+                        <TableColumn fx:id="anioListCan1" prefWidth="61.0" text="Año" />
+                        <TableColumn fx:id="duraLisCan1" minWidth="9.0" prefWidth="88.0" text="Duración" />
                      </columns>
                      <VBox.margin>
                         <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
@@ -874,12 +874,12 @@
                               </HBox>
                               <TableView id="tableView-Lista" fx:id="tvListaCanciones2" prefHeight="218.0" prefWidth="728.0" stylesheets="@../css/style.css">
                                  <columns>
-                                    <TableColumn prefWidth="69.0" text="Código" />
-                                    <TableColumn prefWidth="214.0" text="Nombre" />
-                                    <TableColumn prefWidth="118.0" text="Artista" />
-                                    <TableColumn prefWidth="139.0" text="Álbum" />
-                                    <TableColumn prefWidth="61.0" text="Año" />
-                                    <TableColumn minWidth="9.0" prefWidth="88.0" text="Duración" />
+                                    <TableColumn fx:id="codListCan2" prefWidth="69.0" text="Código" />
+                                    <TableColumn fx:id="nomListCan2" prefWidth="214.0" text="Nombre" />
+                                    <TableColumn fx:id="artListCan2" prefWidth="118.0" text="Artista" />
+                                    <TableColumn fx:id="albumListCan2" prefWidth="139.0" text="Álbum" />
+                                    <TableColumn fx:id="anioListCan2" prefWidth="61.0" text="Año" />
+                                    <TableColumn fx:id="duraLisCan2" minWidth="9.0" prefWidth="88.0" text="Duración" />
                                  </columns>
                               </TableView>
                            </children>
@@ -951,12 +951,12 @@
                               </HBox>
                               <TableView id="tableView-Lista" fx:id="tvListaCanciones3" prefHeight="315.0" prefWidth="709.0" stylesheets="@../css/style.css">
                                  <columns>
-                                    <TableColumn prefWidth="69.0" text="Código" />
-                                    <TableColumn prefWidth="214.0" text="Nombre" />
-                                    <TableColumn prefWidth="118.0" text="Artista" />
-                                    <TableColumn prefWidth="139.0" text="Álbum" />
-                                    <TableColumn prefWidth="61.0" text="Año" />
-                                    <TableColumn minWidth="9.0" prefWidth="88.0" text="Duración" />
+                                    <TableColumn fx:id="codListCan3" prefWidth="69.0" text="Código" />
+                                    <TableColumn fx:id="nomListCan3" prefWidth="214.0" text="Nombre" />
+                                    <TableColumn fx:id="artListCan3" prefWidth="118.0" text="Artista" />
+                                    <TableColumn fx:id="albumListCan3" prefWidth="139.0" text="Álbum" />
+                                    <TableColumn fx:id="anioListCan3" prefWidth="61.0" text="Año" />
+                                    <TableColumn fx:id="duraLisCan3" minWidth="9.0" prefWidth="88.0" text="Duración" />
                                  </columns>
                                  <VBox.margin>
                                     <Insets bottom="10.0" left="10.0" right="10.0" />
