@@ -1,0 +1,113 @@
+/*------------estilos de los controles principales inferiores y laterale izquierdo-----------------*/
+
+#progressBar_Reproductor .track { -fx-background-color: #525252; }
+
+#progressBar_Reproductor .bar{
+    -fx-background-color: white;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+/*-------------------------------------*/
+
+#slider_Reproductor .track { -fx-background-color: transparent; }
+
+#slider_Reproductor .thumb { -fx-background-color: transparent; }
+
+#slider_Reproductor:hover .thumb { -fx-background-color: white; }
+
+/*-------------------------------------*/
+
+#btnMenu:focused { -fx-text-fill: white; }
+
+#btnMenu:hover {
+    -fx-text-fill: #ffffff;
+}
+
+/*-----------estilos del panel de inicio --------------------------*/
+
+#tableView-Lista{
+    -fx-base: #121212;
+    -fx-control-inner-background:  linear-gradient(to bottom, #232323, #121212);
+    -fx-background-color:  linear-gradient(to bottom, #232323, #121212);
+    -fx-table-cell-border-color:  transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+#tableView-Lista .column-header-background { -fx-background-color: transparent; }
+
+#tableView-Lista .column-header, #tableView-Lista .filler {
+    -fx-size: 28;
+    -fx-border-width: 0 0 1.5 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+            transparent
+            transparent
+            derive(#121212, 30%)
+            transparent;
+
+}
+#tableView-Lista .column-header .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ababab;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+/*-------------------------------------*/
+
+#choiceBox_Sort .label {
+    -fx-text-fill: white;
+}
+#choiceBox_Sort .menu-item:focused { -fx-background-color:  #00BB22; }
+
+#choiceBox_Sort .menu-item .label { -fx-text-fill: white; }
+#choiceBox_Sort .menu-item:focused > .label { -fx-text-fill: black; }
+
+/*-------------------------------------*/
+
+/*------------estilos del panel de busqueda------------------------*/
+
+/*-------------------------------------*/
+#scrollPane_panelB .scroll-bar:vertical .thumb {
+    -fx-background-color: #b7b7b7;
+    -fx-background-radius: 5;
+}
+#scrollPane_panelB .scroll-bar:vertical {-fx-background-color: transparent;}
+
+#scrollPane_panelB > .viewport {-fx-background-color: transparent;}
+
+/*-------------------------------------*/
+
+#hbox_textB{-fx-background-color: #121212}
+#hbox_textB:hover {-fx-background-color: #363636;}
+
+
+#btnTBusqueda {-fx-background-color: #121212;}
+#btnTBusqueda:hover{-fx-background-color: #363636}
+#btnTBusqueda:focused{
+    -fx-background-color: #d0d0d0;
+    -fx-text-fill: black;
+}
+
+#checkBox_Artista .box{
+    -fx-background-color: #494949;
+    -fx-background-radius: 2;
+}
+#checkBox_Artista:selected .box{
+    -fx-background-: #3d3d3d;
+}
+#checkBox_Artista:selected .mark {
+    -fx-background-color: white;
+    -fx-border-width: 3;
+}
+
+
+
+
+
+
+
+
