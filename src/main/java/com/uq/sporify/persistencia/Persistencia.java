@@ -2,18 +2,24 @@ package com.uq.sporify.persistencia;
 
 import com.uq.sporify.model.TiendaMusica;
 
+import java.io.File;
+
 public class Persistencia {
-	
-	public static final String RUTA_ARCHIVO_TIENDA = "src/persistencia/sporify.xml";
+
+	private static File archivo = new File("com/uq/sporify/persistencia/sporify.xml");
+	private static String path = archivo.getAbsolutePath();
+	public static final String RUTA_ARCHIVO_TIENDA = "/com/uq/sporify/persistencia/sporify.xml";
 	
 public static TiendaMusica cargarRecursoSporifyXML() {
+	System.out.println(path);
 	TiendaMusica sporify = TiendaMusica.getInstance();
-	sporify= (TiendaMusica) ArchivoUtil.leerObjetoDesdeXML(RUTA_ARCHIVO_TIENDA);
+	System.out.println(sporify);
+	sporify= (TiendaMusica) ArchivoUtil.leerObjetoDesdeXML(path);
 	return sporify;
 	}
 
  public static void guardarRecursoSporifyXML() {
 	 TiendaMusica sporify = TiendaMusica.getInstance();
-	 ArchivoUtil.escribirObjetoAXML(sporify, RUTA_ARCHIVO_TIENDA);
+	 ArchivoUtil.escribirObjetoAXML(sporify, path);
  }
 }

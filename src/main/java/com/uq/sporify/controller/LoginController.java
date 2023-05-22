@@ -1,15 +1,20 @@
 package com.uq.sporify.controller;
 
 import com.uq.sporify.App;
+import com.uq.sporify.model.TiendaMusica;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -19,6 +24,7 @@ import java.util.Objects;
 public class LoginController {
 
     //Variables
+    String user, password;
 
 
     //Identificadores de la vista asociada a login.fxml
@@ -30,6 +36,8 @@ public class LoginController {
 
     @FXML
     private TextField tfNomUsuario;
+    @FXML
+    private Label lbMensaje;
 
 
     //Metodos de acciones
@@ -37,11 +45,25 @@ public class LoginController {
     //u otra accion
     @FXML
     void onActionBtnIngresar(ActionEvent event) throws IOException {
-        cambiarEscena("vista/user.fxml", "Sporify", 1025, 656);
+        user = tfNomUsuario.getText();
+        password = pfContrasenia.getText();
 
+        System.out.println(user  + "  " + password);
         //Aqui hace falta la validacion de usuario y contraseña, Validar si es admin o user y si no existe dar alerta
-        //Si se desea abrir admin en lugar de user de debe usar "cambiarEscena("vista/admin.fxml", "Sporify - Admin", 1025, 656);"
+        //Si se desea abrir admin en lugar de user de debe usar ""
 
+        if (user.isEmpty()||password.isEmpty()){
+            lbMensaje.setVisible(true);
+        }else if (user.equals("admin") && password.equals("$aDmiN")){
+            cambiarEscena("vista/admin.fxml", "Sporify - Admin", 1025, 656);
+
+        }else if (TiendaMusica.getInstance().iniciarSesion(user, password) != null) {
+            cambiarEscena("vista/user.fxml", "Sporify", 1025, 656);
+        }else {
+            lbMensaje.setVisible(true);
+            lbMensaje.setText("Usuario o contraseña incorrectos");
+            lbMensaje.setAlignment(Pos.CENTER);
+        }
     }
 
     @FXML
@@ -84,6 +106,7 @@ public class LoginController {
         Scene scene = new Scene(fxmlLoader.load(), width, height);
         stage.getIcons().add(icon);
         stage.setTitle(title);
+        stage.initStyle(StageStyle.TRANSPARENT);  //Para que la ventana no tenga la barra superior
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

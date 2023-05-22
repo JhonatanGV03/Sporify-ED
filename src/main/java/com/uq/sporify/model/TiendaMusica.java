@@ -165,7 +165,7 @@ public class TiendaMusica {
 	 * a trav�s de una lista de usuarios y contrase�as
 	 * almacenados en un mapa utilizando listas enlazadas
 	 */
-	public Usuario iniciarSeccion (String usuario,String contrasenia) {
+	public Usuario iniciarSesion(String usuario, String contrasenia) {
 		Usuario user = new Usuario();
 		Iterator<Map.Entry<String, Usuario>> it = ((Map) listaUsuarios).entrySet().iterator();
 		while (it.hasNext()) {
@@ -187,7 +187,7 @@ public class TiendaMusica {
 		TiendaMusica.tienda = Persistencia.cargarRecursoSporifyXML();
 
 	}
-	public void guardarInfo () throws IOException {
+	public static void guardarInfo() throws IOException {
 		Persistencia.guardarRecursoSporifyXML();
 	}
 }

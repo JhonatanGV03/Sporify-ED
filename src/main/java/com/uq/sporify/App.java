@@ -20,7 +20,7 @@ public class App extends Application {
         stage.getIcons().add(icon);
         stage.setTitle("Sporify - Iniciar Sesión");
         stage.setScene(scene);
-        //stage.initStyle(StageStyle.TRANSPARENT);  //Para que la ventana no tenga la barra superior
+        stage.initStyle(StageStyle.TRANSPARENT);  //Para que la ventana no tenga la barra superior
         stage.setResizable(false);
         stage.show();
     }

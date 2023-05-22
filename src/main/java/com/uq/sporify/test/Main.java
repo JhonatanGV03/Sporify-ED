@@ -6,7 +6,10 @@ import com.uq.sporify.lib.ListaCircular;
 import com.uq.sporify.lib.ListaDobleEnlazada;
 import com.uq.sporify.model.Artista;
 import com.uq.sporify.model.Cancion;
+import com.uq.sporify.model.TiendaMusica;
 import com.uq.sporify.model.Usuario;
+
+import java.io.IOException;
 
 public class Main {
 	/**
@@ -19,7 +22,7 @@ public class Main {
 	*/
 	public static void main(String[] args) {
 		// Crea la Tienda
-		//1 TiendaMusica sporify = new TiendaMusica();
+		TiendaMusica sporify = TiendaMusica.getInstance();
 		//Artistas
 		ArbolBinario<Artista> listaArtistas = new ArbolBinario<>();
 		ListaDobleEnlazada<Cancion> listaCancionesCancerbero = new ListaDobleEnlazada<>();
@@ -42,21 +45,20 @@ public class Main {
 		HashMapJava<String, Usuario> listaUsuarios = new HashMapJava<>();
 		listaUsuarios.agregar(user.getUsuario(), user);
 
-		//2
 		//Asignacion
-		//sporify.setListaArtistas(listaArtistas);
-		//sporify.setListaCanciones(listaCanciones);
-		//sporify.setListaUsuarios(listaUsuarios);
+		sporify.setListaArtistas(listaArtistas);
+		sporify.setListaCanciones(listaCanciones);
+		sporify.setListaUsuarios(listaUsuarios);
 
-		//3 try {
-			//TiendaMusica.guardarInfo(sporify);
-		//} catch (IOException e) {
+		try {
+			TiendaMusica.guardarInfo();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
+			e.printStackTrace();
+		}
 
-		//4 Imprime la informacion
-		//System.out.println(sporify.getListaArtistas().encontrar(art1).getListaCanciones().obtener(0));
-		//System.out.println(sporify.getListaUsuarios().obtener("user").getListaCanciones().obtener(0).getArtista());
+		//Imprime la informacion
+		System.out.println(sporify.getListaArtistas().encontrar(art1).getListaCanciones().obtener(0));
+		System.out.println(sporify.getListaUsuarios().obtener("user").getListaCanciones().obtener(0).getArtista());
 	}
 }
