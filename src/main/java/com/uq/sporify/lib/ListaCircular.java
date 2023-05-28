@@ -1,10 +1,11 @@
 package com.uq.sporify.lib;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ListaCircular<T> implements Iterable<T> {
+public class ListaCircular<T> implements Iterable<T>, Serializable {
 	// Declaracion de variables
     private int tamanio;
     private Nodo<T> actual;

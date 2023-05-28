@@ -3,10 +3,12 @@ package com.uq.sporify.model;
 import com.uq.sporify.lib.ListaCircular;
 import com.uq.sporify.lib.Pila;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
-
-public class Usuario {
+@XmlRootElement
+public class Usuario implements Serializable {
     private String usuario;
     private String contrasenia;
     private String email;
@@ -67,6 +69,7 @@ public class Usuario {
         actualizarFavoritos();
 
     }
+
     public void eliminarCancion(Cancion cancion) {
         listaCanciones.eliminar(cancion);
         actualizarFavoritos();

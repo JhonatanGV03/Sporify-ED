@@ -1,6 +1,8 @@
 package com.uq.sporify.lib;
 
-public class Nodo <T> {
+import java.io.Serializable;
+
+public class Nodo <T> implements Serializable {
     // Declaracion de variables
 	T valor;
     Nodo siguiente;

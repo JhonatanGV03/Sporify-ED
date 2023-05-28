@@ -1,5 +1,6 @@
 package com.uq.sporify.lib;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;

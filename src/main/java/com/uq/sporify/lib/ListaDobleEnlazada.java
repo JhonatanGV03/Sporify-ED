@@ -1,10 +1,11 @@
 package com.uq.sporify.lib;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ListaDobleEnlazada<T> implements Iterable<T>{
+public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 	// Declaracion de variables
 	private Nodo primero;
 	private Nodo ultimo;
@@ -202,7 +203,7 @@ public class ListaDobleEnlazada<T> implements Iterable<T>{
 
 
 	// Clase interna privada para el iterador
-	private class IteradorLista implements Iterator<T> {
+	private class IteradorLista implements Iterator<T>, Serializable {
 		private Nodo<T> actual;
 
 		public IteradorLista() {

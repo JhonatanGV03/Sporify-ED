@@ -4,6 +4,8 @@ import com.uq.sporify.model.Artista;
 import com.uq.sporify.model.Cancion;
 import javafx.scene.Node;
 
+import java.beans.XMLEncoder;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 /*
@@ -13,13 +15,13 @@ import java.util.Iterator;
  * @param <T> Generico
  * @param <E>
  */
-public class ArbolBinario  <T extends Comparable<T>> implements Iterable<T> {
+public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Serializable {
 	// Declaracion de variables
 	private NodoArbolBinario<T> raiz; // Raiz del arbol
 
 	// Constructor de la clase ArbolBinario
 	public ArbolBinario() {
-		this.raiz = null; // Se inicializa el atributo en null para indicar que inicia vacio
+        this.raiz = null; // Se inicializa el atributo en null para indicar que inicia vacio
 	}
 
 	/*
@@ -354,7 +356,7 @@ public class ArbolBinario  <T extends Comparable<T>> implements Iterable<T> {
     /*
      * Clase publica de NodoArbolBinario que extiende de Comparable
      */
-    public class NodoArbolBinario<T extends Comparable<T>> {
+    public class NodoArbolBinario<T extends Comparable<T>> implements Serializable{
 
     	// Declaracion de variables
         private T valor;

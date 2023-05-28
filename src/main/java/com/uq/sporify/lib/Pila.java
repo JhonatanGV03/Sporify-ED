@@ -1,9 +1,10 @@
 package com.uq.sporify.lib;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.EmptyStackException;
 
-public class Pila<T> {
+public class Pila<T> implements Serializable {
 	// Declaracion de variables
     private NodoPila<T> cima;
 
@@ -70,7 +71,7 @@ public class Pila<T> {
     }
 
     // Clase privada estatica NodoPila
-    private static class NodoPila<T> {
+    private static class NodoPila<T> implements Serializable {
 
     	// Atributos
         private T elemento;
