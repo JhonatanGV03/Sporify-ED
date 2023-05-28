@@ -137,7 +137,7 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
     }
 
     // Clase pivada Iterator que implementa de Iterator
-    private class Iterador implements Iterator<T> {
+    private class Iterador implements Iterator<T> , Serializable{
        // Atributos
     	private int posicion;
         private boolean sePuedeEliminar;

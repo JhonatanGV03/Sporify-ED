@@ -169,7 +169,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         return new HashMapIterator();
     }
 
-    public static class Entry<K, V> {
+    public static class Entry<K, V> implements Serializable {
     	// Declaracion de variables
         private K key;
         private V value;
@@ -218,7 +218,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
     /*
      *  Clase privada HashMapIterator, implementa de Iterator
      */
-    private class HashMapIterator implements Iterator<Entry<K, V>> {
+    private class HashMapIterator implements Iterator<Entry<K, V>>, Serializable{
     	// Declaracion de las variables
         private int currentIndex = -1;
         private Entry<K, V> currentEntry = null;

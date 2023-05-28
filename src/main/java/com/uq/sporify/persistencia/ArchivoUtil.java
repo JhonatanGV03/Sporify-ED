@@ -8,8 +8,8 @@ import com.uq.sporify.model.TiendaMusica;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
-import java.lang.reflect.Field;
-import java.util.List;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class ArchivoUtil {
 //metodo definitivo para guardarLista de Objetos en XML

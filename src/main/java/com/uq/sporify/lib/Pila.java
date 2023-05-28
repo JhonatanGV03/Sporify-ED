@@ -82,6 +82,7 @@ public class Pila<T> implements Serializable {
             this.elemento = elemento;
             siguiente = null;
         }
+
     }
 
 

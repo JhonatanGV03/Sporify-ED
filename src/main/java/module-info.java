@@ -12,6 +12,12 @@ module com.uq.spotify {
 
     opens com.uq.sporify to javafx.fxml;
     exports com.uq.sporify;
+    exports com.uq.sporify.lib;
+    exports com.uq.sporify.model;
+    exports com.uq.sporify.persistencia;
+    exports com.uq.sporify.test;
     exports com.uq.sporify.controller;
     opens com.uq.sporify.controller to javafx.fxml;
+
+
 }
