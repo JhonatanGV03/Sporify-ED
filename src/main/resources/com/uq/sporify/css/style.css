@@ -25,15 +25,18 @@
     -fx-text-fill: #ffffff;
 }
 
-/*-----------estilos del panel de inicio --------------------------*/
+/*-----------estilos de los tableview --------------------------*/
 
 #tableView-Lista{
     -fx-base: #121212;
-    -fx-control-inner-background:  linear-gradient(to bottom, #232323, #121212);
+    -fx-control-inner-background: #1a1a1a;
     -fx-background-color:  linear-gradient(to bottom, #232323, #121212);
     -fx-table-cell-border-color:  transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
+}
+#tableView-Lista .cell{
+    -fx-text-fill: #ececec;
 }
 
 #tableView-Lista .column-header-background { -fx-background-color: transparent; }
@@ -60,11 +63,11 @@
 /*-------------------------------------*/
 
 #choiceBox_Sort .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #ffffff;
 }
 #choiceBox_Sort .menu-item:focused { -fx-background-color:  #00BB22; }
 
-#choiceBox_Sort .menu-item .label { -fx-text-fill: white; }
+#choiceBox_Sort .menu-item .label { -fx-text-fill: #424242; }
 #choiceBox_Sort .menu-item:focused > .label { -fx-text-fill: black; }
 
 /*-------------------------------------*/

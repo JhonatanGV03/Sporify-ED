@@ -1,20 +1,27 @@
 package com.uq.sporify.model;
 
 import com.uq.sporify.lib.*;
+import com.uq.sporify.persistencia.ArchivoUtil;
 import com.uq.sporify.persistencia.Persistencia;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
-
-public class TiendaMusica {
+@XmlRootElement
+public class TiendaMusica implements Serializable {
 	// Declaracion de variables
 	private static TiendaMusica tienda;
-	ArbolBinario<Artista> listaArtistas;
-	HashMapJava<String, Usuario> listaUsuarios;
-	ListaCircular<Cancion> listaCanciones;
-	Pila<Cancion> cambiosRecientes;
+	private ArbolBinario<Artista> listaArtistas;
+	private HashMap<String, Usuario> listaUsuarios;
+	private ListaCircular<Cancion> listaCanciones;
+
+	private Usuario usuarioActual;
 
 	public static TiendaMusica getInstance() {
 		if(tienda==null) {
@@ -25,10 +32,11 @@ public class TiendaMusica {
 	// Segundo constructor de la clase
 	private TiendaMusica() {
 		super();
-		this.cambiosRecientes=null;
-		this.listaArtistas=null;
-		this.listaUsuarios=null;
-		this.listaCanciones=null;
+
+		this.listaArtistas=new ArbolBinario<>();
+		this.listaUsuarios=new HashMap<>();
+		this.listaCanciones=new ListaCircular<>();
+		this.usuarioActual = new Usuario();
 	}
 
 	// Metodos getter and setter
@@ -44,15 +52,23 @@ public class TiendaMusica {
 		return listaArtistas;
 	}
 
+	public Usuario getUsuarioActual() {
+		return usuarioActual;
+	}
+
+	public void setUsuarioActual(Usuario usuarioActual) {
+		this.usuarioActual = usuarioActual;
+	}
+
 	public void setListaArtistas(ArbolBinario<Artista> listaArtistas) {
 		this.listaArtistas = listaArtistas;
 	}
 
-	public HashMapJava<String, Usuario> getListaUsuarios() {
+	public HashMap<String, Usuario> getListaUsuarios() {
 		return listaUsuarios;
 	}
 
-	public void setListaUsuarios(HashMapJava<String, Usuario> listaUsuarios) {
+	public void setListaUsuarios(HashMap<String, Usuario> listaUsuarios) {
 		this.listaUsuarios = listaUsuarios;
 	}
 
@@ -64,16 +80,8 @@ public class TiendaMusica {
 		this.listaCanciones = listaCanciones;
 	}
 
-	public Pila<Cancion> getCambiosRecientes() {
-		return cambiosRecientes;
-	}
 
-	public void setcambiosRecientes(Pila<Cancion> cambiosRecientes) {
-		this.cambiosRecientes = cambiosRecientes;
-	}
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public int hashCode() {
 		return Objects.hash(listaArtistas, listaCanciones, listaUsuarios);
@@ -103,9 +111,17 @@ public class TiendaMusica {
 
 	// Recibe un objeto de tipo Artista y lo agrega a la lista de artistas
 	public void agregarArtista(Artista artista) {
-		listaArtistas.agregar(artista);
+		Boolean bandera = false;
+		for (Artista art:listaArtistas) {
+			if(art.equals(artista)) {
+				bandera = true;
+			}
+		}
+		if (bandera == false){
+			listaArtistas.agregar(artista);
+			agregarCancionesArtista();
+		}
 	}
-
 	// Recibe un objeto de tipo Artista y lo elimina de la lista de artistas.
 	public void eliminarArtista(Artista artista) {
 		listaArtistas.eliminar(artista);
@@ -113,9 +129,19 @@ public class TiendaMusica {
 
 	// Recibe un objeto de tipo Cancion y lo agrega a la lista de canciones
 	public void guardarCancion(Cancion cancion) {
-		listaCanciones.agregar(cancion);
+		if(encontrarCancion(cancion)==false)
+		    this.listaCanciones.agregar(cancion);
 	}
-
+	public boolean encontrarCancion (Cancion cancion){
+		Boolean bandera = false;
+		for(Cancion song:listaCanciones)
+		{
+			String can = song.getCodigo();
+			if (can.equals(cancion.getCodigo()))
+				bandera=true;
+		}
+		return bandera;
+	}
 	// Recibe un objeto de tipo Cancion y lo elimina de la lista de canciones
 	public void eliminarCancion(Cancion cancion) {
 		listaCanciones.eliminar(cancion);
@@ -172,13 +198,14 @@ public class TiendaMusica {
 	 * almacenados en un mapa utilizando listas enlazadas
 	 */
 	public Usuario iniciarSesion(String usuario, String contrasenia) {
-		Usuario user = new Usuario();
-		Iterator<Map.Entry<String, Usuario>> it = ((Map) listaUsuarios).entrySet().iterator();
+
+		Usuario user = null;
+		Iterator<Map.Entry<String, Usuario>> it = (listaUsuarios).entrySet().iterator();
 		while (it.hasNext()) {
 		    Map.Entry<String, Usuario> entry = it.next(); // Si el nombre de usuario o la contrase�a
 		    String key = entry.getKey(); // coinciden con los valores almacenados en el mapa
 		    String value = entry.getValue().getContrasenia();
-		    if(usuario.equals(key)||contrasenia.equals(value)) {
+		    if(usuario.equals(key) && contrasenia.equals(value)) {
 		    	user=entry.getValue();
 		    }
 		}
@@ -188,13 +215,157 @@ public class TiendaMusica {
 	/*
 	 *  Carga informacion desde un recurso XML
 	 */
-	public void cargarInfo () throws IOException {
-		
-		TiendaMusica.tienda = Persistencia.cargarRecursoSporifyXML();
-
+	public void cargarInfo() throws IOException {
+		Persistencia.cargarRecursoSporifyXML();
+		agregarCancionesArtista();
+		agregarCancionesUsuario();
+		tienda = getInstance();
 	}
-	public static void guardarInfo() throws IOException {
+	public void guardarInfo() throws IOException {
 		Persistencia.guardarRecursoSporifyXML();
+		tienda = getInstance();
+	}
+	public boolean verificarUsuario(String user){
+		return this.getListaUsuarios().containsKey(user);
+	}
+	public void crearUsuario (Usuario usuario){
+		this.listaUsuarios.put(usuario.getUsuario(),usuario);
+	}
+
+	public void agregarCancionesArtista () {
+		ArbolBinario<Artista> artistasaux = new ArbolBinario<Artista>();
+
+	for (Artista art:listaArtistas)	{
+		this.listaArtistas.encontrar(art).setListaCanciones(new ListaDobleEnlazada<Cancion>());
+		for (Cancion cancion : tienda.listaCanciones) {
+			String nombreArtista = cancion.getArtista();
+			if (nombreArtista.equals(art.getNombre())) {
+				this.tienda.listaArtistas.encontrar(art).agregarCancion(cancion);
+			}
+		}
+		System.out.println("esta es una prueba");
+	}
+	}
+
+	//
+	public void agregarCancionesUsuario(){
+
+		HashMap<String,Usuario> lstusraux= new HashMap<String,Usuario>();
+		for (Map.Entry<String,Usuario> usuario: listaUsuarios.entrySet()){
+			Usuario auxuser = usuario.getValue();
+			String aux = auxuser.getFavoritos();
+			if(aux != null){
+			String[] arreglo = aux.split(";");
+			for (int i=0;i<arreglo.length;i++){
+
+				for (Cancion cancion: listaCanciones){
+					String codCancion = cancion.getCodigo();
+					if (codCancion.equals(arreglo[i])){
+						this.tienda.listaUsuarios.get(usuario.getKey()).guardarCancion(cancion);
+					}
+				}
+			}
+		}
+		}
+	}
+	public void AgregarPorArchivo (File archivo){
+		try {
+			ArchivoUtil.cargarInformacion(archivo);
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	public String mostrarArtistaTendencia (){
+		int tendencia=0;
+		Artista aux= new Artista();
+		for (Artista artista:listaArtistas){
+			if(artista.getReproducciones()>tendencia){
+				tendencia=artista.getReproducciones();
+				aux=artista;
+			}
+		}
+		return aux.getNombre();
+	}
+	public String mostrarGeneroTendendencia (){
+		int contadorRock=0;
+		int contadorPunk=0;
+		int contadorRegueton=0;
+		int contadorPop=0;
+		int contadorElectronica=0;
+		int contadorRap=0;
+		for (Cancion cancion: listaCanciones){
+			if(cancion.getGenero().equals("Rock")){
+				contadorRock++;
+			}
+			else if(cancion.getGenero().equals("Punk")){
+				contadorPunk++;
+			}
+			else if(cancion.getGenero().equals("Reggaeton")){
+				contadorRegueton++;
+			}
+			else if(cancion.getGenero().equals("Pop")){
+				contadorPop++;
+			}
+			else if(cancion.getGenero().equals("Electronica")){
+				contadorElectronica++;
+			}
+			else if(cancion.getGenero().equals("Rap")){
+				contadorRap++;
+			}
+		}
+
+		return calcularNumeroMayor(contadorRock,contadorPunk,contadorRegueton,contadorPop,contadorElectronica,contadorRap);
+	}
+	public Artista retornarArtista(String nombreArtista){
+		Artista artista=new Artista();
+		for(Artista art: listaArtistas){
+			if(art.getNombre().equals(nombreArtista))
+				artista = art;
+		}
+		return artista;
+	}
+	public static String calcularNumeroMayor(int num1, int num2, int num3, int num4, int num5,int num6) {
+		int numeroMayor = num1;
+		String popular = "Rock";
+		if (num2 > numeroMayor) {
+			numeroMayor = num2;
+			popular = "Punk";
+		}
+
+		if (num3 > numeroMayor) {
+			numeroMayor = num3;
+			popular = "Reggaeton";
+		}
+
+		if (num4 > numeroMayor) {
+			numeroMayor = num4;
+			popular = "Pop";
+		}
+
+		if (num5 > numeroMayor) {
+			numeroMayor = num5;
+			popular = "Electronica";
+		}
+		if (num6 > numeroMayor) {
+			numeroMayor = num5;
+			popular = "Rap";
+		}
+		return popular;
+	}
+	public Artista encontrarDueño(Cancion cancion)
+	{
+		Artista art =null;
+		for (Artista artist:listaArtistas){
+			if(artist.getNombre().equals(cancion.getArtista())){
+				art = artist;
+			}
+		}
+		return art;
+	}
+	public void reproducir (Cancion cancion)
+	{
+		Artista artaux=encontrarDueño(cancion);
+		listaArtistas.encontrar(artaux).setReproducciones(listaArtistas.encontrar(artaux).getReproducciones()+1);
 	}
 	public ListaCircular<Cancion> depurarArtistayCanciones (Artista art)
 	{

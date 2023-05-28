@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17" class="java.beans.XMLDecoder">
+ <object class="com.uq.sporify.model.Usuario">
+  <void property="contrasenia">
+   <string>123</string>
+  </void>
+  <void property="email">
+   <string>user@gmail.com</string>
+  </void>
+  <void property="favoritos">
+   <string></string>
+  </void>
+  <void property="usuario">
+   <string>user</string>
+  </void>
+ </object>
+</java>

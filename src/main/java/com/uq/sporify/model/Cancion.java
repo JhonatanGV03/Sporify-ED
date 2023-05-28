@@ -1,15 +1,17 @@
 package com.uq.sporify.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
-
-public class Cancion {
+@XmlRootElement
+public class Cancion implements Serializable {
     // Declaración de variables
     private String codigo;
     private String nombre;
     private String artista;
     private String caratula;
-    private String anio;
+    private int anio;
     private String urlYoutube;
     private int duracion; // en segundos
     private String genero;
@@ -17,13 +19,26 @@ public class Cancion {
 
     // Constructor super de la clase Cancion
     public Cancion(String nombre, String artista, String caratula, String anio, String urlYoutube,
-				   int duracion, String genero, String album, String codigo) {
+				   int duracion, String genero, String album) {
+		super();
+		this.codigo = generarCodigo();
+		this.nombre = nombre;
+		this.artista = artista;
+		this.caratula = caratula;
+		this.anio = Integer.parseInt(anio);
+		this.urlYoutube = urlYoutube;
+		this.duracion = duracion;
+		this.genero = genero;
+		this.album = album;
+	}
+	public Cancion(String codigo, String nombre, String artista, String caratula, String anio, String urlYoutube,
+				   int duracion, String genero, String album) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.artista = artista;
 		this.caratula = caratula;
-		this.anio = anio;
+		this.anio = Integer.parseInt(anio);
 		this.urlYoutube = urlYoutube;
 		this.duracion = duracion;
 		this.genero = genero;
@@ -33,11 +48,11 @@ public class Cancion {
     // Constructor de la clase
     public Cancion() {
 		super();
-		this.codigo="";
+		this.codigo=generarCodigo();
 		this.nombre="";
 		this.artista="";
 		this.caratula="";
-		this.anio ="";
+		this.anio =0;
 		this.urlYoutube="";
 		this.duracion=0;
 		this.genero="";
@@ -80,11 +95,11 @@ public class Cancion {
 	}
 
 	public String getAnio() {
-		return anio;
+		return anio+"";
 	}
 
 	public void setAnio(String anio) {
-		this.anio = anio;
+		this.anio = Integer.parseInt(anio);
 	}
 
 	public String getUrlYoutube() {
@@ -117,6 +132,17 @@ public class Cancion {
 
 	public void setAlbum(String album) {
 		this.album = album;
+	}
+	public void editar(String nombre, String artista, String caratula, String anio, String urlYoutube,
+					   int duracion, String genero, String album){
+		this.nombre=nombre;
+		this.artista=artista;
+		this.album=album;
+		this.caratula=caratula;
+		this.anio=Integer.parseInt(anio);
+		this.urlYoutube=urlYoutube;
+		this.duracion=duracion;
+		this.genero=genero;
 	}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -169,7 +195,7 @@ public class Cancion {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Crea una cadena de  mayúsculas y dígitos
         StringBuilder codigo = new StringBuilder();
         Random random = new Random();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 6; i++) {
             int indice = random.nextInt(caracteres.length());
             codigo.append(caracteres.charAt(indice));
         }

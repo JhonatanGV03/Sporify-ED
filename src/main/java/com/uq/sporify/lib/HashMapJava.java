@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>> {
+public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Serializable {
 	// Declaracion de varriables
     private static final int CAPACIDAD_POR_DEFECTO = 16;
     private Entry<K, V>[] tabla;

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17" class="java.beans.XMLDecoder">
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Nanpa</string>
+  </void>
+  <void property="anio">
+   <string>2019</string>
+  </void>
+  <void property="artista">
+   <string>Nanpa</string>
+  </void>
+  <void property="codigo">
+   <string>ABC006</string>
+  </void>
+  <void property="duracion">
+   <int>2000</int>
+  </void>
+  <void property="genero">
+   <string>rap</string>
+  </void>
+  <void property="nombre">
+   <string>Flaca</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/embed/2Z39z0jYiY</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Muerte</string>
+  </void>
+  <void property="anio">
+   <string>2010</string>
+  </void>
+  <void property="artista">
+   <string>Cancerbero</string>
+  </void>
+  <void property="codigo">
+   <string>ABC009</string>
+  </void>
+  <void property="duracion">
+   <int>2000</int>
+  </void>
+  <void property="genero">
+   <string>rap</string>
+  </void>
+  <void property="nombre">
+   <string>es epico</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/embed/2Z39z0jYiY</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>vida</string>
+  </void>
+  <void property="anio">
+   <string>2013</string>
+  </void>
+  <void property="artista">
+   <string>Cancerbero</string>
+  </void>
+  <void property="codigo">
+   <string>ABC010</string>
+  </void>
+  <void property="duracion">
+   <int>2000</int>
+  </void>
+  <void property="genero">
+   <string>rap</string>
+  </void>
+  <void property="nombre">
+   <string>así es mi vida</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/embed/2Z39z0jYiY</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Nach</string>
+  </void>
+  <void property="anio">
+   <string>2019</string>
+  </void>
+  <void property="artista">
+   <string>Nach</string>
+  </void>
+  <void property="codigo">
+   <string>15IHU5</string>
+  </void>
+  <void property="duracion">
+   <int>2500</int>
+  </void>
+  <void property="genero">
+   <string>Punk</string>
+  </void>
+  <void property="nombre">
+   <string>entre el placer y el dolor</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/embed/iiniQGn6uaU</string>
+  </void>
+ </object>
+</java>

@@ -17,7 +17,9 @@ import javafx.scene.image.Image;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 //Nota: Al final del proyecto se eliminan los identificadores, variables y metodos que no se
 // usen o que se puedan optimizar
@@ -26,6 +28,7 @@ public class LoginController implements Initializable {
 
     //Variables
     String user, password;
+    TiendaMusica sporify;
 
 
     //Identificadores de la vista asociada a login.fxml
@@ -40,6 +43,17 @@ public class LoginController implements Initializable {
     @FXML
     private Label lbMensaje;
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        sporify = TiendaMusica.getInstance();
+
+        try {
+            sporify.cargarInfo();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     //Metodos de acciones
     //Nota: todos los metodos tienen el codigo base, pero a la mayoria toca agregarle condiciones para realizar una
@@ -56,6 +70,7 @@ public class LoginController implements Initializable {
         if (user.isEmpty()||password.isEmpty()){
             lbMensaje.setVisible(true);
         }else if (user.equals("admin") && password.equals("$aDmiN")){
+            sporify.cargarInfo();
             cambiarEscena("vista/admin.fxml", "Sporify - Admin", 1025, 656);
 
         }else if (TiendaMusica.getInstance().iniciarSesion(user, password) != null) {
@@ -83,12 +98,16 @@ public class LoginController implements Initializable {
 
     @FXML
     void onActionPFContrasenia(ActionEvent event) {
-        //Probablemente no se necesite
+        try {
+            onActionBtnIngresar(event);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     void onActionTFUsuario(ActionEvent event) {
-        //Probablemente no se necesite
+        pfContrasenia.requestFocus();
     }
 
     @FXML
@@ -117,6 +136,4 @@ public class LoginController implements Initializable {
         Stage stage2 = (Stage) btnRegistrarse.getScene().getWindow();
         stage2.close();
     }
-
-
 }

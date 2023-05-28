@@ -2,20 +2,22 @@ package com.uq.sporify.model;
 
 import com.uq.sporify.lib.ListaDobleEnlazada;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
-
-public class Artista implements Comparable<Artista>{
+@XmlRootElement
+public class Artista implements Comparable<Artista>, Serializable {
     // Declaracion de variables
     private String nombre;
     private String nacionalidad;
     private String codigo;
-    private String grupo;
+    private Boolean grupo;
     private int reproducciones;
-    private ListaDobleEnlazada<Cancion> listaCanciones;
+    private ListaDobleEnlazada<Cancion> listaCanciones = new ListaDobleEnlazada<>();
 
     // Constructor de la clase Astista
-	public Artista(String nombre, String nacionalidad, String grupo,
+	public Artista(String nombre, String nacionalidad, Boolean grupo,
 			ListaDobleEnlazada<Cancion> listaCanciones) {
 		super();
 		this.nombre = nombre;
@@ -26,14 +28,33 @@ public class Artista implements Comparable<Artista>{
 		this.reproducciones=0;
 	}
 
+	public Artista(String nombre, String nacionalidad, Boolean grupo) {
+		super();
+		this.nombre = nombre;
+		this.nacionalidad = nacionalidad;
+		this.codigo = generarCodigo();
+		this.grupo = grupo;
+		this.listaCanciones = new ListaDobleEnlazada<>();
+		this.reproducciones=0;
+	}
+	public Artista(String codigo, String nombre, String nacionalidad, Boolean grupo) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.nacionalidad = nacionalidad;
+		this.grupo = grupo;
+		this.listaCanciones = new ListaDobleEnlazada<>();
+		this.reproducciones=0;
+	}
+
 	// Segundo constructor de la clase
 	public Artista() {
 		super();
 		this.nombre="";
 		this.nacionalidad="";
 		this.codigo="";
-		this.grupo="";
-		this.listaCanciones=null;
+		this.grupo=false;
+		this.listaCanciones = new ListaDobleEnlazada<>();
 		this.reproducciones=0;
 	}
 
@@ -48,7 +69,7 @@ public class Artista implements Comparable<Artista>{
 		return nacionalidad;
 	}
 	public void setNacionalidad(String nacionalidad) {
-		nacionalidad = nacionalidad;
+		this.nacionalidad = nacionalidad;
 	}
 	public String getCodigo() {
 		return codigo;
@@ -56,10 +77,10 @@ public class Artista implements Comparable<Artista>{
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
-	public String getGrupo() {
+	public Boolean getGrupo() {
 		return grupo;
 	}
-	public void setGrupo(String grupo) {
+	public void setGrupo(Boolean grupo) {
 		this.grupo = grupo;
 	}
 	public ListaDobleEnlazada<Cancion> getListaCanciones() {
@@ -74,6 +95,11 @@ public class Artista implements Comparable<Artista>{
 	}
 	public void setReproducciones(int reproducciones) {
 		this.reproducciones = reproducciones;
+	}
+	public void editarArtista (String nombre, String nacionalidad, Boolean grupo){
+		setNombre(nombre);
+		setNacionalidad(nacionalidad);
+		setGrupo(grupo);
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -151,4 +177,5 @@ public class Artista implements Comparable<Artista>{
     }
 
 }
+
 

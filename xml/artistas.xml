@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17" class="java.beans.XMLDecoder">
+ <object class="com.uq.sporify.model.Artista">
+  <void property="codigo">
+   <string>000004</string>
+  </void>
+  <void property="nacionalidad">
+   <string>Venezuela</string>
+  </void>
+  <void property="nombre">
+   <string>Cancerbero</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Artista">
+  <void property="codigo">
+   <string>000001</string>
+  </void>
+  <void property="grupo">
+   <boolean>true</boolean>
+  </void>
+  <void property="nacionalidad">
+   <string>Sudafrica</string>
+  </void>
+  <void property="nombre">
+   <string>JHCruz</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Artista">
+  <void property="codigo">
+   <string>000000</string>
+  </void>
+  <void property="nacionalidad">
+   <string>Español</string>
+  </void>
+  <void property="nombre">
+   <string>Nach</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Artista">
+  <void property="codigo">
+   <string>000002</string>
+  </void>
+  <void property="nacionalidad">
+   <string>Colombia</string>
+  </void>
+  <void property="nombre">
+   <string>Nanpa</string>
+  </void>
+ </object>
+</java>

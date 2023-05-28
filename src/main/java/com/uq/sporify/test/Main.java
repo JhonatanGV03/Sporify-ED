@@ -8,8 +8,11 @@ import com.uq.sporify.model.Artista;
 import com.uq.sporify.model.Cancion;
 import com.uq.sporify.model.TiendaMusica;
 import com.uq.sporify.model.Usuario;
+import com.uq.sporify.persistencia.Persistencia;
 
-import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Main {
 	/**
@@ -21,13 +24,15 @@ public class Main {
 	Persistencia persistencia;
 	*/
 	public static void main(String[] args) {
-		// Crea la Tienda
-		TiendaMusica sporify = TiendaMusica.getInstance();
+		 //Crea la Tienda
+
+	TiendaMusica sporify = TiendaMusica.getInstance();
+/**
 		//Artistas
 		ArbolBinario<Artista> listaArtistas = new ArbolBinario<>();
 		ListaDobleEnlazada<Cancion> listaCancionesCancerbero = new ListaDobleEnlazada<>();
-		Cancion epico = new Cancion("epico","cancerbero","","","",10,"rap","",Cancion.generarCodigo());
-		Cancion tripolar = new Cancion("tripolar","cancerbero","","","",10,"rap","",Cancion.generarCodigo());
+		Cancion epico = new Cancion("epico","cancerbero","","","",10,"rap","");
+		Cancion tripolar = new Cancion("tripolar","cancerbero","","","",10,"rap","");
 		listaCancionesCancerbero.agregarAlFinal(epico); // Agrega la cancion al final de la lista
 		listaCancionesCancerbero.agregarAlFinal(tripolar); // Agrega la cancion al final de la lista
 		Artista art1 = new Artista("cancerbero","venezuela",false);
@@ -39,27 +44,44 @@ public class Main {
 		listaCanciones.agregar(tripolar);
 		listaCanciones.agregar(epico);
 
+
 		//Usuario
-		ListaCircular<Cancion> playlist = new ListaCircular<>();
-		playlist.agregar(tripolar);
-		Usuario user = new Usuario("user","123","user@gmail.com",playlist);
-		HashMapJava<String, Usuario> listaUsuarios = new HashMapJava<>();
-		listaUsuarios.agregar(user.getUsuario(), user);
+		Usuario user = new Usuario("user","123","user@gmail.com");
+		user.guardarCancion(tripolar);
+		user.guardarCancion(epico);
+		HashMap<String, Usuario> listaUsuarios = new HashMap<>();
+		listaUsuarios.put(user.getUsuario(), user);
 
 		//Asignacion
 		sporify.setListaArtistas(listaArtistas);
 		sporify.setListaCanciones(listaCanciones);
 		sporify.setListaUsuarios(listaUsuarios);
-
-		try {
-			TiendaMusica.guardarInfo();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+*/
+		//TiendaMusica sporify = TiendaMusica.getInstance();
+			try {
+				//sporify.guardarInfo();
+				sporify.cargarInfo();
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		/**for (Map.Entry<String,Usuario> usr:listaUsuarios.entrySet()){
+			System.out.println();
+			System.out.println(usr.getValue().getFavoritos());
+		}*/
+		//TiendaMusica sporify = TiendaMusica.getInstance();
 		//Imprime la informacion
-		System.out.println(sporify.getListaArtistas().encontrar(art1).getListaCanciones().obtener(0));
-		System.out.println(sporify.getListaUsuarios().obtener("user").getListaCanciones().obtener(0).getArtista());
+		//String[] atributos = new String[3];
+		//atributos[0] = "eminem";
+		//atributos[1] = "slim shady";
+		//atributos[2] = "cancerbero";
+		//ListaDobleEnlazada<Cancion> resultados = new ListaDobleEnlazada<>();
+		//sporify.agregarCancionesArtista();
+		//System.out.println(sporify.testBuscarO("papa, JHCruz,Nach"));
+		//System.out.println(sporify.getListaCanciones());
+		//System.out.println(sporify.getListaArtistas().obtenerTamanio());
+		System.out.println(sporify.getListaUsuarios().get("user").getListaCanciones().obtener(-1));
+		//sporify.getListaUsuarios().get("user").eliminarCancion();
+		//sporify.getListaUsuarios().get("user").eliminarCancion();
+		System.out.println(sporify.getListaUsuarios().get("user").getListaCanciones().obtener(-1));
 	}
 }

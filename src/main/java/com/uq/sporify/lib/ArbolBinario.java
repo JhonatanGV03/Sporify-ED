@@ -2,6 +2,7 @@ package com.uq.sporify.lib;
 
 import com.uq.sporify.model.Artista;
 import com.uq.sporify.model.Cancion;
+import javafx.scene.Node;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -217,6 +218,23 @@ public class ArbolBinario  <T extends Comparable<T>> implements Iterable<T> {
             recorridoPostorden(nodo.obtenerHijoIzquierdo()); // Obtiene el hijo izquierdo del arbol
             recorridoPostorden(nodo.obtenerHijoDerecho()); // Obtiene el hijo derecho del nodo
             System.out.print(nodo.obtenerValor() + " "); // Imprime el valor del nodo mas un mensaje
+        }
+    }
+
+    /*
+     * Metodo para obtener el tamaño del arbol binario
+     */
+    public int obtenerTamanio() {
+        return obtenerTamanioRecursivo(this.raiz);
+    }
+
+    private int obtenerTamanioRecursivo(NodoArbolBinario nodo) {
+        if (nodo == null) {
+            return 0;
+        } else {
+            int tamanioIzquierdo = obtenerTamanioRecursivo(nodo.hijoIzquierdo);
+            int tamanioDerecho = obtenerTamanioRecursivo(nodo.hijoDerecho);
+            return 1 + tamanioIzquierdo + tamanioDerecho;
         }
     }
 

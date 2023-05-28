@@ -8,6 +8,7 @@ module com.uq.spotify {
     requires javafx.web;
     requires java.desktop;
     requires jaxb.api.osgi;
+    requires jdk.jsobject;
 
     opens com.uq.sporify to javafx.fxml;
     exports com.uq.sporify;

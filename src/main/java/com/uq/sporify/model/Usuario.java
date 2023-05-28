@@ -16,6 +16,30 @@ public class Usuario {
     public String getUsuario() {
         return usuario;
     }
+
+    public String getFavoritos() {
+        return favoritos;
+    }
+
+    public void actualizarFavoritos(){
+        String aux="";
+        for(Cancion canciones: listaCanciones){
+           aux+= canciones.getCodigo()+";";
+        }
+        this.setFavoritos(aux);
+    }
+    public Boolean existeCancion(Cancion cancion){
+    Boolean bandera = false;
+    for(Cancion song:listaCanciones){
+        if(song.comprobar(cancion)){
+            bandera = true;
+        }
+    }
+    return bandera;
+    }
+    public void setFavoritos(String favoritos) {
+        this.favoritos = favoritos;
+    }
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
@@ -103,75 +127,47 @@ public class Usuario {
 
 
     public void ordenarPorAtributo(String atributo) {
+        Comparator<Cancion> comparator = null;
         switch(atributo.toLowerCase()) {
             case "nombre":
-                mergeSort(listaCanciones, new Comparator<Cancion>() {
-                    public int compare(Cancion c1, Cancion c2) {
-                        return c1.getNombre().compareTo(c2.getNombre());
-                    }
-                });
+                comparator = Comparator.comparing(Cancion::getNombre);
                 break;
             case "artista":
-                mergeSort(listaCanciones, new Comparator<Cancion>() {
-                    public int compare(Cancion c1, Cancion c2) {
-                        return c1.getArtista().compareTo(c2.getArtista());
-                    }
-                });
-                break;
-            case "genero":
-                mergeSort(listaCanciones, new Comparator<Cancion>() {
-                    public int compare(Cancion c1, Cancion c2) {
-                        return c1.getGenero().compareTo(c2.getGenero());
-                    }
-                });
+                comparator = Comparator.comparing(Cancion::getArtista);
                 break;
             case "duracion":
-                mergeSort(listaCanciones, new Comparator<Cancion>() {
-                    public int compare(Cancion c1, Cancion c2) {
-                        return c1.getDuracion() - c2.getDuracion();
-                    }
-                });
-
+                comparator = Comparator.comparingInt(Cancion::getDuracion);
+                break;
             case "codigo":
-                mergeSort(listaCanciones, new Comparator<Cancion>() {
-                    public int compare(Cancion c1, Cancion c2) {
-                        return c1.getCodigo().compareTo(c2.getCodigo());
-                    }
-                });
+                comparator = Comparator.comparing(Cancion::getCodigo);
+                break;
+            case "genero":
+                comparator = Comparator.comparing(Cancion::getGenero);
+                break;
             case "año":
-                mergeSort(listaCanciones, new Comparator<Cancion>() {
-                    public int compare(Cancion c1, Cancion c2) {
-                        return c1.getAnio().compareTo(c2.getAnio());
-                    }
-                });
-            case "urlYoutube":
-                mergeSort(listaCanciones, new Comparator<Cancion>() {
-                    public int compare(Cancion c1, Cancion c2) {
-                        return c1.getUrlYoutube().compareTo(c2.getUrlYoutube());
-                    }
-                });
+                comparator = Comparator.comparing(Cancion::getAnio);
+                break;
             case "album":
-                mergeSort(listaCanciones, new Comparator<Cancion>() {
-                    public int compare(Cancion c1, Cancion c2) {
-                        return c1.getAlbum().compareTo(c2.getAlbum());
-                    }
-                });
+                comparator = Comparator.comparing(Cancion::getAlbum);
                 break;
             default:
                 System.out.println("Atributo no válido");
+                return;
         }
+        mergeSort(listaCanciones, comparator);
     }
 
     private static <T> void mergeSort(ListaCircular<T> lista, Comparator<? super T> c) {
         if (lista.getTamanio() > 1) {
             int mitad = lista.getTamanio() / 2;
-            ListaCircular<T> izquierda = null;
-            ListaCircular<T> derecha = null;
+            ListaCircular<T> izquierda = new ListaCircular<>();
+            ListaCircular<T> derecha = new ListaCircular<>();
             for (int i=0;i<mitad; i++) {
                 izquierda.agregar(lista.obtener(i));
-                derecha.agregar(lista.obtener(i+mitad));
             }
-
+            for (int i=mitad;i<lista.getTamanio();i++) {
+                derecha.agregar(lista.obtener(i));
+            }
             mergeSort(izquierda, c);
             mergeSort(derecha, c);
             merge(izquierda, derecha, lista, c);

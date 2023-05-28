@@ -26,484 +26,371 @@
 <?import javafx.scene.web.WebView?>
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="1025.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.uq.sporify.controller.UserController">
-   <bottom>
-      <AnchorPane prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: black;">
-         <children>
-            <ImageView fx:id="ivCaratulaR" fitHeight="58.0" fitWidth="58.0" layoutX="17.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="15.0">
-               <image>
-                  <Image url="@../images/songNotFoundDefault.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="lbNombreCancionR" layoutX="71.0" layoutY="26.0" prefHeight="17.0" prefWidth="98.0" text="&lt;songName&gt;" textFill="WHITE" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="30.0">
-               <font>
-                  <Font name="Arial Black" size="13.0" />
-               </font>
-            </Label>
-            <Label fx:id="lbNombreArtistaR" layoutX="71.0" layoutY="45.0" prefHeight="25.0" prefWidth="107.0" text="&lt;artistName&gt;" textFill="#8d8d8d" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="52.0">
-               <font>
-                  <Font name="Rubik-Bold" size="12.0" />
-               </font>
-            </Label>
-            <VBox alignment="CENTER" layoutX="361.0" layoutY="1.0" maxHeight="89.0" maxWidth="440.0" minHeight="89.0" minWidth="210.0" prefHeight="89.0" AnchorPane.leftAnchor="361.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="89.0" prefWidth="210.0" spacing="2.0" style="-fx-alignment: top-center;">
-                     <children>
-                        <Button fx:id="btnAnterior" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnAnterior" prefHeight="24.0" prefWidth="19.0" style="-fx-background-color: transparent;">
-                           <graphic>
-                              <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
-                                 <image>
-                                    <Image url="@../images/anterior.png" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets top="17.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Group>
-                           <children>
-                              <Button fx:id="btnPlayR" alignment="CENTER" mnemonicParsing="false" onAction="#onActionBtnPausarPlay" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <graphic>
-                                    <ImageView fitHeight="35.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/play.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="btnPausar" alignment="CENTER" layoutY="-4.0" mnemonicParsing="false" onAction="#onActionBtnPausarPlay" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;" translateY="4.0" visible="false">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <graphic>
-                                    <ImageView fitHeight="35.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../images/pause.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                           </children>
-                           <HBox.margin>
-                              <Insets top="13.0" />
-                           </HBox.margin>
-                        </Group>
-                        <Button fx:id="btnSiguiente" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnSiguiente" prefHeight="24.0" prefWidth="19.0" rotate="180.0" style="-fx-background-color: transparent;">
-                           <graphic>
-                              <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
-                                 <image>
-                                    <Image url="@../images/anterior.png" />
-                                 </image>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <effect>
-                                    <Blend />
-                                 </effect>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets top="16.0" />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="303.0">
-                     <children>
-                        <ProgressBar id="progressBar_Reproductor" fx:id="pbProgreso" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="303.0" progress="0.0" stylesheets="@../css/style.css" />
-                        <Slider id="slider_Reproductor" fx:id="sliderProgreso" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onDraggedProgreso" onMousePressed="#onDraggedProgreso" prefHeight="5.0" prefWidth="310.0" stylesheets="@../css/style.css">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Slider>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="21.0" />
-                     </VBox.margin>
-                  </Pane>
-               </children>
-            </VBox>
-            <Pane layoutX="905.0" layoutY="47.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="42.0">
-               <children>
-                  <ProgressBar id="progressBar_Reproductor" fx:id="pbVolumen" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="100.0" progress="0.0" stylesheets="@../css/style.css" />
-                  <Slider id="slider_Reproductor" fx:id="sliderVolumen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onDraggedVolume" onMousePressed="#onDraggedVolume" prefHeight="5.0" prefWidth="100.0" stylesheets="@../css/style.css">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Slider>
-               </children>
-            </Pane>
-            <Button fx:id="btnMute" alignment="CENTER" layoutX="839.0" layoutY="26.0" mnemonicParsing="false" onAction="#onActionBtnVolumen" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: transparent;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/sound.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnVideo" alignment="CENTER" layoutX="794.0" layoutY="24.0" mnemonicParsing="false" onAction="#onActionBtnVideo" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/visualizarVideo.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Label fx:id="lbDuracion2" layoutX="671.0" layoutY="56.0" text="0:00" textFill="#9e9e9e" />
-            <Label fx:id="lbTiempo" layoutX="331.0" layoutY="56.0" text="0:00" textFill="#9e9e9e" />
-         </children>
-      </AnchorPane>
-   </bottom>
-   <left>
-      <VBox prefHeight="566.0" prefWidth="270.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="CENTER" prefHeight="139.0" prefWidth="240.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-               <VBox.margin>
-                  <Insets bottom="10.0" left="20.0" right="10.0" top="20.0" />
-               </VBox.margin>
-               <children>
-                  <Button id="btnMenu" fx:id="btnInicio" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onActionBtnInicio" prefHeight="59.0" prefWidth="233.0" style="-fx-background-color: transparent;" stylesheets="@../css/style.css" text="    Inicio" textFill="#ababab">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Home(2).png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button id="btnMenu" fx:id="btnBuscar" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onActionBtnBuscar" prefHeight="59.0" prefWidth="222.0" style="-fx-background-color: transparent;" stylesheets="@../css/style.css" text="   Buscar" textFill="#ababab">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/Buscar.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </VBox>
-            <Line endX="139.0" fill="#616161" opacity="0.49" startX="357.0" stroke="#6b6b6b" strokeLineCap="ROUND" strokeWidth="2.0" translateX="30.0">
-               <VBox.margin>
-                  <Insets bottom="20.0" top="20.0" />
-               </VBox.margin>
-            </Line>
-            <Pane prefHeight="354.0" prefWidth="240.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-               <VBox.margin>
-                  <Insets left="20.0" right="10.0" />
-               </VBox.margin>
-               <children>
-                  <Pane fx:id="paneInfoCancion" layoutX="8.0" layoutY="7.0" visible="false">
-                     <children>
-                        <ImageView fx:id="ivCaratula" fitHeight="90.0" fitWidth="95.0" layoutX="8.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/songNotFoundDefault.png" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="DEFAULT" />
-                           </cursor>
-                        </ImageView>
-                        <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Información de Canción" textFill="WHITE">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="135.0" style="-fx-font-weight: bold;" text="Nombre:" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lbNombreCancion" layoutX="91.0" layoutY="139.0" text="&lt;Name&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="203.0" style="-fx-font-weight: bold;" text="Álbum:" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lbNombreArtista" layoutX="83.0" layoutY="173.0" text="&lt;Artist&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="102.0" layoutY="44.0" style="-fx-font-weight: bold;" text="Código:" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="102.0" layoutY="70.0" style="-fx-font-weight: bold;" text="Año:" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="102.0" layoutY="98.0" style="-fx-font-weight: bold;" text="Género:" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="171.0" style="-fx-font-weight: bold;" text="Artista:" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="271.0" style="-fx-font-weight: bold;" text="URL:" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="17.0" layoutY="235.0" style="-fx-font-weight: bold;" text="Duración:" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lbAlbum" layoutX="83.0" layoutY="206.0" text="&lt;Album&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lbCodicoCancion" layoutX="162.0" layoutY="48.0" text="&lt;Code&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lbAnioCancion" layoutX="146.0" layoutY="74.0" text="&lt;year&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lbGenero" layoutX="164.0" layoutY="102.0" text="&lt;genre&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lbDuracion" layoutX="95.0" layoutY="238.0" text="&lt;length&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lbUrl" layoutX="62.0" layoutY="274.0" text="&lt;youtubeURL&gt;" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="paneInfoBusqueda" prefHeight="354.0" prefWidth="240.0" visible="false">
-                     <children>
-                        <Text fill="WHITE" layoutX="30.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instrucciones de busqueda" textAlignment="CENTER" wrappingWidth="180.892578125">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Text>
-                        <Text fill="WHITE" layoutX="8.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para buscar una canción por atributos en las busquedas Y, O, OY debe ingresar dos o más atributos de la canción que desea encontrar. Para esto cada atributo debe ser separado por una coma." wrappingWidth="223.53466796875">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Text>
-                        <Text fill="WHITE" layoutX="8.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En cuanto a la opción de busqueda del artista, solo se necesita el nombre del artista que quiere encontrar." wrappingWidth="223.53466796875">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <Pane prefHeight="541.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #232323, #121212); -fx-background-radius: 10;" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets bottom="5.0" left="5.0" right="20.0" top="20.0" />
-         </BorderPane.margin>
-         <children>
-            <VBox fx:id="vbIncio" prefHeight="547.0" prefWidth="725.0">
-               <children>
-                  <Pane prefHeight="85.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets bottom="5.0" top="10.0" />
-                     </VBox.margin>
-                     <children>
-                        <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="27.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/logoWhite.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="lbBienvenido" contentDisplay="CENTER" layoutX="104.0" layoutY="11.0" style="-fx-font-weight: 700;" text="Bienvenido @Username !!" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Label>
-                        <Button fx:id="btnSalir" alignment="CENTER" contentDisplay="CENTER" layoutX="657.0" layoutY="6.0" mnemonicParsing="false" onAction="#onActionBtnSalir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/logout.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </Pane>
-                  <Label contentDisplay="CENTER" style="-fx-font-weight: 700;" text="Mi Música" textFill="WHITE" translateX="41.0" translateY="-6.0">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="700.0">
-                     <children>
-                        <Button fx:id="btnReproducir1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnReproducir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/play.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <ChoiceBox id="choiceBox_Sort" fx:id="cbOdenarPor" prefWidth="130.0" style="-fx-background-color: transparente; -fx-border-color: #00BB22; -fx-border-width: 0 0 3 0; -fx-border-radius: 2; -fx-mark-color: gray;" stylesheets="@../css/style.css" translateX="300.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ChoiceBox>
-                        <Button fx:id="btnDeshacer1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnDeshacer" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="317.0">
-                           <graphic>
-                              <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/undo.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="btnRehacer1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnRehacer" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="322.0">
-                           <graphic>
-                              <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/redo.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button fx:id="btnEliminar1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnEliminar" prefHeight="43.0" prefWidth="43.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER" translateX="344.0">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/delete.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="30.0" right="30.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <TableView id="tableView-Lista" fx:id="tvListaCanciones1" prefHeight="363.0" prefWidth="705.0" stylesheets="@../css/style.css">
-                     <columns>
-                        <TableColumn fx:id="codListCan1" prefWidth="69.0" text="Código" />
-                        <TableColumn fx:id="nomListCan1" prefWidth="214.0" text="Nombre" />
-                        <TableColumn fx:id="artListCan1" prefWidth="118.0" text="Artista" />
-                        <TableColumn fx:id="albumListCan1" prefWidth="139.0" text="Álbum" />
-                        <TableColumn fx:id="anioListCan1" prefWidth="61.0" text="Año" />
-                        <TableColumn fx:id="duraLisCan1" minWidth="9.0" prefWidth="88.0" text="Duración" />
-                     </columns>
-                     <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </TableView>
-               </children>
-            </VBox>
-            <VBox fx:id="vbBuscar" prefHeight="541.0" prefWidth="730.0" visible="false">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="61.0" prefWidth="730.0">
-                     <children>
-                        <ImageView fitHeight="44.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" translateX="-118.0">
-                           <image>
-                              <Image url="@../images/logoWhite.png" />
-                           </image></ImageView>
-                        <HBox id="hbox_textB" fx:id="hbBusqueda" alignment="CENTER" prefHeight="45.0" prefWidth="340.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #121212; -fx-border-width: 2;" stylesheets="@../css/style.css">
-                           <children>
-                              <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/search.png" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <TextField fx:id="tfBuscador" onKeyTyped="#onKeyTyped" prefHeight="43.0" prefWidth="278.0" promptText="¿Que quieres escuchar hoy?" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-prompt-text-fill: #9E9E9E; -fx-font-size: 15;">
-                                 <cursor>
-                                    <Cursor fx:constant="TEXT" />
-                                 </cursor>
-                              </TextField>
-                           </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </HBox.margin>
+    <bottom>
+        <AnchorPane prefHeight="89.0" prefWidth="600.0" style="-fx-background-color: black;">
+            <children>
+                <ImageView fx:id="ivCaratulaR" fitHeight="58.0" fitWidth="58.0" layoutX="17.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="15.0">
+                    <image>
+                        <Image url="@../images/songNotFoundDefault.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="lbNombreCancionR" layoutX="71.0" layoutY="26.0" prefHeight="17.0" prefWidth="98.0" text="&lt;songName&gt;" textFill="WHITE" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="30.0">
+                    <font>
+                        <Font name="Arial Black" size="13.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lbNombreArtistaR" layoutX="71.0" layoutY="45.0" prefHeight="25.0" prefWidth="107.0" text="&lt;artistName&gt;" textFill="#8d8d8d" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="52.0">
+                    <font>
+                        <Font name="Rubik-Bold" size="12.0" />
+                    </font>
+                </Label>
+                <VBox alignment="CENTER" layoutX="361.0" layoutY="1.0" maxHeight="89.0" maxWidth="440.0" minHeight="89.0" minWidth="210.0" prefHeight="89.0" AnchorPane.leftAnchor="361.0">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="89.0" prefWidth="210.0" spacing="2.0" style="-fx-alignment: top-center;">
+                            <children>
+                                <Button fx:id="btnAnterior" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnAnterior" prefHeight="24.0" prefWidth="19.0" style="-fx-background-color: transparent;">
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
+                                            <image>
+                                                <Image url="@../images/anterior.png" />
+                                            </image>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                        </ImageView>
+                                    </graphic>
+                                    <HBox.margin>
+                                        <Insets top="17.0" />
+                                    </HBox.margin>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Group>
+                                    <HBox.margin>
+                                        <Insets top="13.0" />
+                                    </HBox.margin>
+                                </Group>
+                                <Button fx:id="btnSiguiente" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnSiguiente" prefHeight="24.0" prefWidth="19.0" rotate="180.0" style="-fx-background-color: transparent;">
+                                    <graphic>
+                                        <ImageView fitHeight="22.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
+                                            <image>
+                                                <Image url="@../images/anterior.png" />
+                                            </image>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                            <effect>
+                                                <Blend />
+                                            </effect>
+                                        </ImageView>
+                                    </graphic>
+                                    <HBox.margin>
+                                        <Insets top="16.0" />
+                                    </HBox.margin>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
                         </HBox>
-                        <Button fx:id="btnSalir2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnSalir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="135.0">
+                    </children>
+                </VBox>
+                <Pane layoutX="905.0" layoutY="47.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="42.0">
+                    <children>
+                        <ProgressBar id="progressBar_Reproductor" fx:id="pbVolumen" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="100.0" progress="0.0" stylesheets="@../css/style.css" />
+                        <Slider id="slider_Reproductor" fx:id="sliderVolumen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onDraggedVolume" onMousePressed="#onDraggedVolume" prefHeight="5.0" prefWidth="100.0" stylesheets="@../css/style.css">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Slider>
+                    </children>
+                </Pane>
+                <Button fx:id="btnMute" alignment="CENTER" layoutX="839.0" layoutY="26.0" mnemonicParsing="false" onAction="#onActionBtnVolumen" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: transparent;">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <graphic>
+                        <ImageView fitHeight="38.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/sound.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btnVideo" alignment="CENTER" layoutX="794.0" layoutY="24.0" mnemonicParsing="false" onAction="#onActionBtnVideo" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;">
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/visualizarVideo.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+    </bottom>
+    <left>
+        <VBox prefHeight="566.0" prefWidth="270.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" prefHeight="195.0" prefWidth="240.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                    <VBox.margin>
+                        <Insets left="20.0" right="10.0" top="20.0" />
+                    </VBox.margin>
+                    <children>
+                        <Button id="btnMenu" fx:id="btnInicio" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onActionBtnInicio" prefHeight="59.0" prefWidth="233.0" style="-fx-background-color: transparent;" stylesheets="@../css/style.css" text="    Inicio" textFill="#ababab">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/Home(2).png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <Button id="btnMenu" fx:id="btnBuscar" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onActionBtnBuscar" prefHeight="59.0" prefWidth="222.0" style="-fx-background-color: transparent;" stylesheets="@../css/style.css" text="   Buscar" textFill="#ababab">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/search.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <Button id="btnMenu" fx:id="btnBiblioteca" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#onActionBtnBiblioteca" prefHeight="59.0" prefWidth="233.0" style="-fx-background-color: transparent;" stylesheets="@../css/style.css" text="    Biblioteca" textFill="#ababab">
+                            <graphic>
+                                <ImageView fitHeight="34.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/MusicLibrary.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                    </children>
+                </VBox>
+                <Line endX="139.0" fill="#616161" opacity="0.49" startX="357.0" stroke="#6b6b6b" strokeLineCap="ROUND" strokeWidth="2.0" translateX="30.0">
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                    </VBox.margin>
+                </Line>
+                <Pane prefHeight="354.0" prefWidth="240.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                    <VBox.margin>
+                        <Insets left="20.0" right="10.0" />
+                    </VBox.margin>
+                    <children>
+                        <Pane fx:id="paneInfoCancion" layoutX="8.0" layoutY="7.0" prefHeight="325.0" prefWidth="231.0" visible="false">
+                            <children>
+                                <ImageView fx:id="ivCaratula" fitHeight="90.0" fitWidth="95.0" layoutX="6.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/songNotFoundDefault.png" />
+                                    </image>
+                                    <cursor>
+                                        <Cursor fx:constant="DEFAULT" />
+                                    </cursor>
+                                </ImageView>
+                                <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Información de Canción" textFill="WHITE">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="18.0" layoutY="135.0" style="-fx-font-weight: bold;" text="Nombre:" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbNombreCancion" layoutX="91.0" layoutY="139.0" maxWidth="-Infinity" prefHeight="20.0" prefWidth="136.0" text="&lt;Name&gt;" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="18.0" layoutY="203.0" style="-fx-font-weight: bold;" text="Álbum:" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbNombreArtista" layoutX="83.0" layoutY="173.0" text="&lt;Artist&gt;" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="102.0" layoutY="45.0" style="-fx-font-weight: bold;" text="Código:" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="102.0" layoutY="74.0" style="-fx-font-weight: bold;" text="Año:" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="19.0" layoutY="236.0" style="-fx-font-weight: bold;" text="Género:" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="18.0" layoutY="171.0" style="-fx-font-weight: bold;" text="Artista:" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="18.0" layoutY="271.0" style="-fx-font-weight: bold;" text="URL:" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="100.0" layoutY="101.0" style="-fx-font-weight: bold;" text="Duración:" textFill="WHITE">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbAlbum" layoutX="83.0" layoutY="206.0" text="&lt;Album&gt;" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbCodicoCancion" layoutX="162.0" layoutY="49.0" text="&lt;Code&gt;" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbAnioCancion" layoutX="145.0" layoutY="78.0" text="&lt;year&gt;" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbGenero" layoutX="85.0" layoutY="239.0" text="&lt;genre&gt;" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbDuracion" layoutX="175.0" layoutY="104.0" text="&lt;length&gt;" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                        <Text fx:id="lbUrl" fill="WHITE" layoutX="57.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;youtubeURL&gt;" wrappingWidth="165.1279296875">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                            </children>
+                        </Pane>
+                        <Pane fx:id="paneInfoBusqueda" prefHeight="354.0" prefWidth="240.0" visible="false">
+                            <children>
+                                <Text fill="WHITE" layoutX="30.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instrucciones de busqueda" textAlignment="CENTER" wrappingWidth="180.892578125">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Text>
+                                <Text fill="WHITE" layoutX="10.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Busqueda Artista: Ingrese el nombre del artista que quiere buscar. Encontraras todas las canciones que coincidan con el artista." wrappingWidth="223.53466796875">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </Text>
+                        <Text fill="WHITE" layoutX="10.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Busqueda O: Ingrese atributos de busqueda separados por coma ','. Encontraras todas las canciones que coincidan con al menos 1 de los atributos." wrappingWidth="223.53466796875">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="10.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="- Busqueda Y: Ingrese atributos de busqueda separados por coma ','. Encontraras todas las canciones que coinciden con todos los atributos" wrappingWidth="223.53466796875">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Text>
+                            </children>
+                        </Pane>
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <Pane prefHeight="541.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #232323, #121212); -fx-background-radius: 10;" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="5.0" left="5.0" right="20.0" top="20.0" />
+            </BorderPane.margin>
+            <children>
+                <VBox fx:id="vbIncio" prefHeight="547.0" prefWidth="725.0">
+                    <children>
+                        <Pane prefHeight="85.0" prefWidth="200.0">
+                            <VBox.margin>
+                                <Insets bottom="5.0" top="10.0" />
+                            </VBox.margin>
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="27.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/logoWhite.png" />
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="lbBienvenido" contentDisplay="CENTER" layoutX="104.0" layoutY="11.0" style="-fx-font-weight: 700;" text="Bienvenido @Username !!" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="24.0" />
+                                    </font>
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets>
+                                </Label>
+                                <Button fx:id="btnSalir" alignment="CENTER" contentDisplay="CENTER" layoutX="657.0" layoutY="6.0" mnemonicParsing="false" onAction="#onActionBtnSalir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/logout.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
+                        </Pane>
+                        <Label fx:id="lbmusica" contentDisplay="CENTER" style="-fx-font-weight: 700;" text="Musica" textFill="WHITE" translateX="41.0" translateY="-6.0">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" prefHeight="74.0" prefWidth="700.0">
+                            <children>
+                                <Button fx:id="btnReproducir1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnReproducir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/play.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                        <Button fx:id="btnGuardarF" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnGuardar" prefHeight="43.0" prefWidth="43.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER" translateX="544.0">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/logout.png" />
+                                    <Image url="@../images/addtoPlaylist.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -511,514 +398,562 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox fx:id="hbTiposBusqueda" alignment="CENTER" disable="true" minHeight="-Infinity" prefHeight="54.0" prefWidth="730.0" spacing="30.0">
-                     <children>
-                        <Button id="btnTBusqueda" fx:id="btnBusquedaArtista" mnemonicParsing="false" onAction="#onActionBusquedaArtista" style="-fx-background-radius: 20;" stylesheets="@../css/style.css" text="Artista" textFill="#9e9e9e">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button id="btnTBusqueda" fx:id="btnBusquedaO" mnemonicParsing="false" onAction="#onActionBusquedaO" style="-fx-background-radius: 20;" stylesheets="@../css/style.css" text="Búsqueda O" textFill="#9e9e9e">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button id="btnTBusqueda" fx:id="btnBusquedaY" mnemonicParsing="false" onAction="#onActionBusquedaY" style="-fx-background-radius: 20;" stylesheets="@../css/style.css" text="Búsqueda Y" textFill="#9e9e9e">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                        <Button id="btnTBusqueda" fx:id="btnBusquedaOY" mnemonicParsing="false" onAction="#onActionBusquedaOY" style="-fx-background-radius: 20;" stylesheets="@../css/style.css" text="Búsqueda OY" textFill="#9e9e9e">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin></HBox>
-                  <AnchorPane prefHeight="437.0" prefWidth="730.0">
-                     <children>
-                        <VBox fx:id="vbSugerencias" alignment="CENTER_LEFT" layoutY="-5.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="729.0">
-                           <children>
-                              <Label style="-fx-font-weight: 700;" text="Artistas Sugeridos" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox prefHeight="160.0" prefWidth="696.0" spacing="10.0">
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" left="10.0" right="10.0" />
-                                 </VBox.margin>
-                                 <children>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                       <children>
-                                          <Circle fx:id="cArtista1" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                          <Label layoutX="22.0" layoutY="123.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnListaA1" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnLista" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
-                                             <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/list.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </Pane>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                       <children>
-                                          <Circle fx:id="cArtista2" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                          <Label layoutX="22.0" layoutY="123.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnListaA2" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnLista" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
-                                             <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/list.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </Pane>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                       <children>
-                                          <Circle fx:id="cArtista3" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                          <Label layoutX="22.0" layoutY="123.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnListaA3" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnLista" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
-                                             <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/list.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </Pane>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                       <children>
-                                          <Circle fx:id="cArtista4" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                          <Label layoutX="22.0" layoutY="123.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial" size="20.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnListaA4" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnLista" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
-                                             <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/list.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </Pane>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </HBox>
-                              <Label style="-fx-font-weight: 700;" text="Canciones Sugeridos" textFill="WHITE">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox prefHeight="160.0" prefWidth="696.0" spacing="10.0">
-                                 <children>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                       <children>
-                                          <Circle fx:id="cCaratula1" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                          <Label layoutX="28.0" layoutY="125.0" style="-fx-font-weight: 700;" text="&lt;songName&gt;" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnPlay1" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnPlayB" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
-                                             <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/play.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </Pane>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                       <children>
-                                          <Circle fx:id="cCaratula2" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                          <Label layoutX="25.0" layoutY="125.0" style="-fx-font-weight: 700;" text="&lt;songtName&gt;" textAlignment="CENTER" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnPlay2" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnPlayB" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
-                                             <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/play.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </Pane>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                       <children>
-                                          <Circle fx:id="cCaratula3" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                          <Label layoutX="25.0" layoutY="125.0" style="-fx-font-weight: 700;" text="&lt;songtName&gt;" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnPlay3" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnPlayB" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
-                                             <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/play.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </Pane>
-                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                       <children>
-                                          <Circle fx:id="cCaratula4" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                          <Label layoutX="28.0" layoutY="125.0" style="-fx-font-weight: 700;" text="&lt;songName&gt;" textFill="WHITE">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                          </Label>
-                                          <Button fx:id="btnPlay4" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnPlayB" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
-                                             <graphic>
-                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@../images/play.png" />
-                                                   </image>
-                                                </ImageView>
-                                             </graphic>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Button>
-                                       </children>
-                                    </Pane>
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" left="10.0" right="10.0" />
-                                 </VBox.margin>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <VBox fx:id="vbBArtista" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="728.0" visible="false">
-                           <children>
-                              <Label style="-fx-font-weight: 700;" text="Artista" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <Pane prefHeight="91.0" prefWidth="571.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
-                                 <children>
-                                    <Circle fx:id="cArtistaEncontrado" fill="#727272" layoutX="56.0" layoutY="46.0" radius="34.0" stroke="#ffffff00" strokeType="INSIDE" />
-                                    <Text fx:id="tNomArtistaE" fill="WHITE" layoutX="108.0" layoutY="39.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;">
-                                       <font>
-                                          <Font size="20.0" />
-                                       </font>
-                                    </Text>
-                                    <Label fx:id="lbTArtistaE" layoutX="118.0" layoutY="49.0" text="&lt;artist/group&gt;" textFill="#8d8d8d" />
-                                    <Line endX="28.0" layoutX="319.0" layoutY="47.0" rotate="90.0" startX="-46.0" stroke="#6b6b6b" />
-                                    <Label layoutX="333.0" layoutY="18.0" style="-fx-font-weight: bold;" text="Código:" textFill="WHITE">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="lbCodigoArtistaE" layoutX="401.0" layoutY="22.0" text="XXXXXX" textFill="WHITE">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="335.0" layoutY="48.0" style="-fx-font-weight: bold;" text="Nacionalidad: " textFill="WHITE">
-                                       <font>
-                                          <Font size="16.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="lbNacionalidadArtistaE" layoutX="443.0" layoutY="52.0" text="XXXXXX" textFill="WHITE">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="150.0" />
-                                 </VBox.margin>
-                              </Pane>
-                              <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="728.0">
-                                 <children>
-                                    <Button fx:id="btnReproducir2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnReproducir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER">
-                                       <graphic>
-                                          <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/play.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="btnGuardar1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnGuardar" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="580.0">
-                                       <graphic>
-                                          <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/addtoPlaylist.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="btnDeshacer2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnDeshacer" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="436.0">
-                                       <graphic>
-                                          <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
+                                <ChoiceBox id="choiceBox_Sort" fx:id="cbOdenarPor" prefWidth="130.0" style="-fx-background-color: transparent; -fx-border-color: #00BB22; -fx-border-width: 0 0 3 0; -fx-border-radius: 2; -fx-mark-color: gray;" stylesheets="@../css/style.css" translateX="285.0" visible="false">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </ChoiceBox>
+                                <Button fx:id="btnDeshacer1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnDeshacer" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="301.0" visible="false">
+                                    <graphic>
+                                        <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
                                                 <Image url="@../images/undo.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="btnRehacer2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnRehacer" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="443.0">
-                                       <graphic>
-                                          <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Button fx:id="btnRehacer1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnRehacer" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="308.0" visible="false">
+                                    <graphic>
+                                        <ImageView fx:id="ivBtnGuardar" fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
                                                 <Image url="@../images/redo.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets left="20.0" right="20.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <TableView id="tableView-Lista" fx:id="tvListaCanciones2" prefHeight="218.0" prefWidth="728.0" stylesheets="@../css/style.css">
-                                 <columns>
-                                    <TableColumn fx:id="codListCan2" prefWidth="69.0" text="Código" />
-                                    <TableColumn fx:id="nomListCan2" prefWidth="214.0" text="Nombre" />
-                                    <TableColumn fx:id="artListCan2" prefWidth="118.0" text="Artista" />
-                                    <TableColumn fx:id="albumListCan2" prefWidth="139.0" text="Álbum" />
-                                    <TableColumn fx:id="anioListCan2" prefWidth="61.0" text="Año" />
-                                    <TableColumn fx:id="duraLisCan2" minWidth="9.0" prefWidth="88.0" text="Duración" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </VBox>
-                        <VBox fx:id="vbBusquedaOY" prefHeight="422.0" prefWidth="729.0" visible="false">
-                           <children>
-                              <Label style="-fx-font-weight: 700;" text="Canciones" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets left="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="728.0">
-                                 <children>
-                                    <Button fx:id="btnReproducir3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnReproducir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER">
-                                       <graphic>
-                                          <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/play.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="btnGuardar2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnGuardar" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="580.0">
-                                       <graphic>
-                                          <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/addtoPlaylist.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="btnDeshacer3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnDeshacer" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="436.0">
-                                       <graphic>
-                                          <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/undo.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="btnRehacer3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnRehacer" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="443.0">
-                                       <graphic>
-                                          <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../images/redo.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <TableView id="tableView-Lista" fx:id="tvListaCanciones3" prefHeight="315.0" prefWidth="709.0" stylesheets="@../css/style.css">
-                                 <columns>
-                                    <TableColumn fx:id="codListCan3" prefWidth="69.0" text="Código" />
-                                    <TableColumn fx:id="nomListCan3" prefWidth="214.0" text="Nombre" />
-                                    <TableColumn fx:id="artListCan3" prefWidth="118.0" text="Artista" />
-                                    <TableColumn fx:id="albumListCan3" prefWidth="139.0" text="Álbum" />
-                                    <TableColumn fx:id="anioListCan3" prefWidth="61.0" text="Año" />
-                                    <TableColumn fx:id="duraLisCan3" minWidth="9.0" prefWidth="88.0" text="Duración" />
-                                 </columns>
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" />
-                                 </VBox.margin>
-                              </TableView>
-                           </children>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </AnchorPane>
-               </children>
-            </VBox>
-            <Pane fx:id="panelVideo" prefHeight="539.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #232323, #121212); -fx-background-radius: 10;" visible="false">
-               <children>
-                  <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="26.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/logoWhite.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="lbNombreCVideo" contentDisplay="CENTER" layoutX="99.0" layoutY="33.0" style="-fx-font-weight: 700;" text="&lt;SongNAME&gt;" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                  </Label>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="650.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnSalir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/logout.png" />
-                           </image>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Button fx:id="btnEliminar1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnEliminar" prefHeight="43.0" prefWidth="43.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER" translateX="319.0" visible="false">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/delete.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <HBox.margin>
+                                        <Insets />
+                                    </HBox.margin>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="10.0" left="30.0" right="30.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <TableView id="tableView-Lista" fx:id="tvListaCanciones1" onMouseClicked="#seleccionarTvListCanciones" prefHeight="363.0" prefWidth="705.0" stylesheets="@../css/style.css">
+                            <columns>
+                                <TableColumn fx:id="codListCan1" prefWidth="69.0" text="Código" />
+                                <TableColumn fx:id="nomListCan1" prefWidth="214.0" text="Nombre" />
+                                <TableColumn fx:id="artListCan1" prefWidth="118.0" text="Artista" />
+                                <TableColumn fx:id="albumListCan1" prefWidth="139.0" text="Álbum" />
+                                <TableColumn fx:id="anioListCan1" prefWidth="61.0" text="Año" />
+                                <TableColumn fx:id="duraLisCan1" minWidth="9.0" prefWidth="88.0" text="Duración" />
+                            </columns>
+                            <VBox.margin>
+                                <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
+                            </VBox.margin>
+                        </TableView>
+                    </children>
+                </VBox>
+                <VBox fx:id="vbBuscar" prefHeight="541.0" prefWidth="730.0" visible="false">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="730.0">
+                            <children>
+                                <ImageView fitHeight="44.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" translateX="-118.0">
+                                    <image>
+                                        <Image url="@../images/logoWhite.png" />
+                                    </image></ImageView>
+                                <HBox id="hbox_textB" fx:id="hbBusqueda" alignment="CENTER" prefHeight="45.0" prefWidth="340.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #121212; -fx-border-width: 2;" stylesheets="@../css/style.css">
+                                    <children>
+                                        <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/search.png" />
+                                            </image>
+                                            <HBox.margin>
+                                                <Insets left="5.0" />
+                                            </HBox.margin>
+                                        </ImageView>
+                                        <TextField fx:id="tfBuscador" onKeyTyped="#onKeyTyped" prefHeight="43.0" prefWidth="278.0" promptText="¿Que quieres escuchar hoy?" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-prompt-text-fill: #9E9E9E; -fx-font-size: 15;">
+                                            <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                            </cursor>
+                                        </TextField>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets bottom="10.0" top="10.0" />
+                                    </HBox.margin>
+                                </HBox>
+                                <Button fx:id="btnSalir2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnSalir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="135.0">
+                                    <graphic>
+                                        <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/logout.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <HBox fx:id="hbTiposBusqueda" alignment="CENTER" disable="true" minHeight="-Infinity" prefHeight="54.0" prefWidth="730.0" spacing="30.0">
+                            <children>
+                                <Button id="btnTBusqueda" fx:id="btnBusquedaArtista" mnemonicParsing="false" onAction="#onActionBusquedaArtista" style="-fx-background-radius: 20;" stylesheets="@../css/style.css" text="Artista" textFill="#9e9e9e">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Button id="btnTBusqueda" fx:id="btnBusquedaO" mnemonicParsing="false" onAction="#onActionBusquedaO" style="-fx-background-radius: 20;" stylesheets="@../css/style.css" text="Búsqueda O" textFill="#9e9e9e">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Button id="btnTBusqueda" fx:id="btnBusquedaY" mnemonicParsing="false" onAction="#onActionBusquedaY" style="-fx-background-radius: 20;" stylesheets="@../css/style.css" text="Búsqueda Y" textFill="#9e9e9e">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin></HBox>
+                        <AnchorPane prefHeight="437.0" prefWidth="730.0">
+                            <children>
+                                <VBox fx:id="vbSugerencias" alignment="CENTER_LEFT" layoutY="-5.0" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="729.0">
+                                    <children>
+                                        <Label style="-fx-font-weight: 700;" text="Artistas Sugeridos" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial" size="20.0" />
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                        <HBox prefHeight="160.0" prefWidth="696.0" spacing="10.0">
+                                            <VBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" />
+                                            </VBox.margin>
+                                            <children>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                                    <children>
+                                                        <Circle fx:id="cArtista1" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                        <Label fx:id="lbArtSugerido1" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="123.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="161.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;" textAlignment="JUSTIFY" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Arial" size="20.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="btnListaA1" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnLista" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/list.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND" />
+                                                            </cursor>
+                                                        </Button>
+                                                    </children>
+                                                </Pane>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                                    <children>
+                                                        <Circle fx:id="cArtista2" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                        <Label fx:id="lbArtSugerido2" alignment="CENTER" layoutX="6.0" layoutY="123.0" maxWidth="-Infinity" prefHeight="23.0" prefWidth="159.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Arial" size="20.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="btnListaA2" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnLista" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/list.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND" />
+                                                            </cursor>
+                                                        </Button>
+                                                    </children>
+                                                </Pane>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                                    <children>
+                                                        <Circle fx:id="cArtista3" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                        <Label fx:id="lbArtSugerido3" alignment="CENTER" layoutX="4.0" layoutY="123.0" maxWidth="-Infinity" prefHeight="23.0" prefWidth="161.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Arial" size="20.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="btnListaA3" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnLista" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/list.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND" />
+                                                            </cursor>
+                                                        </Button>
+                                                    </children>
+                                                </Pane>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                                    <children>
+                                                        <Circle fx:id="cArtista4" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                        <Label fx:id="lbArtSugerido4" alignment="CENTER" layoutX="4.0" layoutY="123.0" maxWidth="-Infinity" prefHeight="23.0" prefWidth="163.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Arial" size="20.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="btnListaA4" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnLista" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/list.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND" />
+                                                            </cursor>
+                                                        </Button>
+                                                    </children>
+                                                </Pane>
+                                            </children>
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </HBox>
+                                        <Label style="-fx-font-weight: 700;" text="Canciones Sugeridos" textFill="WHITE">
+                                            <font>
+                                                <Font size="20.0" />
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                        <HBox prefHeight="160.0" prefWidth="696.0" spacing="10.0">
+                                            <children>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                                    <children>
+                                                        <Circle fx:id="cCaratula1" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                        <Label fx:id="lbCanSugerida1" alignment="CENTER" layoutX="4.0" layoutY="125.0" maxWidth="-Infinity" prefHeight="21.0" prefWidth="163.0" style="-fx-font-weight: 700;" text="&lt;songName&gt;" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Arial" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="btnPlay1" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnPlayB" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/play.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND" />
+                                                            </cursor>
+                                                        </Button>
+                                                    </children>
+                                                </Pane>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                                    <children>
+                                                        <Circle fx:id="cCaratula2" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                        <Label fx:id="lbCanSugerida2" alignment="CENTER" layoutX="3.0" layoutY="125.0" maxWidth="-Infinity" prefHeight="21.0" prefWidth="164.0" style="-fx-font-weight: 700;" text="&lt;songtName&gt;" textAlignment="CENTER" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Arial" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="btnPlay2" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnPlayB" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/play.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND" />
+                                                            </cursor>
+                                                        </Button>
+                                                    </children>
+                                                </Pane>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                                    <children>
+                                                        <Circle fx:id="cCaratula3" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                        <Label fx:id="lbCanSugerida3" alignment="CENTER" layoutX="5.0" layoutY="125.0" maxWidth="-Infinity" prefHeight="21.0" prefWidth="160.0" style="-fx-font-weight: 700;" text="&lt;songtName&gt;" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Arial" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="btnPlay3" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnPlayB" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/play.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND" />
+                                                            </cursor>
+                                                        </Button>
+                                                    </children>
+                                                </Pane>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                                    <children>
+                                                        <Circle fx:id="cCaratula4" fill="#727272" layoutX="85.0" layoutY="64.0" radius="55.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                        <Label fx:id="lbCanSugerida4" alignment="CENTER" layoutX="5.0" layoutY="125.0" maxWidth="-Infinity" prefHeight="21.0" prefWidth="160.0" style="-fx-font-weight: 700;" text="&lt;songName&gt;" textFill="WHITE">
+                                                            <font>
+                                                                <Font name="Arial" size="18.0" />
+                                                            </font>
+                                                        </Label>
+                                                        <Button fx:id="btnPlay4" alignment="CENTER" contentDisplay="CENTER" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" onAction="#onActionBtnPlayB" prefHeight="39.0" prefWidth="39.0" style="-fx-background-radius: 40; -fx-background-color: #00BB22;">
+                                                            <graphic>
+                                                                <ImageView fitHeight="34.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                                                    <image>
+                                                                        <Image url="@../images/play.png" />
+                                                                    </image>
+                                                                </ImageView>
+                                                            </graphic>
+                                                            <cursor>
+                                                                <Cursor fx:constant="HAND" />
+                                                            </cursor>
+                                                        </Button>
+                                                    </children>
+                                                </Pane>
+                                            </children>
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                            <VBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                                <VBox fx:id="vbBArtista" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="728.0" visible="false">
+                                    <children>
+                                        <Label style="-fx-font-weight: 700;" text="Artista" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial" size="20.0" />
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" top="10.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                        <Pane prefHeight="91.0" prefWidth="571.0" style="-fx-background-color: #121212; -fx-background-radius: 10;">
+                                            <children>
+                                                <Circle fx:id="cArtistaEncontrado" fill="#727272" layoutX="56.0" layoutY="46.0" radius="34.0" stroke="#ffffff00" strokeType="INSIDE" />
+                                                <Text fx:id="tNomArtistaE" fill="WHITE" layoutX="108.0" layoutY="39.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 700;" text="&lt;artistName&gt;">
+                                                    <font>
+                                                        <Font size="20.0" />
+                                                    </font>
+                                                </Text>
+                                                <Label fx:id="lbTArtistaE" layoutX="118.0" layoutY="49.0" text="&lt;artist/group&gt;" textFill="#8d8d8d" />
+                                                <Line endX="28.0" layoutX="319.0" layoutY="47.0" rotate="90.0" startX="-46.0" stroke="#6b6b6b" />
+                                                <Label layoutX="333.0" layoutY="18.0" style="-fx-font-weight: bold;" text="Código:" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="lbCodigoArtistaE" layoutX="401.0" layoutY="22.0" text="XXXXXX" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="335.0" layoutY="48.0" style="-fx-font-weight: bold;" text="Nacionalidad: " textFill="WHITE">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="lbNacionalidadArtistaE" layoutX="443.0" layoutY="52.0" text="XXXXXX" textFill="WHITE">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="150.0" />
+                                            </VBox.margin>
+                                        </Pane>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="728.0">
+                                            <children>
+                                                <Button fx:id="btnReproducir2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnReproducir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER">
+                                                    <graphic>
+                                                        <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../images/play.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <cursor>
+                                                        <Cursor fx:constant="HAND" />
+                                                    </cursor>
+                                                </Button>
+                                                <Button fx:id="btnGuardar1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnGuardar" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="580.0">
+                                                    <graphic>
+                                                        <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../images/addtoPlaylist.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <cursor>
+                                                        <Cursor fx:constant="HAND" />
+                                                    </cursor>
+                                                </Button>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets left="20.0" right="20.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                        <TableView id="tableView-Lista" fx:id="tvListaCanciones2" onMouseClicked="#seleccionarTvListCanciones" prefHeight="218.0" prefWidth="728.0" stylesheets="@../css/style.css">
+                                            <columns>
+                                                <TableColumn fx:id="codListCan2" prefWidth="69.0" text="Código" />
+                                                <TableColumn fx:id="nomListCan2" prefWidth="214.0" text="Nombre" />
+                                                <TableColumn fx:id="artListCan2" prefWidth="118.0" text="Artista" />
+                                                <TableColumn fx:id="albumListCan2" prefWidth="139.0" text="Álbum" />
+                                                <TableColumn fx:id="anioListCan2" prefWidth="61.0" text="Año" />
+                                                <TableColumn fx:id="duraLisCan2" minWidth="9.0" prefWidth="88.0" text="Duración" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                                <VBox fx:id="vbBusquedaOY" prefHeight="422.0" prefWidth="729.0" visible="false">
+                                    <children>
+                                        <Label style="-fx-font-weight: 700;" text="Canciones" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial" size="20.0" />
+                                            </font>
+                                            <VBox.margin>
+                                                <Insets left="10.0" />
+                                            </VBox.margin>
+                                        </Label>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="728.0">
+                                            <children>
+                                                <Button fx:id="btnReproducir3" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnReproducir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" textAlignment="CENTER">
+                                                    <graphic>
+                                                        <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../images/play.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <cursor>
+                                                        <Cursor fx:constant="HAND" />
+                                                    </cursor>
+                                                </Button>
+                                                <Button fx:id="btnGuardar2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnGuardar" prefHeight="38.0" prefWidth="38.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER" translateX="580.0">
+                                                    <graphic>
+                                                        <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../images/addtoPlaylist.png" />
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                    <cursor>
+                                                        <Cursor fx:constant="HAND" />
+                                                    </cursor>
+                                                </Button>
+                                            </children>
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" left="20.0" right="20.0" top="5.0" />
+                                            </VBox.margin>
+                                        </HBox>
+                                        <TableView id="tableView-Lista" fx:id="tvListaCanciones3" onMouseClicked="#seleccionarTvListCanciones" prefHeight="315.0" prefWidth="709.0" stylesheets="@../css/style.css">
+                                            <columns>
+                                                <TableColumn fx:id="codListCan3" prefWidth="69.0" text="Código" />
+                                                <TableColumn fx:id="nomListCan3" prefWidth="214.0" text="Nombre" />
+                                                <TableColumn fx:id="artListCan3" prefWidth="118.0" text="Artista" />
+                                                <TableColumn fx:id="albumListCan3" prefWidth="139.0" text="Álbum" />
+                                                <TableColumn fx:id="anioListCan3" prefWidth="61.0" text="Año" />
+                                                <TableColumn fx:id="duraLisCan3" minWidth="9.0" prefWidth="88.0" text="Duración" />
+                                            </columns>
+                                            <VBox.margin>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" />
+                                            </VBox.margin>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </AnchorPane>
+                    </children>
+                </VBox>
+                <Pane fx:id="panelVideo" prefHeight="539.0" prefWidth="730.0" style="-fx-background-color: linear-gradient(to bottom, #232323, #121212); -fx-background-radius: 10;" visible="false">
+                    <children>
+                        <ImageView fitHeight="44.0" fitWidth="43.0" layoutX="26.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/logoWhite.png" />
+                            </image>
                         </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnVideo2" alignment="CENTER" layoutX="590.0" layoutY="35.0" mnemonicParsing="false" onAction="#onActionBtnVideo" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: Red; -fx-background-radius: 40;">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="35.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/visualizarVideo.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label layoutX="205.0" layoutY="270.0" text="SIN CONTENIDO PARA MOSTRAR" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <WebView fx:id="wbVideo" layoutX="6.0" layoutY="83.0" opacity="0.0" prefHeight="450.0" prefWidth="717.0" style="-fx-background-color: transparent;" />
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-   </center>
+                        <Label fx:id="lbNombreCVideo" contentDisplay="CENTER" layoutX="99.0" layoutY="33.0" style="-fx-font-weight: 700;" text="&lt;SongNAME&gt;" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="24.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="650.0" layoutY="29.0" mnemonicParsing="false" onAction="#onActionBtnSalir" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #00BB22; -fx-background-radius: 40;" stylesheets="@../css/style.css" textAlignment="CENTER">
+                            <graphic>
+                                <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/logout.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <Button fx:id="btnVideo2" alignment="CENTER" layoutX="590.0" layoutY="35.0" mnemonicParsing="false" onAction="#onActionBtnVideo" prefHeight="33.0" prefWidth="33.0" style="-fx-background-color: Red; -fx-background-radius: 40;">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <graphic>
+                                <ImageView fitHeight="35.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/visualizarVideo.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Label layoutX="205.0" layoutY="270.0" text="SIN CONTENIDO PARA MOSTRAR" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <WebView fx:id="wbVideo" layoutX="6.0" layoutY="83.0" opacity="0.0" prefHeight="450.0" prefWidth="717.0" style="-fx-background-color: transparent;" />
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+    </center>
 </BorderPane>

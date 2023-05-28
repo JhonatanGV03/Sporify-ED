@@ -1,0 +1,18 @@
+#Artistas
+000000;Nach;Español;false
+000001;JHCruz;Sudafrica;true
+000002;Nanpa;Colombia;false
+000003;Juanes;Colombia;false
+000004;Cancerbero;Venezuela;false
+
+#Canciones
+ABC001;JHCruz;cantando con bendicion;Bandidas;2023;1;Masculino;https://www.youtube.com/embed/tzJJGQiyDdo
+ABC002;Nach;entre el placer y el dolor;Nach;2019;2500;rap;https://www.youtube.com/embed/iiniQGn6uaU
+ABC003;Nach;yo no;Nach;2023;2000;rap;https://www.youtube.com/embed/qYS9c42j-g0
+ABC004;Nach;el idioma de los dioses;NombreAlbum;2011;2600;rap;https://www.youtube.com/embed/OPqS0Y5-2L4
+ABC005;Nanpa;no me quiere;Nanpa;2019;2000;rap;https://www.youtube.com/embed/2Z3X9z0jYiY
+ABC006;Nanpa;Flaca;Nanpa;2019;2000;rap;https://www.youtube.com/embed/2Z39z0jYiY
+ABC007;Juanes;la camisa negra;Juanes;2004;2000;rock;https://www.youtube.com/embed/L0jRl84YV0w
+ABC008;Juanes;la paga;Juanes;2004;2000;rock;https://www.youtube.com/embed/2Z39z0jYiY
+ABC009;Cancerbero;es epico;Muerte;2010;2000;rap;https://www.youtube.com/embed/2Z39z0jYiY
+ABC010;Cancerbero;así es mi vida;vida;2013;2000;rap;https://www.youtube.com/embed/2Z39z0jYiY
