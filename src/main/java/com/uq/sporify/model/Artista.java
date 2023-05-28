@@ -79,7 +79,18 @@ public class Artista implements Comparable<Artista>{
 
 	// Recibe un objeto de tipo Cancion y lo agrega al final de una lista de canciones
     public void agregarCancion(Cancion cancion) {
-    	listaCanciones.agregarAlFinal(cancion);
+    	Boolean bandera = false;
+		for(Cancion song:listaCanciones)
+		{
+			if (cancion.comprobar(song)){
+				bandera = true;
+			}
+
+		}
+		if(bandera == false){
+			listaCanciones.agregarAlFinal(cancion);
+
+		}
     }
 
     // Verifica si la lista esta vacia
@@ -90,6 +101,16 @@ public class Artista implements Comparable<Artista>{
 	// Recibe un índice y elimina el elemento correspondiente de la lista de canciones
 	public void eliminar(int indice) {
 		listaCanciones.eliminar(indice);
+	}
+
+	public void eliminarPorValor (String codCancion)
+	{
+		for (int i = 0; i<listaCanciones.tamanio();i++){
+			String aux = listaCanciones.obtener(i).getCodigo();
+			if (aux.equals(codCancion)){
+				listaCanciones.eliminar(i);
+			}
+		}
 	}
 
 	@Override

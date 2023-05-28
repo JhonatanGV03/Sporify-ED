@@ -87,8 +87,107 @@ public class UserController {
     //Initialize
     public UserController() {
     }
-    public void initialize(){
-        onActionBtnInicio();
+    }
+
+    @FXML
+    private void ordenarLista(ActionEvent actionEvent) {
+        String orden = cbOdenarPor.getValue();
+        sporify.getUsuarioActual().ordenarPorAtributo(orden);
+        System.out.println("Ordenando por: " + orden);
+
+        listCanciones.clear();
+        cargarCancionesPlaylist();
+    }
+
+
+    public void initTabla(TableColumn col1, TableColumn col2, TableColumn col3, TableColumn col4, TableColumn col5, TableColumn col6) {
+        col1.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        col2.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        col3.setCellValueFactory(new PropertyValueFactory<>("artista"));
+        col4.setCellValueFactory(new PropertyValueFactory<>("album"));
+        col5.setCellValueFactory(new PropertyValueFactory<>("anio"));
+        col6.setCellValueFactory(new PropertyValueFactory<>("duracion"));
+    }
+
+
+    public void cargarCancionesPlaylist(){
+
+        ListaCircular<Cancion> cancionList = sporify.getUsuarioActual().getListaCanciones();
+
+        for (Cancion cancion : cancionList) {
+            Boolean bandera = false;
+            for (Cancion canAux : listCanciones) {
+                if (canAux.getCodigo().equals(cancion.getCodigo())) {
+                    bandera = true;
+                }
+            }
+            if(bandera == false) {
+                this.listCanciones.add(cancion);
+            }
+        }
+        this.tvListaCanciones1.setItems(listCanciones);
+    }
+
+    public void cargarCancionesTienda(){
+
+        ListaCircular<Cancion> cancionList = sporify.getListaCanciones();
+
+        for (Cancion cancion : cancionList) {
+            Boolean bandera = false;
+            for (Cancion canAux : listCanciones) {
+                if (canAux.getCodigo().equals(cancion.getCodigo())) {
+                    bandera = true;
+                }
+            }
+            if(bandera == false) {
+                this.listCanciones.add(cancion);
+            }
+        }
+        this.tvListaCanciones1.setItems(listCanciones);
+    }
+    public void cargarCancionesBusquedaArtista(){
+
+        ListaDobleEnlazada<Cancion> cancionList = sporify.retornarArtista(artistaEncontrado.getNombre()).getListaCanciones();
+
+        for (Cancion cancion : cancionList) {
+            Boolean bandera = false;
+            for (Cancion canAux : listCanciones) {
+                if (canAux.getCodigo().equals(cancion.getCodigo())) {
+                    bandera = true;
+                }
+            }
+            if(bandera == false) {
+                this.listCanciones.add(cancion);
+            }
+        }
+        this.tvListaCanciones2.setItems(listCanciones);
+    }
+    public void cargarCancionesBusquedaOY(){  //*Falta implementar
+        listCanciones.clear();
+        ListaDobleEnlazada<Cancion> cancionList = new ListaDobleEnlazada<>();
+
+        if (esBusquedaY){
+            cancionList = sporify.testBuscarY(tfBuscador.getText());
+            System.out.println("Busqueda Y");
+        }else {
+            cancionList = sporify.testBuscarO(tfBuscador.getText());
+            System.out.println("Busqueda O");
+        }
+
+
+
+        for (Cancion cancion : cancionList) {
+            Boolean bandera = false;
+            for (Cancion canAux : listCanciones) {
+                if (canAux.getCodigo().equals(cancion.getCodigo())) {
+                    bandera = true;
+                }
+            }
+            if(bandera == false) {
+                this.listCanciones.add(cancion);
+            }
+        }
+        this.tvListaCanciones3.setItems(listCanciones);
     }
 
 
@@ -180,6 +279,21 @@ public class UserController {
 
     }    @FXML
     void onActionBtnGuardar(ActionEvent event) {
+        if (canSeleccionada != null) {
+            if (sporify.getUsuarioActual().existeCancion(canSeleccionada)) {
+                alerta(Alert.AlertType.WARNING, "Sporify - Cancion Repetida", "La cancion seleccionada ya se encuentra en su lista de reproduccion.");
+            } else {
+                sporify.getUsuarioActual().guardarCancion(canSeleccionada);
+                sporify.getUsuarioActual().actualizarFavoritos();
+                //sporify.getUsuarioActual().deshacer1();
+                alerta(Alert.AlertType.INFORMATION, "Sporify - Cancion Agregada", "La cancion seleccionada se ha agregado a su lista de reproduccion.");
+            }
+            canSeleccionada = null;
+            paneInfoCancion.setVisible(false);
+        }else {
+            alerta(Alert.AlertType.WARNING, "Sporify - No Seleccionado" , "Asegurese de seleccionar una cancion antes de agregarla.");
+        }
+
 
     }
 

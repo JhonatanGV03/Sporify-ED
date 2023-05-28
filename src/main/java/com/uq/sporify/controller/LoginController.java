@@ -5,6 +5,7 @@ import com.uq.sporify.model.TiendaMusica;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,7 +22,7 @@ import java.util.Objects;
 //Nota: Al final del proyecto se eliminan los identificadores, variables y metodos que no se
 // usen o que se puedan optimizar
 
-public class LoginController {
+public class LoginController implements Initializable {
 
     //Variables
     String user, password;
@@ -58,6 +59,8 @@ public class LoginController {
             cambiarEscena("vista/admin.fxml", "Sporify - Admin", 1025, 656);
 
         }else if (TiendaMusica.getInstance().iniciarSesion(user, password) != null) {
+            sporify.setUsuarioActual(sporify.getInstance().iniciarSesion(user,password));
+            sporify.cargarInfo();
             cambiarEscena("vista/user.fxml", "Sporify", 1025, 656);
         }else {
             lbMensaje.setVisible(true);

@@ -223,20 +223,20 @@ public class ArbolBinario  <T extends Comparable<T>> implements Iterable<T> {
     /*
      * Metodo publico que invoca la funcion BuscarO
      */
-    public ListaDobleEnlazada<Cancion> buscarO(ListaDobleEnlazada<Cancion> resultado,String atributo1,String atributo2,String atributo3) {
-    	return buscarO(resultado,raiz,atributo1,atributo2,atributo3);
+    public ListaDobleEnlazada<Cancion> buscarO(ListaDobleEnlazada<Cancion> resultado,String[] arrayString) {
+    	return buscarO(resultado,raiz,arrayString);
     }
 
     /*
      * Metodo privado que busca canciones que coinciden con alguna descripcion  a traves del thread
      */
-    private ListaDobleEnlazada buscarO(ListaDobleEnlazada<Cancion> resultado,NodoArbolBinario raiz,String atributo1,String atributo2,String atributo3) {
+    private ListaDobleEnlazada buscarO(ListaDobleEnlazada<Cancion> resultado,NodoArbolBinario raiz,String[] arrayString) {
         if (raiz == null) {
             return resultado;
         }
         // Crear hilos para el lado izquierdo y derecho
-        Thread hiloIzquierdo = new Thread(() -> buscarO(raiz.hijoIzquierdo, resultado,atributo1,atributo2,atributo3));
-        Thread hiloDerecho = new Thread(() -> buscarO(raiz.hijoDerecho, resultado,atributo1,atributo2,atributo3));
+        Thread hiloIzquierdo = new Thread(() -> buscarO(raiz.hijoIzquierdo, resultado,arrayString));
+        Thread hiloDerecho = new Thread(() -> buscarO(raiz.hijoDerecho, resultado,arrayString));
         // Iniciar los hilos
         hiloIzquierdo.start();
         hiloDerecho.start();
@@ -255,26 +255,29 @@ public class ArbolBinario  <T extends Comparable<T>> implements Iterable<T> {
      * Metodo de buscar en O que busca en el arbol binario que canciones coinciden con
      * al menos un de los atributos ingresados por el usuario y los agrega a una lista de canciones
      */
-    private void buscarO(NodoArbolBinario nodo, ListaDobleEnlazada<Cancion> resultado,String atributo1,String atributo2,String atributo3) {
+    private void buscarO(NodoArbolBinario nodo, ListaDobleEnlazada<Cancion> resultado,String[] arrayString) {
     	Artista art = (Artista) nodo.obtenerValor();
     	ListaDobleEnlazada<Cancion> listaCanciones = art.getListaCanciones();
         if (art == null) {
             return;
         }
-        for (Cancion cancion : listaCanciones) {
-        	if(cancion.equals(atributo1)||cancion.equals(atributo2)||cancion.equals(atributo3)) {
-            	resultado.agregarAlFinal(cancion);
+        for(int i = 0;i< arrayString.length;i++){
+            for (Cancion cancion : listaCanciones) {
+                if(cancion.equals(arrayString[i])) {
+                    resultado.agregarAlFinal(cancion);
+                }
             }
-		}
-        buscarO(nodo.obtenerHijoIzquierdo(), resultado, atributo1, atributo2, atributo3);
-        buscarO(nodo.obtenerHijoDerecho(), resultado, atributo1, atributo2, atributo3);
+        }
+
+        buscarO(nodo.obtenerHijoIzquierdo(), resultado, arrayString);
+        buscarO(nodo.obtenerHijoDerecho(), resultado, arrayString);
     }
 
     /*
      * Metodo publico que invoca la funcion BuscarY
      */
 	public ListaDobleEnlazada<Cancion> buscarY(ListaDobleEnlazada<Cancion> resultado,String atributo1,String atributo2,String atributo3) {
-		return buscarO(resultado,raiz,atributo1,atributo2,atributo3);
+		return buscarY(resultado,raiz,atributo1,atributo2,atributo3);
 	}
 
 	 /*
@@ -421,6 +424,72 @@ public class ArbolBinario  <T extends Comparable<T>> implements Iterable<T> {
                 return valor;
             }
 			return valor;
+        }
+    }
+    public ListaDobleEnlazada<Cancion> searchSongsO(String[] attributes) {
+        ListaDobleEnlazada<Cancion> result = new ListaDobleEnlazada<>();
+        searchSongsHelperO(this.raiz, attributes, result);
+        return result;
+    }
+
+    private void searchSongsHelperO(NodoArbolBinario node, String[] attributes, ListaDobleEnlazada<Cancion> result) {
+        if (node == null) {
+            return;
+        }
+        Artista art = (Artista) node.obtenerValor();
+        ListaDobleEnlazada<Cancion> songs = art.getListaCanciones();
+        for (Cancion song : songs) {
+            for (String attribute : attributes) {
+                if (song.toString().contains(attribute)) {
+                    result.agregarAlFinal(song);
+                    break;
+                }
+            }
+        }
+        Thread leftThread = new Thread(() -> searchSongsHelperO(node.hijoIzquierdo, attributes, result));
+        Thread rightThread = new Thread(() -> searchSongsHelperO(node.hijoDerecho, attributes, result));
+        leftThread.start();
+        rightThread.start();
+        try {
+            leftThread.join();
+            rightThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    public ListaDobleEnlazada<Cancion> searchSongsY(String[] attributes) {
+        ListaDobleEnlazada<Cancion> result = new ListaDobleEnlazada<>();
+        searchSongsHelperY(raiz, attributes, result);
+        return result;
+    }
+
+    private void searchSongsHelperY(NodoArbolBinario node, String[] attributes, ListaDobleEnlazada<Cancion> result) {
+        if (node == null) {
+            return;
+        }
+        Artista art = (Artista) node.obtenerValor();
+        ListaDobleEnlazada<Cancion> songs = art.getListaCanciones();
+        for (Cancion song : songs) {
+            boolean match = true;
+            for (String attribute : attributes) {
+                if (!song.toString().contains(attribute)) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                result.agregarAlFinal(song);
+            }
+        }
+        Thread leftThread = new Thread(() -> searchSongsHelperY(node.hijoIzquierdo, attributes, result));
+        Thread rightThread = new Thread(() -> searchSongsHelperY(node.hijoDerecho, attributes, result));
+        leftThread.start();
+        rightThread.start();
+        try {
+            leftThread.join();
+            rightThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

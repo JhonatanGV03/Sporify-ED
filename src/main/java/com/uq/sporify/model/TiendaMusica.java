@@ -76,7 +76,7 @@ public class TiendaMusica {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(listaArtistas, listaCanciones, listaUsuarios, cambiosRecientes);
+		return Objects.hash(listaArtistas, listaCanciones, listaUsuarios);
 	}
 
 	@Override
@@ -90,29 +90,16 @@ public class TiendaMusica {
 			return false;
 		TiendaMusica other = (TiendaMusica) obj;
 		return Objects.equals(listaArtistas, other.listaArtistas) && Objects.equals(listaCanciones, other.listaCanciones)
-				&& Objects.equals(listaUsuarios, other.listaUsuarios) && Objects.equals(cambiosRecientes, other.cambiosRecientes);
+				&& Objects.equals(listaUsuarios, other.listaUsuarios);
 	}
 
 	@Override
 	public String toString() {
 		return "TiendaMusica [listaArtistas=" + listaArtistas + ", listaUsuarios=" + listaUsuarios + ", listaCanciones="
-				+ listaCanciones + ", cambiosRecientes=" + cambiosRecientes + "]";
+				+ listaCanciones + "]";
 	}
 
-	// deshace cambios realizados en la lista de canciones
-	public void deshacerCambio(Cancion cancion) {
-		cambiosRecientes.push(cancion);
-	}
 
-	// funci�n que recibe un objeto de tipo Canci�n y lo agrega a una pila
-	public void eliminarCambio(Cancion cancion) {
-		cambiosRecientes.push(cancion);
-	}
-
-	// Devuelve el objeto Canci�n en la cima de la pila cambiosRecientes
-	public Cancion rehacerCambio() {
-		return cambiosRecientes.pop();
-	}
 
 	// Recibe un objeto de tipo Artista y lo agrega a la lista de artistas
 	public void agregarArtista(Artista artista) {
@@ -143,13 +130,32 @@ public class TiendaMusica {
 		return art.getListaCanciones();
 	}
 
+	private String[] separarAtributos(String atributos){
+		String[] atributosSeparados = atributos.split(",");
+
+		for (int i = 0; i < atributosSeparados.length; i++) {
+			atributosSeparados[i] = atributosSeparados[i].trim();
+			if (atributosSeparados[i]==null){
+				atributosSeparados[i] = "";
+			}
+		}
+		return atributosSeparados;
+	}
 	/*
 	 * Recibe tres atributos y devuelve una lista doblemente enlazada de canciones que cumplen
 	 * con al menos uno de los atributos
 	 */
-	public ListaDobleEnlazada<Cancion> buscarAtributosEnO(String atributo1,String atributo2, String atributo3) {
+	public ListaDobleEnlazada<Cancion> buscarAtributosEnO(String atributos) {
+		String[] atributosSeparados = atributos.split(",");
+
+		for (int i = 0; i < atributosSeparados.length; i++) {
+			atributosSeparados[i] = atributosSeparados[i].trim();
+			if (atributosSeparados[i]==null){
+				atributosSeparados[i] = "";
+			}
+		}
 		ListaDobleEnlazada<Cancion> resultadosBusqueda= new ListaDobleEnlazada<Cancion>();
-	    return listaArtistas.buscarO(resultadosBusqueda,atributo1, atributo2, atributo3);
+	    return listaArtistas.buscarO(resultadosBusqueda,atributosSeparados);
 	}
 
 	/*
@@ -190,5 +196,89 @@ public class TiendaMusica {
 	public static void guardarInfo() throws IOException {
 		Persistencia.guardarRecursoSporifyXML();
 	}
+	public ListaCircular<Cancion> depurarArtistayCanciones (Artista art)
+	{
+		TiendaMusica sporify = TiendaMusica.getInstance();
+		Artista arte= sporify.retornarArtista(art.getNombre());
+		ListaCircular<Cancion> aux = new ListaCircular<>();
+		if(arte != null){
+		for (Cancion cancion:listaCanciones){
+			if(!cancion.getArtista().equals(arte.getNombre()))
+			{
+				aux.agregar(cancion);
+			}
+		}
+		sporify.eliminarArtista(art);
+	}
+		return aux;
+	}
+	public HashMap<String,Usuario> depurarPlayList()
+	{
+		TiendaMusica sporify = TiendaMusica.getInstance();
+		HashMap<String,Usuario> auxUsuarios = sporify.getListaUsuarios();
+		for(Map.Entry<String,Usuario> users:auxUsuarios.entrySet()){
+				Usuario
+			for(Cancion playlist:users.getValue().getListaCanciones()){
+				Boolean banderita = false;
+				for(Cancion cancionesTienda:listaCanciones)
+				{
+					if(cancionesTienda.comprobar(playlist)){
+						banderita = true;
+					}
+				}
+				if(banderita==false){
+					
+				}
+			}
+		}
+
+		return auxUsuarios;
+	}
+	//public ListaDobleEnlazada<Cancion> buscarFiltroO (String atributo1, String atributo2, String atributo3){
+	//	ListaDobleEnlazada<Cancion> resultadosBusqueda = new ListaDobleEnlazada<>();
+		//return listaArtistas.buscarO(resultadosBusqueda,atributo1,atributo2,atributo3);
+	//}
+	public ListaDobleEnlazada<Cancion> buscarFiltroY (String atributo1, String atributo2, String atributo3){
+		ListaDobleEnlazada<Cancion> resultadosBusqueda = new ListaDobleEnlazada<>();
+		return listaArtistas.buscarY(resultadosBusqueda,atributo1,atributo2,atributo3);
+	}
+	public ListaDobleEnlazada<Cancion> testBuscarO (String atributos){
+		String[] atributosSeparados = atributos.split(",");
+
+		for (int i = 0; i < atributosSeparados.length; i++) {
+			atributosSeparados[i] = atributosSeparados[i].trim();
+
+	}
+		return listaArtistas.searchSongsO(atributosSeparados);
+}
+	public ListaDobleEnlazada<Cancion> testBuscarY (String atributos){
+		ListaDobleEnlazada<Cancion> defecto = new ListaDobleEnlazada<>();
+		String[] atributosSeparados = atributos.split(",");
+
+		for (int i = 0; i < atributosSeparados.length; i++) {
+			atributosSeparados[i] = atributosSeparados[i].trim();
+
+		}
+		if(atributosSeparados.length>=2){
+			defecto = listaArtistas.searchSongsY(atributosSeparados);
+		}
+		return defecto;
+	}
+	public void eliminarUsuario(String usuario){
+		listaUsuarios.remove(usuario);
+	}
+	public void agregarUsuario(Usuario usuario){
+		listaUsuarios.put(usuario.getUsuario(),usuario);
+	}
+	public Cancion getCancioncita(String nombreCodigo){
+		Cancion song = new Cancion();
+		for(Cancion cancion:listaCanciones){
+			if(cancion.getCodigo().equals(nombreCodigo)){
+				song = cancion;
+			}
+		}
+		return song;
+	}
+
 }
 

@@ -30,7 +30,8 @@ public class Main {
 		Cancion tripolar = new Cancion("tripolar","cancerbero","","","",10,"rap","",Cancion.generarCodigo());
 		listaCancionesCancerbero.agregarAlFinal(epico); // Agrega la cancion al final de la lista
 		listaCancionesCancerbero.agregarAlFinal(tripolar); // Agrega la cancion al final de la lista
-		Artista art1 = new Artista("cancerbero","venezuela","solo",listaCancionesCancerbero);
+		Artista art1 = new Artista("cancerbero","venezuela",false);
+		art1.setListaCanciones(listaCancionesCancerbero);
 		listaArtistas.agregar(art1); // Agrega al artista
 
 

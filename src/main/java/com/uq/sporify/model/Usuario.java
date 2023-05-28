@@ -11,7 +11,8 @@ public class Usuario {
     private String contrasenia;
     private String email;
     private ListaCircular<Cancion> listaCanciones;
-    Pila<Cancion> cambiosRecientes;
+    private Pila<Cancion> cambiosRecientes;
+    private String favoritos;
     public String getUsuario() {
         return usuario;
     }
@@ -39,28 +40,34 @@ public class Usuario {
 
     public void guardarCancion(Cancion cancion) {
         listaCanciones.agregar(cancion);
+        actualizarFavoritos();
+
     }
     public void eliminarCancion(Cancion cancion) {
         listaCanciones.eliminar(cancion);
+        actualizarFavoritos();
+        //cambiosRecientes.push(cancion);
     }
 
-    public void deshacerCambio(Cancion cancion) {
+
+
+    public void deshacer(Cancion cancion) {
         cambiosRecientes.push(cancion);
     }
-    public void eliminarCambio(Cancion cancion) {
-        cambiosRecientes.push(cancion);
-    }
-    public Cancion rehacerCambio() {
+    public Cancion rehacer(){
         return cambiosRecientes.pop();
     }
-
-
-    public Usuario(String usuario, String contrasenia, String email, ListaCircular<Cancion> listaCanciones) {
+    public Pila<Cancion> getCambiosRecientes()
+    {
+        return cambiosRecientes;
+    }
+    public Usuario(String usuario, String contrasenia, String email) {
         super();
+        this.cambiosRecientes=new Pila<>();
         this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.email = email;
-        this.listaCanciones = listaCanciones;
+        this.listaCanciones = new ListaCircular<Cancion>();
     }
 
 
@@ -69,7 +76,8 @@ public class Usuario {
         this.usuario="";
         this.contrasenia ="";
         this.email="";
-        this.listaCanciones=null;
+        this.listaCanciones= new ListaCircular<>();
+        this.cambiosRecientes = new Pila<>();
     }
     @Override
     public int hashCode() {
