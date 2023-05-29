@@ -1,9 +1,13 @@
 #Artistas
-000000;Nach;Español;false
-000001;JHCruz;Sudafrica;true
-000002;Nanpa;Colombia;false
-000003;Juanes;Colombia;false
+000000;Michael Jackson;USA;false
+000001;Bruno Mars;USA;false
+000002;Nanpa Basico;Colombia;false
+000003;Ivy Queen;Puerto Rico;false
 000004;Cancerbero;Venezuela;false
+000005;Twenty One Pilots;USA;true
+000006;Tego Calderon;Puerto Rico;false
+000007;Eminem;USA;false
+000008;Lionel Richie;USA;false
 
 #Canciones
 ABC001;JHCruz;cantando con bendicion;Bandidas;2023;1;Masculino;https://www.youtube.com/embed/tzJJGQiyDdo

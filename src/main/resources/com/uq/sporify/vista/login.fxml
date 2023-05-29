@@ -100,7 +100,10 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="lbMensaje" contentDisplay="CENTER" layoutX="119.0" layoutY="408.0" text="Error campo vacio" textAlignment="CENTER" visible="false" />
+            <Label fx:id="lbMensaje" alignment="CENTER" contentDisplay="CENTER" layoutX="51.0" layoutY="408.0" prefHeight="21.0" prefWidth="234.0" text="Error campo vacío" textAlignment="CENTER" visible="false">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
          </children>
       </Pane>
    </children>

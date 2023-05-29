@@ -5,10 +5,35 @@
    <string>123</string>
   </void>
   <void property="email">
-   <string>user@gmail.com</string>
+   <string>123@123.com</string>
   </void>
   <void property="favoritos">
    <string></string>
+  </void>
+  <void property="usuario">
+   <string>123</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Usuario">
+  <void property="contrasenia">
+   <string>321</string>
+  </void>
+  <void property="email">
+   <string>321@123.213</string>
+  </void>
+  <void property="usuario">
+   <string>321</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Usuario">
+  <void property="contrasenia">
+   <string>123</string>
+  </void>
+  <void property="email">
+   <string>user@gmail.com</string>
+  </void>
+  <void property="favoritos">
+   <string>ABC006;</string>
   </void>
   <void property="usuario">
    <string>user</string>

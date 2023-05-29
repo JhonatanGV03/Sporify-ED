@@ -24,7 +24,7 @@ public class Cancion implements Serializable {
 		this.codigo = generarCodigo();
 		this.nombre = nombre;
 		this.artista = artista;
-		this.caratula = caratula;
+		this.caratula = setearCaratula(caratula);
 		this.anio = Integer.parseInt(anio);
 		this.urlYoutube = urlYoutube;
 		this.duracion = duracion;
@@ -37,7 +37,7 @@ public class Cancion implements Serializable {
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.artista = artista;
-		this.caratula = caratula;
+		this.caratula = setearCaratula(caratula);
 		this.anio = Integer.parseInt(anio);
 		this.urlYoutube = urlYoutube;
 		this.duracion = duracion;
@@ -51,12 +51,22 @@ public class Cancion implements Serializable {
 		this.codigo=generarCodigo();
 		this.nombre="";
 		this.artista="";
-		this.caratula="";
+		this.caratula="/com/uq/sporify/caratulas/songNotFoundDefault.png";
 		this.anio =0;
 		this.urlYoutube="";
 		this.duracion=0;
 		this.genero="";
 		this.album="";
+	}
+
+	public String setearCaratula(String ruta){
+		String rutaCaratul;
+		if(ruta.equals("")){
+			rutaCaratul="/com/uq/sporify/caratulas/songNotFoundDefault.png";
+		}else {
+			rutaCaratul = ruta;
+		}
+		return rutaCaratul;
 	}
 
     /*

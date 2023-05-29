@@ -10,17 +10,13 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
     private int tamanio;
     private Nodo<T> actual;
 
-    /*
-     * Constructor de la clase ListaCircular
-     */
+    // Constructor de la clase ListaCircular
     public ListaCircular() {
         tamanio = 0;
         actual = null;
     }
 
-    /*
-     * Clase privada Nodo, de tipo generica
-     */
+    // Clase privada Nodo, de tipo generica
     private static class Nodo<T> {
         // variables detro de la clase privada
     	T valor;
@@ -75,25 +71,28 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
         tamanio++;
     }
 
-    // Funcion que elimina un nodo específico de la lista enlazada
+    /**
+     * Funcion que elimina un nodo específico de la lista enlazada
+     * @param valor Generico
+     **/
     public void eliminar(T valor) {
-        if (!estaVacia()) { // Verifica si la lista no está vacía
-            Nodo<T> anterior = actual;
-            Nodo<T> siguiente = actual.siguiente;
-            do { // Recorre la lista hasta que se encuentre el valor del nodo a eliminar
-                if (valor.equals(siguiente.valor)) {
-                    if (tamanio == 1) {
-                        actual = null;
-                    } else if (siguiente == actual) {
-                        actual = anterior;
+        if (!estaVacia()) {
+            if (valor.equals(actual.valor)) {
+                actual = actual.siguiente;
+                tamanio--;
+            } else {
+                Nodo<T> anterior = actual;
+                Nodo<T> siguiente = actual.siguiente;
+                while (siguiente != null) {
+                    if (valor.equals(siguiente.valor)) {
+                        anterior.siguiente = siguiente.siguiente;
+                        tamanio--;
+                        break;
                     }
-                    anterior.siguiente = siguiente.siguiente;
-                    tamanio--;
-                    return;
+                    anterior = siguiente;
+                    siguiente = siguiente.siguiente;
                 }
-                anterior = siguiente;
-                siguiente = siguiente.siguiente;
-            } while (siguiente != actual.siguiente);
+            }
         }
     }
 

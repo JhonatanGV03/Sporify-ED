@@ -35,9 +35,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         return tamanio;
     }
 
-    /*
-     *  Devuelve true si el mapa no contiene ningún par clave-valor
-     */
+    // Devuelve true si el mapa no contiene ningún par clave-valor
     public boolean estaVacia() {
         return tamanio == 0;
     }

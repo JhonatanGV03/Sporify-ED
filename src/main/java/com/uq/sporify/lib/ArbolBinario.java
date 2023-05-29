@@ -11,9 +11,7 @@ import java.util.Iterator;
 /*
  * Clase que permite al usuario crear una estructura de datos conocida como �rbol
  * binario que cada nodo tiene un apuntador a su hijo izquierdo y su hijo derecho
- *
  * @param <T> Generico
- * @param <E>
  */
 public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Serializable {
 	// Declaracion de variables
@@ -24,18 +22,14 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         this.raiz = null; // Se inicializa el atributo en null para indicar que inicia vacio
 	}
 
-	/*
-	 * Metodo para agregar todos los elementos de una coleccion al arbol
-	 */
+	// Metodo para agregar todos los elementos de una coleccion al arbol
 	public void addAll(Collection<T> valores) {
 		for(T valor : valores) {
 			agregar(valor); // agrega los valores al arbol
 		}
 	}
 
-	/*
-	 * Metodo que invoca el metodo agregar inicializando el parametro de nodo
-	 */
+	//Metodo que invoca el metodo agregar inicializando el parametro de nodo
 	public void agregar(T valor) {
 		this.raiz = agregar(this.raiz, valor);
 	}

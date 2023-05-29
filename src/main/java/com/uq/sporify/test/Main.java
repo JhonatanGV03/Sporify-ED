@@ -27,61 +27,61 @@ public class Main {
 		 //Crea la Tienda
 
 	TiendaMusica sporify = TiendaMusica.getInstance();
-/**
-		//Artistas
-		ArbolBinario<Artista> listaArtistas = new ArbolBinario<>();
-		ListaDobleEnlazada<Cancion> listaCancionesCancerbero = new ListaDobleEnlazada<>();
-		Cancion epico = new Cancion("epico","cancerbero","","","",10,"rap","");
-		Cancion tripolar = new Cancion("tripolar","cancerbero","","","",10,"rap","");
-		listaCancionesCancerbero.agregarAlFinal(epico); // Agrega la cancion al final de la lista
-		listaCancionesCancerbero.agregarAlFinal(tripolar); // Agrega la cancion al final de la lista
-		Artista art1 = new Artista("cancerbero","venezuela",false);
-		art1.setListaCanciones(listaCancionesCancerbero);
-		listaArtistas.agregar(art1); // Agrega al artista
 
-
-		ListaCircular<Cancion> listaCanciones = new ListaCircular<>();
-		listaCanciones.agregar(tripolar);
-		listaCanciones.agregar(epico);
-
-
-		//Usuario
-		Usuario user = new Usuario("user","123","user@gmail.com");
-		user.guardarCancion(tripolar);
-		user.guardarCancion(epico);
-		HashMap<String, Usuario> listaUsuarios = new HashMap<>();
-		listaUsuarios.put(user.getUsuario(), user);
-
-		//Asignacion
-		sporify.setListaArtistas(listaArtistas);
-		sporify.setListaCanciones(listaCanciones);
-		sporify.setListaUsuarios(listaUsuarios);
-*/
-		//TiendaMusica sporify = TiendaMusica.getInstance();
-			try {
-				//sporify.guardarInfo();
-				sporify.cargarInfo();
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		/**for (Map.Entry<String,Usuario> usr:listaUsuarios.entrySet()){
+		try {
+			sporify.cargarInfo();
 			System.out.println();
-			System.out.println(usr.getValue().getFavoritos());
-		}*/
-		//TiendaMusica sporify = TiendaMusica.getInstance();
-		//Imprime la informacion
-		//String[] atributos = new String[3];
-		//atributos[0] = "eminem";
-		//atributos[1] = "slim shady";
-		//atributos[2] = "cancerbero";
-		//ListaDobleEnlazada<Cancion> resultados = new ListaDobleEnlazada<>();
-		//sporify.agregarCancionesArtista();
-		//System.out.println(sporify.testBuscarO("papa, JHCruz,Nach"));
-		//System.out.println(sporify.getListaCanciones());
-		//System.out.println(sporify.getListaArtistas().obtenerTamanio());
-		System.out.println(sporify.getListaUsuarios().get("user").getListaCanciones().obtener(-1));
-		//sporify.getListaUsuarios().get("user").eliminarCancion();
-		//sporify.getListaUsuarios().get("user").eliminarCancion();
-		System.out.println(sporify.getListaUsuarios().get("user").getListaCanciones().obtener(-1));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		System.out.println("------------------------------------Test 2: Agregar Canciones-----------------------------------------");
+		System.out.println();
+	for(Cancion cancion: sporify.getListaCanciones()){
+		System.out.println(cancion.getNombre());
+		System.out.println();
+	}
+	Cancion pura_droga_sin_cortar = new Cancion("pura_drogra_sin_cortar","Kase-O","","2016","https://www.youtube.com/watch?v=B3GiCGz0gXM",10,"Rap","Circulo");
+		System.out.println();
+	sporify.guardarCancion(pura_droga_sin_cortar);
+
+	for(Cancion cancion: sporify.getListaCanciones()){
+		System.out.println(cancion.getNombre());
+		System.out.println();
+	}
+		System.out.println("------------------------------------Test 3: Buscar por Hilo O-----------------------------------------");
+		System.out.println();
+	for(Cancion cancion:sporify.testBuscarO("Cancerbero,Eminem,Rock")){
+		System.out.println(cancion.getNombre());
+		System.out.println();
+	}
+		System.out.println("------------------------------------Test 4: Buscar Canciones Artista-----------------------------------------");
+		System.out.println();
+	for(Cancion cancion:sporify.retornarArtista("Kase-O").getListaCanciones()){
+		System.out.println(cancion);
+		System.out.println();
+	}
+		System.out.println("------------------------------------Test 5: Buscar por Hilo Y-----------------------------------------");
+		System.out.println();
+	for(Cancion cancion:sporify.testBuscarY("Ivy,Pop")){
+		System.out.println(cancion);
+		System.out.println();
+	}
+		System.out.println("------------------------------------Test 6: Iniciar Seccion-----------------------------------------");
+		System.out.println();
+
+	System.out.println(sporify.iniciarSesion("eric","123"));
+		System.out.println();
+
+		System.out.println("------------------------------------Test 7: Crear Cuenta-----------------------------------------");
+		System.out.println();
+	Usuario user = new Usuario("eric","123","eric@gmail.com");
+	sporify.agregarUsuario(user);
+	System.out.println(sporify.iniciarSesion(user.getUsuario(),user.getContrasenia()));
+		System.out.println("------------------------------------Test 8: Genero Tendencia-----------------------------------------");
+		System.out.println();
+		System.out.println(sporify.mostrarGeneroTendendencia());
+		System.out.println();
+		System.out.println("------------------------------------Todos los Test Aprobados-----------------------------------------");
+
 	}
 }

@@ -7,8 +7,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -35,21 +33,21 @@
                   <Image url="@../images/songNotFoundDefault.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbNomCancionR" layoutX="71.0" layoutY="26.0" prefHeight="20.0" prefWidth="257.0" text="&lt;songName&gt;" textFill="WHITE" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="30.0">
+            <Label fx:id="lbNomCancionR" layoutX="71.0" layoutY="26.0" prefHeight="20.0" prefWidth="316.0" text="No se encontró cancion en reproducción." textFill="WHITE" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="Arial Black" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="lbNomArtistaR" layoutX="71.0" layoutY="45.0" prefHeight="25.0" prefWidth="201.0" text="&lt;artistName&gt;" textFill="#8d8d8d" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="52.0">
+            <Label fx:id="lbNomArtistaR" layoutX="71.0" layoutY="45.0" prefHeight="25.0" prefWidth="212.0" text="No se encontró cancion en reproduccióne&gt;" textFill="#8d8d8d" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="52.0">
                <font>
                   <Font name="Rubik-Bold" size="12.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" layoutX="408.0" layoutY="1.0" prefHeight="89.0" prefWidth="210.0" spacing="2.0" style="-fx-alignment: top-center;">
+            <HBox alignment="CENTER" layoutX="782.0" prefHeight="89.0" prefWidth="210.0" spacing="2.0" style="-fx-alignment: top-center;">
                <children>
-                  <Button fx:id="btnAnterior" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnAnterior" prefHeight="36.0" prefWidth="29.0" style="-fx-background-color: transparent;">
+                  <Button alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="36.0" prefWidth="29.0" style="-fx-background-color: transparent;">
                      <graphic>
-                        <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
+                        <ImageView disable="true" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
                            <image>
                               <Image url="@../images/anterior.png" />
                            </image>
@@ -80,7 +78,7 @@
                         <Insets top="22.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnSiguiente" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onActionBtnSiguiente" prefHeight="24.0" prefWidth="19.0" rotate="180.0" style="-fx-background-color: transparent;">
+                  <Button alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="24.0" prefWidth="19.0" rotate="180.0" style="-fx-background-color: transparent;">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
                            <image>
@@ -103,28 +101,7 @@
                   </Button>
                </children>
             </HBox>
-            <Pane layoutX="905.0" layoutY="47.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="42.0">
-               <children>
-                  <ProgressBar id="progressBar_Reproductor" fx:id="pbVolumen" depthTest="DISABLE" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="100.0" progress="0.0" stylesheets="@../css/style.css" />
-                  <Slider id="slider_Reproductor" fx:id="sliderVolumen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#onDraggedVolume" onMousePressed="#onDraggedVolume" prefHeight="5.0" prefWidth="100.0" stylesheets="@../css/style.css">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Slider>
-               </children>
-            </Pane>
-            <Button fx:id="btnMute" alignment="CENTER" layoutX="839.0" layoutY="26.0" mnemonicParsing="false" onAction="#onActionBtnVolumen" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: transparent;">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <graphic>
-                  <ImageView fx:id="ivMute" fitHeight="38.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/sound.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+            <Pane layoutX="905.0" layoutY="47.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="6.0" prefWidth="100.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="42.0" />
          </children>
       </AnchorPane>
    </bottom>
@@ -346,13 +323,13 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfAnioAE" layoutX="142.0" layoutY="84.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="76.0" promptText="Año" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfNomCancionAE" layoutX="89.0" layoutY="135.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="134.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfArtCancionAE" layoutX="77.0" layoutY="167.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="144.0" promptText="Artista" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfAnioAE" layoutX="142.0" layoutY="84.0" prefHeight="25.0" prefWidth="76.0" promptText="Año" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfNomCancionAE" layoutX="89.0" layoutY="135.0" prefHeight="27.0" prefWidth="134.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfArtCancionAE" layoutX="77.0" layoutY="167.0" prefHeight="27.0" prefWidth="144.0" promptText="Artista" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <ChoiceBox id="choiceBox_Sort" fx:id="cbGeneroAE" layoutX="86.0" layoutY="198.0" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #171717; -fx-border-color: WHITE; -fx-border-width: 0 0 2 0; -fx-border-radius: 3; -fx-mark-color: gray; -fx-background-radius: 2;" stylesheets="@../css/style.css" />
-                        <TextField fx:id="tfAlbumAE" layoutX="82.0" layoutY="231.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="137.0" promptText="Albúm" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfDuracionAE" layoutX="93.0" layoutY="264.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="125.0" promptText="Duración" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfUrlAE" layoutX="59.0" layoutY="298.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="158.0" promptText="YoutubeURL" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfAlbumAE" layoutX="82.0" layoutY="231.0" prefHeight="27.0" prefWidth="137.0" promptText="Albúm" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfDuracionAE" layoutX="93.0" layoutY="264.0" prefHeight="27.0" prefWidth="125.0" promptText="Duración" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfUrlAE" layoutX="59.0" layoutY="298.0" prefHeight="27.0" prefWidth="158.0" promptText="YoutubeURL" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <Button fx:id="btnGuardarCan" alignment="CENTER" layoutX="127.0" layoutY="333.0" mnemonicParsing="false" onAction="#onActionBtnGuardarCan" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;" text="Guardar">
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -377,6 +354,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
+                        <Button fx:id="btnEditarIMG" layoutX="8.0" layoutY="37.0" mnemonicParsing="false" onAction="#onActionEditIMG" opacity="0.0" prefHeight="89.0" prefWidth="90.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="paneEditArtista" prefHeight="369.0" prefWidth="236.0" visible="false">
@@ -401,8 +379,8 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfNomArtAE" layoutX="34.0" layoutY="167.0" onAction="#onActionTFAg_EdNomArt" prefHeight="27.0" prefWidth="165.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfNacioArtAE" layoutX="31.0" layoutY="228.0" onAction="#onActionTFAg_EdNacioArt" prefHeight="27.0" prefWidth="169.0" promptText="Nacionalidad" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfNomArtAE" layoutX="34.0" layoutY="167.0" prefHeight="27.0" prefWidth="165.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfNacioArtAE" layoutX="31.0" layoutY="228.0" prefHeight="27.0" prefWidth="169.0" promptText="Nacionalidad" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <Button fx:id="btnGuardarArt" alignment="CENTER" layoutX="127.0" layoutY="331.0" mnemonicParsing="false" onAction="#onActionBtnGuardarArt" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;" text="Guardar">
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -510,13 +488,13 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfAnioAE1" layoutX="142.0" layoutY="84.0" onAction="#onActionTFAg_EdCan" prefHeight="25.0" prefWidth="76.0" promptText="Año" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfNomCancionAE1" layoutX="89.0" layoutY="135.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="134.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfArtCancionAE1" layoutX="77.0" layoutY="167.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="144.0" promptText="Artista" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfAnioAE1" layoutX="142.0" layoutY="84.0" prefHeight="25.0" prefWidth="76.0" promptText="Año" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfNomCancionAE1" layoutX="89.0" layoutY="135.0" prefHeight="27.0" prefWidth="134.0" promptText="Nombre" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfArtCancionAE1" layoutX="77.0" layoutY="167.0" prefHeight="27.0" prefWidth="144.0" promptText="Artista" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <ChoiceBox id="choiceBox_Sort" fx:id="cbGeneroAE1" layoutX="86.0" layoutY="198.0" prefHeight="25.0" prefWidth="134.0" style="-fx-background-color: #171717; -fx-border-color: WHITE; -fx-border-width: 0 0 2 0; -fx-border-radius: 3; -fx-mark-color: gray; -fx-background-radius: 2;" stylesheets="@../css/style.css" />
-                        <TextField fx:id="tfAlbumAE1" layoutX="82.0" layoutY="231.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="137.0" promptText="Albúm" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfDuracionAE1" layoutX="93.0" layoutY="264.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="125.0" promptText="Duración" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
-                        <TextField fx:id="tfUrlAE1" layoutX="59.0" layoutY="298.0" onAction="#onActionTFAg_EdCan" prefHeight="27.0" prefWidth="158.0" promptText="YoutubeURL" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfAlbumAE1" layoutX="82.0" layoutY="231.0" prefHeight="27.0" prefWidth="137.0" promptText="Albúm" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfDuracionAE1" layoutX="93.0" layoutY="264.0" prefHeight="27.0" prefWidth="125.0" promptText="Duración" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
+                        <TextField fx:id="tfUrlAE1" layoutX="59.0" layoutY="298.0" prefHeight="27.0" prefWidth="158.0" promptText="YoutubeURL" style="-fx-background-color: #171717; -fx-border-width: 0 0 2 0; -fx-border-color: white; -fx-border-radius: 5; -fx-text-fill: white;" />
                         <Button fx:id="btnGuardarCan1" alignment="CENTER" layoutX="127.0" layoutY="333.0" mnemonicParsing="false" onAction="#onActionBtnGuardarCan1" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #f3f3f3; -fx-background-radius: 40;" text="Guardar">
                            <cursor>
                               <Cursor fx:constant="HAND" />
@@ -541,6 +519,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
+                        <Button fx:id="btnCargarIMG" layoutX="8.0" layoutY="37.0" mnemonicParsing="false" onAction="#onActionCargarIMG" opacity="0.0" prefHeight="89.0" prefWidth="89.0" text="Button" />
                      </children>
                   </Pane>
                </children>
@@ -810,7 +789,7 @@
                         <Image url="@../images/logoWhite.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lbNombreCVideo" contentDisplay="CENTER" layoutX="99.0" layoutY="33.0" prefHeight="35.0" prefWidth="445.0" style="-fx-font-weight: 700;" text="&lt;SongNAME&gt;" textFill="WHITE">
+                  <Label fx:id="lbNombreCVideo" contentDisplay="CENTER" layoutX="99.0" layoutY="33.0" prefHeight="35.0" prefWidth="445.0" style="-fx-font-weight: 700;" text="No se esta reproduciendo ninguna cancion" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

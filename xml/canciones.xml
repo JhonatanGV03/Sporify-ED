@@ -2,28 +2,132 @@
 <java version="17" class="java.beans.XMLDecoder">
  <object class="com.uq.sporify.model.Cancion">
   <void property="album">
-   <string>Nanpa</string>
+   <string>24K Magic</string>
   </void>
   <void property="anio">
-   <string>2019</string>
+   <string>2017</string>
   </void>
   <void property="artista">
-   <string>Nanpa</string>
+   <string>Bruno Mars</string>
+  </void>
+  <void property="codigo">
+   <string>ABC005</string>
+  </void>
+  <void property="duracion">
+   <int>300</int>
+  </void>
+  <void property="genero">
+   <string>Pop</string>
+  </void>
+  <void property="nombre">
+   <string>That&apos;s What I Like</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=PMivT7MJ41M</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Silk Sonic</string>
+  </void>
+  <void property="anio">
+   <string>2021</string>
+  </void>
+  <void property="artista">
+   <string>Bruno Mars</string>
   </void>
   <void property="codigo">
    <string>ABC006</string>
   </void>
   <void property="duracion">
-   <int>2000</int>
+   <int>240</int>
   </void>
   <void property="genero">
-   <string>rap</string>
+   <string>Pop</string>
   </void>
   <void property="nombre">
-   <string>Flaca</string>
+   <string>Leave The Door Open</string>
   </void>
   <void property="urlYoutube">
-   <string>https://www.youtube.com/embed/2Z39z0jYiY</string>
+   <string>https://www.youtube.com/watch?v=adLGHcj_fmA</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Unorthodox Jukebox</string>
+  </void>
+  <void property="anio">
+   <string>2014</string>
+  </void>
+  <void property="artista">
+   <string>Bruno Mars</string>
+  </void>
+  <void property="codigo">
+   <string>ABC007</string>
+  </void>
+  <void property="duracion">
+   <int>360</int>
+  </void>
+  <void property="genero">
+   <string>Pop</string>
+  </void>
+  <void property="nombre">
+   <string>Gorila</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=AHDtXqjgEj4</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Nunca Tuve Tanto</string>
+  </void>
+  <void property="anio">
+   <string>2023</string>
+  </void>
+  <void property="artista">
+   <string>Nanpa Basico</string>
+  </void>
+  <void property="codigo">
+   <string>ABC008</string>
+  </void>
+  <void property="duracion">
+   <int>180</int>
+  </void>
+  <void property="genero">
+   <string>Reggaeton</string>
+  </void>
+  <void property="nombre">
+   <string>Nunca Tuve Tanto</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=je8ZAs2CkG8</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>La Vida Es Asi</string>
+  </void>
+  <void property="anio">
+   <string>2023</string>
+  </void>
+  <void property="artista">
+   <string>Ivy Queen</string>
+  </void>
+  <void property="codigo">
+   <string>ABC009</string>
+  </void>
+  <void property="duracion">
+   <int>220</int>
+  </void>
+  <void property="genero">
+   <string>Pop</string>
+  </void>
+  <void property="nombre">
+   <string>La Vida Es Asi</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=Lbpr-mEEnRo</string>
   </void>
  </object>
  <object class="com.uq.sporify.model.Cancion">
@@ -31,33 +135,7 @@
    <string>Muerte</string>
   </void>
   <void property="anio">
-   <string>2010</string>
-  </void>
-  <void property="artista">
-   <string>Cancerbero</string>
-  </void>
-  <void property="codigo">
-   <string>ABC009</string>
-  </void>
-  <void property="duracion">
-   <int>2000</int>
-  </void>
-  <void property="genero">
-   <string>rap</string>
-  </void>
-  <void property="nombre">
-   <string>es epico</string>
-  </void>
-  <void property="urlYoutube">
-   <string>https://www.youtube.com/embed/2Z39z0jYiY</string>
-  </void>
- </object>
- <object class="com.uq.sporify.model.Cancion">
-  <void property="album">
-   <string>vida</string>
-  </void>
-  <void property="anio">
-   <string>2013</string>
+   <string>2012</string>
   </void>
   <void property="artista">
    <string>Cancerbero</string>
@@ -66,42 +144,198 @@
    <string>ABC010</string>
   </void>
   <void property="duracion">
-   <int>2000</int>
+   <int>360</int>
   </void>
   <void property="genero">
-   <string>rap</string>
+   <string>Rap</string>
   </void>
   <void property="nombre">
-   <string>así es mi vida</string>
+   <string>Jeremias 17:5</string>
   </void>
   <void property="urlYoutube">
-   <string>https://www.youtube.com/embed/2Z39z0jYiY</string>
+   <string>https://www.youtube.com/watch?v=a9jxNusr0tE</string>
   </void>
  </object>
  <object class="com.uq.sporify.model.Cancion">
   <void property="album">
-   <string>Nach</string>
+   <string>Vida</string>
   </void>
   <void property="anio">
-   <string>2019</string>
+   <string>2014</string>
   </void>
   <void property="artista">
-   <string>Nach</string>
+   <string>Cancerbero</string>
   </void>
   <void property="codigo">
-   <string>15IHU5</string>
+   <string>ABC011</string>
   </void>
   <void property="duracion">
-   <int>2500</int>
+   <int>380</int>
   </void>
   <void property="genero">
-   <string>Punk</string>
+   <string>Rap</string>
   </void>
   <void property="nombre">
-   <string>entre el placer y el dolor</string>
+   <string>Tripolar</string>
   </void>
   <void property="urlYoutube">
-   <string>https://www.youtube.com/embed/iiniQGn6uaU</string>
+   <string>https://www.youtube.com/watch?v=6Vbq5JFbsjY</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Vida</string>
+  </void>
+  <void property="anio">
+   <string>2013</string>
+  </void>
+  <void property="artista">
+   <string>Cancerbero</string>
+  </void>
+  <void property="codigo">
+   <string>ABC012</string>
+  </void>
+  <void property="duracion">
+   <int>410</int>
+  </void>
+  <void property="genero">
+   <string>Rap</string>
+  </void>
+  <void property="nombre">
+   <string>De La Vida Como Una Pelicula</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=OfxYngFCVms</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>The Eminem Show</string>
+  </void>
+  <void property="anio">
+   <string>2014</string>
+  </void>
+  <void property="artista">
+   <string>Eminem</string>
+  </void>
+  <void property="codigo">
+   <string>ABC015</string>
+  </void>
+  <void property="duracion">
+   <int>260</int>
+  </void>
+  <void property="genero">
+   <string>Rap</string>
+  </void>
+  <void property="nombre">
+   <string>Till I Collapse</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=Pi3_Zs-oRUo</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Thriller</string>
+  </void>
+  <void property="anio">
+   <string>1982</string>
+  </void>
+  <void property="artista">
+   <string>Michael Jackson</string>
+  </void>
+  <void property="codigo">
+   <string>ABC002</string>
+  </void>
+  <void property="duracion">
+   <int>270</int>
+  </void>
+  <void property="genero">
+   <string>Pop</string>
+  </void>
+  <void property="nombre">
+   <string>Beat It</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=oRdxUFDoQe0</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Thriller</string>
+  </void>
+  <void property="anio">
+   <string>1982</string>
+  </void>
+  <void property="artista">
+   <string>Michael Jackson</string>
+  </void>
+  <void property="codigo">
+   <string>ABC001</string>
+  </void>
+  <void property="duracion">
+   <int>240</int>
+  </void>
+  <void property="genero">
+   <string>Pop</string>
+  </void>
+  <void property="nombre">
+   <string>Billie Jean</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=Zi_XLOBDo_Y</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>Suicide Squad</string>
+  </void>
+  <void property="anio">
+   <string>2015</string>
+  </void>
+  <void property="artista">
+   <string>Twenty One Pilots</string>
+  </void>
+  <void property="codigo">
+   <string>ABC013</string>
+  </void>
+  <void property="duracion">
+   <int>210</int>
+  </void>
+  <void property="genero">
+   <string>Rap</string>
+  </void>
+  <void property="nombre">
+   <string>Heathens</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=UprcpdwuwCg</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Cancion">
+  <void property="album">
+   <string>The Eminem Show</string>
+  </void>
+  <void property="anio">
+   <string>2014</string>
+  </void>
+  <void property="artista">
+   <string>Eminem</string>
+  </void>
+  <void property="codigo">
+   <string>ABC016</string>
+  </void>
+  <void property="duracion">
+   <int>330</int>
+  </void>
+  <void property="genero">
+   <string>Rap</string>
+  </void>
+  <void property="nombre">
+   <string>Lose Yourself</string>
+  </void>
+  <void property="urlYoutube">
+   <string>https://www.youtube.com/watch?v=_Yhyp-_hX2s</string>
   </void>
  </object>
 </java>

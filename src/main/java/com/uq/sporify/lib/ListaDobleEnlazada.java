@@ -20,9 +20,7 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		this.tamanio = 0;
 	}
 
-	/*
-	 * Metodos getter and setter
-	 */
+	// Metodos getter and setter
 	public Nodo getPrimero() {
 		return primero;
 	}
@@ -122,7 +120,10 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		this.tamanio--; // Disminuye el tamaño de la lista
 	}
 
-	// Elimina un valor de la lista doblemente enlazada en una posición específica
+	/**
+	 * Elimina un valor de la lista doblemente enlazada en una posición específica
+	 * @param indice
+	 **/
 	public void eliminar(int indice) {
 		if (indice < 0 || indice >= this.tamanio) { //  si no esta en los limites de la lista, lanza la excepcion
 			throw new IndexOutOfBoundsException("El índice está fuera de los límites de la lista.");
