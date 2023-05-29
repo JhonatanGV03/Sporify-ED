@@ -199,7 +199,7 @@ public class Cancion implements Serializable {
 				|| Objects.equals(urlYoutube, other.urlYoutube);
 	}
 
-	// Genera un código alfanumérico aleatorio de longitud 10
+	// Genera un código alfanumérico aleatorio de longitud 6
 	public static String generarCodigo() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; // Crea una cadena de  mayúsculas y dígitos
         StringBuilder codigo = new StringBuilder();

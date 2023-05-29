@@ -8,7 +8,7 @@ import java.beans.XMLEncoder;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
-/*
+/**
  * Clase que permite al usuario crear una estructura de datos conocida como �rbol
  * binario que cada nodo tiene un apuntador a su hijo izquierdo y su hijo derecho
  * @param <T> Generico
@@ -64,7 +64,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         this.raiz = eliminar(this.raiz, valor);
     }
 
-    /*
+    /**
      * Metodo recursivo que permite eliminar los nodos del arbol binario
      * @param nodo
      * @param valor
@@ -91,7 +91,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         return nodo;
     }
 
-    /*
+    /**
      *  Metodo que busca el valor minimo del arbol binario, siempre es el valor
      *  que esta mas a la izquierda
      *  @param nodo
@@ -138,7 +138,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         return encontrar(this.raiz, valor);
     }
 
-    /*
+    /**
      * Metodo recursivo que permite buscar los nodos del arbol binario,
      * se utiliza para la lista de los artistas
      * @param nodo
@@ -165,7 +165,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
     public void recorridoPreorden() {
         recorridoPreorden(this.raiz);
     }
-    /*
+    /**
      * Metodo para realizar el recorrido en preorden del arbol binario
      * @param nodo
      **/
@@ -185,7 +185,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         recorridoInorden(this.raiz);
     }
 
-    /*
+    /**
      *Metodo para realizar el recorrido inorden del arbol binario
      *@param nodo
      **/
@@ -205,7 +205,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         recorridoPostorden(this.raiz);
     }
 
-    /*
+    /**
      *Metodo para realizar el recorrido posorden del arbol binario
      *@param nodo
      **/
@@ -217,7 +217,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         }
     }
 
-    /*
+    /**
      * Metodo para obtener el tamaño del arbol binario
      **/
     public int obtenerTamanio() {
@@ -241,7 +241,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
     	return buscarO(resultado,raiz,arrayString);
     }
 
-    /*
+    /**
      * Metodo privado que busca canciones que coinciden con alguna descripcion  a traves del thread
      **/
     private ListaDobleEnlazada buscarO(ListaDobleEnlazada<Cancion> resultado,NodoArbolBinario raiz,String[] arrayString) {
@@ -264,7 +264,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         return resultado;
     }
 
-    /*
+    /**
      * Metodo de buscar en O que busca en el arbol binario que canciones coinciden con
      * al menos un de los atributos ingresados por el usuario y los agrega a una lista de canciones
      **/
@@ -292,7 +292,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
 		return buscarY(resultado,raiz,atributo1,atributo2,atributo3);
 	}
 
-	 /*
+	 /**
      * Metodo privado que busca canciones que coinciden con todas descripcion ingresadas por el usuario a traves del thread
      **/
 	private ListaDobleEnlazada buscarY(ListaDobleEnlazada<Cancion> resultado,NodoArbolBinario raiz,String atributo1,String atributo2,String atributo3) {
@@ -315,7 +315,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
 	    return resultado;
 	}
 
-	/*
+	/**
      * Metodo de buscar en Y que busca en el arbol binario que canciones coinciden con
      * todos los atributos ingresados por el usuario y los agrega a una lista de canciones
      **/
@@ -341,7 +341,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         return new IteradorArbolBinario<T>(this.raiz);
     }
 
-    /*
+    /**
      * Clase publica de NodoArbolBinario que extiende de Comparable
      **/
     public class NodoArbolBinario<T extends Comparable<T>> implements Serializable{
@@ -389,7 +389,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         }
     }
 
-    /*
+    /**
      * Clase publica denominada IteradorArbolBinario que extiende de Comparable
      * e implementa de Iterator, sirve para recorrer el arbol e insertar los valores
      **/
@@ -398,7 +398,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
     	// Declaracion de variables dentro la clase
         private Pila<NodoArbolBinario<T>> pila;
 
-        /*
+        /**
          * En el Constructor se inicializa una pila con el nodo ra�z y todos sus hijos izquierdos.
          * Esto se hace para que el primer elemento devuelto por el iterador
          * sea el nodo m�s a la izquierda del �rbol.
@@ -415,7 +415,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         public boolean hasNext() {
             return !this.pila.isEmpty();
         }
-        /*
+        /**
          * devuelve el valor del nodo en la parte superior de la pila y luego agrega a la pila todos los
          * hijos izquierdos del hijo derecho del nodo que acaba de ser retirado de la pila.
          * Esto asegura que los nodos se devuelvan en orden.
@@ -434,12 +434,23 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
 			return valor;
         }
     }
+    /**
+     * Busca canciones en el árbol de artistas que coincidan con los atributos especificados.
+     * @param attributes arreglo de atributos a buscar en las canciones
+     * @return una lista doblemente enlazada de canciones que coinciden con los atributos
+     **/
     public ListaDobleEnlazada<Cancion> searchSongsO(String[] attributes) {
         ListaDobleEnlazada<Cancion> result = new ListaDobleEnlazada<>();
         searchSongsHelperO(this.raiz, attributes, result);
         return result;
     }
-
+    /**
+     * Método auxiliar para buscar canciones en el árbol de artistas de forma recursiva.
+     * Recorre el árbol y agrega las canciones que coinciden con los atributos en la lista de resultados
+     * @param node el nodo actual en el recorrido del árbol
+     * @param attributes arreglo de atributos a buscar en las canciones
+     * @param result lista donde se guardarán las canciones encontradas
+     **/
     private void searchSongsHelperO(NodoArbolBinario node, String[] attributes, ListaDobleEnlazada<Cancion> result) {
         if (node == null) {
             return;
@@ -465,12 +476,26 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
             e.printStackTrace();
         }
     }
+
+    /**
+     * Busca canciones en el árbol de artistas que coincidan con todos los atributos especificados.
+     *
+     * @param attributes arreglo de atributos a buscar en las canciones
+     * @return una lista doblemente enlazada de canciones que coinciden con todos los atributos
+     **/
     public ListaDobleEnlazada<Cancion> searchSongsY(String[] attributes) {
         ListaDobleEnlazada<Cancion> result = new ListaDobleEnlazada<>();
         searchSongsHelperY(raiz, attributes, result);
         return result;
     }
-
+    /**
+     * Método auxiliar para buscar canciones en el árbol de artistas de forma recursiva.
+     * Recorre el árbol y agrega las canciones que coinciden con todos los atributos en la lista de resultados.
+     *
+     * @param node el nodo actual en el recorrido del árbol
+     * @param attributes arreglo de atributos a buscar en las canciones
+     * @param result lista donde se guardarán las canciones encontradas
+     **/
     private void searchSongsHelperY(NodoArbolBinario node, String[] attributes, ListaDobleEnlazada<Cancion> result) {
         if (node == null) {
             return;

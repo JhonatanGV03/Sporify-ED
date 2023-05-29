@@ -388,7 +388,7 @@ public class TiendaMusica implements Serializable {
 		TiendaMusica sporify = TiendaMusica.getInstance();
 		HashMap<String,Usuario> auxUsuarios = sporify.getListaUsuarios();
 		for(Map.Entry<String,Usuario> users:auxUsuarios.entrySet()){
-				Usuario
+			Usuario actUser = users.getValue();
 			for(Cancion playlist:users.getValue().getListaCanciones()){
 				Boolean banderita = false;
 				for(Cancion cancionesTienda:listaCanciones)
@@ -398,7 +398,7 @@ public class TiendaMusica implements Serializable {
 					}
 				}
 				if(banderita==false){
-					
+					actUser.eliminarCancion(playlist);
 				}
 			}
 		}

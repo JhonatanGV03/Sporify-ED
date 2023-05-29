@@ -28,11 +28,12 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 	public void setPrimero(Nodo primero) {
 		this.primero = primero;
 	}
-
-	/*
-	 * agrega un valor al inicio de una lista doblemente enlazada
+	
+	/**
+	 * Agrega un valor al inicio de una lista doblemente enlazada
 	 * La función toma un valor de tipo genérico T
-	 */
+	 * @param valor
+	 **/
 	public void agregarAlInicio(T valor) {
 		Nodo<T> nuevo = new Nodo<T>(valor);
 		if (this.primero == null) { //Si la lista está vacía
@@ -46,10 +47,11 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		this.tamanio++; // Incrementa el tamaño de la lista
 	}
 
-	/*
+	/**
 	 * Agrega un valor al final de una lista doblemente enlazada
 	 * La función toma un valor de tipo genérico T
-	 */
+	 * @param valor
+	 **/
 	public void agregarAlFinal(T valor) {
 		Nodo<T> nuevo = new Nodo<T>(valor);
 		if (this.ultimo == null) {
@@ -63,9 +65,11 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		this.tamanio++;
 	}
 
-	/*
-	 * inserta un valor en una lista doblemente enlazada en una posición específica
-	 */
+	/**
+	 * Inserta un valor en una lista doblemente enlazada en una posición específica
+	 * @param indice
+	 * @param valor
+	 **/
 	public void insertar(int indice, T valor) {
 		if (indice < 0 || indice > this.tamanio) { // Si el índice está fuera de los límites de la lista
 			throw new IndexOutOfBoundsException("El índice está fuera de los límites de la lista.");
@@ -88,8 +92,6 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		}
 	}
 
-	// Métodos básicos para eliminar elementos de la lista
-
 	// Elimina al Inicio de la lista
 	public void eliminarAlInicio() {
 		if (this.primero == null) { // Si la lista esta vacia lanza una excepcion
@@ -105,7 +107,7 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		this.tamanio--; // Disminuye el tamaño de la lista
 	}
 
-	// Elimina al final de lista
+	//Elimina al final de lista
 	public void eliminarAlFinal() {
 		if (this.ultimo == null) { // Si la lista esta vacia lanza una excepcion
 			throw new NoSuchElementException("La lista está vacía.");
@@ -125,7 +127,7 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 	 * @param indice
 	 **/
 	public void eliminar(int indice) {
-		if (indice < 0 || indice >= this.tamanio) { //  si no esta en los limites de la lista, lanza la excepcion
+		if (indice < 0 || indice >= this.tamanio) { //  Si no esta en los limites de la lista, lanza la excepcion
 			throw new IndexOutOfBoundsException("El índice está fuera de los límites de la lista.");
 		}
 		if (indice == 0) {
@@ -143,9 +145,11 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		}
 	}
 
-	// Otros métodos útiles
-
-	// recupera un valor de una lista doblemente enlazada en un índice específico
+	/**
+	 * Recupera un valor de una lista doblemente enlazada en un índice específico
+	 * @param indice posicion del noto a buscar
+	 * @return retorna el nodo de la posicion en la que se busco por el parametro
+	 **/
 	public T obtener(int indice) {
 		if (indice < 0 || indice >= this.tamanio) { //  si no esta en los limites de la lista, lanza la excepcion
 			throw new IndexOutOfBoundsException("El índice está fuera de los límites de la lista.");
@@ -174,7 +178,7 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		this.tamanio = 0;
 	}
 
-	//  Recibe una colección de valores y agrega cada valor al final
+	//Recibe una colección de valores y agrega cada valor al final
 	public void addAll(Collection<T> valores) {
         for (T valor : valores) {
             agregarAlFinal(valor);
@@ -201,7 +205,6 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 	public Iterator<T> iterator() {
 		return new IteradorLista();
 	}
-
 
 	// Clase interna privada para el iterador
 	private class IteradorLista implements Iterator<T>, Serializable {
@@ -232,7 +235,7 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 		recorrer_recursivo(primero);
 	}
 
-	// Recorre una lista doblemente enlazada de manera recursiva.
+	// Recorre una lista doblemente enlazada de manera recursiva
 	public void recorrer_recursivo (Nodo<T> n){
 		if (n != null) {
 			System.out.println(n.getValor());

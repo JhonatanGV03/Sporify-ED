@@ -5,6 +5,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Estructura de datos lista circular simple enlazada que almacena los datos
+ * que el usuario quiera almacenar y lo recorre de tal forma que el ultimo y el primer nodo sean iguales
+ * @param <T> Generico que recibe la estructura de datos
+ */
 public class ListaCircular<T> implements Iterable<T>, Serializable {
 	// Declaracion de variables
     private int tamanio;
@@ -94,9 +99,11 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
         }
     }
 
-    /*
+    /**
      * Función que devuelve el valor de un nodo en la lista
-     */
+     * @param indice de la estructura de datos
+     * @return El nodo si lo encuentra;
+     **/
     public T obtener(int indice) {
         if (indice < 0 || indice >= tamanio) { // Verifica si indice esta dentro del rango
             throw new IndexOutOfBoundsException();
@@ -108,7 +115,11 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
         return buscado.valor;
     }
 
-    // Permite cambiar el valor de un nodo en la lista enlazada
+    /**
+     * Permite cambiar el valor de un nodo en la lista enlazada
+     * @param indice
+     * @param valor
+     **/
     public void modificar(int indice, T valor) {
         if (indice < 0 || indice >= tamanio) { // Verifica si indice esta dentro del rango
             throw new IndexOutOfBoundsException();
@@ -120,15 +131,20 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
         buscado.valor = valor;
     }
 
-    // Permite agregar todos los elementos de una colección a otra,
+    /**
+     * Permite agregar todos los elementos de una colección a otra
+     * @param valores
+     **/
     public void addAll(Collection<T> valores) {
         for (T valor : valores) {
             agregar(valor);
         }
     }
 
+    /**
+     * Permite recorrer los elementos de una colección
+     **/
     @Override
-    // Permite recorrer los elementos de una colección
     public Iterator<T> iterator() {
         return new Iterador();
     }
@@ -144,17 +160,17 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
             sePuedeEliminar = false;
         }
 
+        //Devuelve un valor booleano que indica si hay más elementos en la colección
         @Override
-        // Devuelve un valor booleano que indica si hay más elementos en la colección
         public boolean hasNext() {
             return posicion < tamanio;
         }
 
-        @Override
         /*
          * Devuelve el siguiente elemento de la colección
          * y avanza el iterador al siguiente elemento
          */
+        @Override
         public T next() {
             if (!hasNext()) {
                 throw new NoSuchElementException(); // Excepcion en caso de que no haya elementos
@@ -166,8 +182,8 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
             return valor;
         }
 
+        //Elimina el último elemento devuelto por next()
         @Override
-        // Elimina el último elemento devuelto por next()
         public void remove() {
             if (!sePuedeEliminar) {
                 throw new IllegalStateException();

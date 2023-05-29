@@ -2,6 +2,10 @@ package com.uq.sporify.lib;
 
 import java.io.Serializable;
 
+/**
+ * Nodo para estructuras de datos que sean doble enlazados
+ * @param <T> tipo de datos genericos
+ **/
 public class Nodo <T> implements Serializable {
     // Declaracion de variables
 	T valor;

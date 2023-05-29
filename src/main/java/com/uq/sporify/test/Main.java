@@ -26,6 +26,9 @@ public class Main {
 	public static void main(String[] args) {
 		 //Crea la Tienda
 
+		System.out.println();
+		System.out.println("------------------------------------Test 1: Cargar Desde Persistencia-----------------------------------------");
+		System.out.println();
 	TiendaMusica sporify = TiendaMusica.getInstance();
 
 		try {

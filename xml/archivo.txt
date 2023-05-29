@@ -10,13 +10,19 @@
 000008;Lionel Richie;USA;false
 
 #Canciones
-ABC001;JHCruz;cantando con bendicion;Bandidas;2023;1;Masculino;https://www.youtube.com/embed/tzJJGQiyDdo
-ABC002;Nach;entre el placer y el dolor;Nach;2019;2500;rap;https://www.youtube.com/embed/iiniQGn6uaU
-ABC003;Nach;yo no;Nach;2023;2000;rap;https://www.youtube.com/embed/qYS9c42j-g0
-ABC004;Nach;el idioma de los dioses;NombreAlbum;2011;2600;rap;https://www.youtube.com/embed/OPqS0Y5-2L4
-ABC005;Nanpa;no me quiere;Nanpa;2019;2000;rap;https://www.youtube.com/embed/2Z3X9z0jYiY
-ABC006;Nanpa;Flaca;Nanpa;2019;2000;rap;https://www.youtube.com/embed/2Z39z0jYiY
-ABC007;Juanes;la camisa negra;Juanes;2004;2000;rock;https://www.youtube.com/embed/L0jRl84YV0w
-ABC008;Juanes;la paga;Juanes;2004;2000;rock;https://www.youtube.com/embed/2Z39z0jYiY
-ABC009;Cancerbero;es epico;Muerte;2010;2000;rap;https://www.youtube.com/embed/2Z39z0jYiY
-ABC010;Cancerbero;así es mi vida;vida;2013;2000;rap;https://www.youtube.com/embed/2Z39z0jYiY
+ABC001;Michael Jackson;Billie Jean;Thriller;1982;240;Pop;https://www.youtube.com/watch?v=Zi_XLOBDo_Y
+ABC002;Michael Jackson;Beat It;Thriller;1982;270;Pop;https://www.youtube.com/watch?v=oRdxUFDoQe0
+ABC003;Lionel Richie;Hello;Hello;1984;240;Rock;https://www.youtube.com/watch?v=mHONNcZbwDY
+ABC004;Lionel Richie;All Night Long;All Night Long;1983;240;Rock;https://www.youtube.com/watch?v=nqAvFx3NxUM
+ABC005;Bruno Mars;That's What I Like;24K Magic;2017;300;Pop;https://www.youtube.com/watch?v=PMivT7MJ41M
+ABC006;Bruno Mars;Leave The Door Open;Silk Sonic;2021;240;Pop;https://www.youtube.com/watch?v=adLGHcj_fmA
+ABC007;Bruno Mars;Gorila;Unorthodox Jukebox;2014;360;Pop;https://www.youtube.com/watch?v=AHDtXqjgEj4
+ABC008;Nanpa Basico;Nunca Tuve Tanto;Nunca Tuve Tanto;2023;180;Reggaeton;https://www.youtube.com/watch?v=je8ZAs2CkG8
+ABC009;Ivy Queen;La Vida Es Asi;La Vida Es Asi;2023;220;Pop;https://www.youtube.com/watch?v=Lbpr-mEEnRo
+ABC010;Cancerbero;Jeremias 17:5;Muerte;2012;360;Rap;https://www.youtube.com/watch?v=a9jxNusr0tE
+ABC011;Cancerbero;Tripolar;Vida;2014;380;Rap;https://www.youtube.com/watch?v=6Vbq5JFbsjY
+ABC012;Cancerbero;De La Vida Como Una Pelicula;Vida;2013;410;Rap;https://www.youtube.com/watch?v=OfxYngFCVms
+ABC013;Twenty One Pilots;Heathens;Suicide Squad;2015;210;Rap;https://www.youtube.com/watch?v=UprcpdwuwCg
+ABC014;Tego Calderon;La Receta;2023;190;Raggaeton;https://www.youtube.com/watch?v=LGRxyz2W2Og
+ABC015;Eminem;Till I Collapse;The Eminem Show;2014;260;Rap;https://www.youtube.com/watch?v=Pi3_Zs-oRUo
+ABC016;Eminem;Lose Yourself;The Eminem Show;2014;330;Rap;https://www.youtube.com/watch?v=_Yhyp-_hX2s

@@ -422,8 +422,8 @@
                         </Label>
                         <Group layoutX="29.0" layoutY="300.0">
                            <children>
-                              <CheckBox id="checkBox_Artista" fx:id="cbArtistaeAE" mnemonicParsing="false" onAction="#onActionCBArtGro" stylesheets="@../css/style.css" text="Artista" textFill="WHITE" />
-                              <CheckBox id="checkBox_Artista" fx:id="cbGrupoAE" layoutX="96.0" mnemonicParsing="false" onAction="#onActionCBArtGro" stylesheets="@../css/style.css" text="Grupo" textFill="WHITE" />
+                              <CheckBox id="checkBox_Artista" fx:id="cbArtistaeAE" mnemonicParsing="false" stylesheets="@../css/style.css" text="Artista" textFill="WHITE" />
+                              <CheckBox id="checkBox_Artista" fx:id="cbGrupoAE" layoutX="96.0" mnemonicParsing="false" stylesheets="@../css/style.css" text="Grupo" textFill="WHITE" />
                            </children>
                         </Group>
                      </children>

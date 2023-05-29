@@ -5,6 +5,12 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Estructura de datos que permite al usuario almacenar datos de tipo
+ * hash que tienen un valor y una llave
+ * @param <K> Key o llave generica de la estructura de datos
+ * @param <V> Value o valor generico de la estructura de datos
+ */
 public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Serializable {
 	// Declaracion de varriables
     private static final int CAPACIDAD_POR_DEFECTO = 16;
@@ -12,7 +18,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
     private int tamanio;
 
     @SuppressWarnings("unchecked")
-    /*
+    /**
      *  Constructor de la clase HasMapJava que no contiene argumentos
      */
     public HashMapJava() {
@@ -21,7 +27,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
     }
 
     @SuppressWarnings("unchecked")
-    /*
+    /**
      *  Constructor de la clase HasMapJava que contiene
      *  un argumentos entero denominado valor
      */
@@ -39,8 +45,8 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         return tamanio == 0;
     }
 
-    /*
-     *  metodo que recibe una llave como parámetro y devuelve un valor
+    /**
+     *  Metodo que recibe una llave como parámetro y devuelve un valor
      *  booleano que indica si la tabla hash contiene esa llave o no
      **/
     public boolean contieneLLave(K llave) {
@@ -56,8 +62,8 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         return false;
     }
 
-    /*
-     *  método que recibe una llave como parámetro y devuelve un valor
+    /**
+     *  Método que recibe una llave como parámetro y devuelve un valor
      *  booleano que indica si la tabla hash contiene esa valor o no
      **/
     public boolean contieneValor(V valor) {
@@ -73,7 +79,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         return false;
     }
 
-    /*
+    /**
      * Devuelve el valor asociado a la llave en la tabla hash, calcula el índice de la tabla hash utilizando
      * la función hash de la llave, Si encuentra una entrada con la misma llave
      * devuelve el valor asociado a esa entrada, de lo contrario, devuelve null.
@@ -91,7 +97,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         return null;
     }
 
-    /*
+    /**
      * Metodo que agrega una entrada a la tabla hash. Si encuentra
      * una entrada con la misma llave, actualiza el valor asociado a esa entrada
      * y devuelve el valor antiguo
@@ -115,7 +121,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         return null;
     }
 
-    /*
+    /**
      * Metodo que recibe una colección de entradas y agrega cada entrada a la tabla hash
      * a traves de la funcion agregar
      **/
@@ -125,7 +131,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
 		}
     }
 
-    /*
+    /**
      * Metodo que elimina una entrada de la tabla hash
      * si existe una entrada con la llave especificada
      **/

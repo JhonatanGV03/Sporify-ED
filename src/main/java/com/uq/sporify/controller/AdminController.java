@@ -599,10 +599,7 @@ public class AdminController implements Initializable {
      * Metodo para cargar los artistas en la tabla
      **/
     public void cargarArtistas(){
-        /*
-         * En este punto se cargan los datos de los artistas al table view
-         */
-        Iterator<Artista> iterador = sporify.getListaArtistas().iterator();
+        Iterator<Artista> iterador = sporify.getListaArtistas().iterator();  //Iterador de la lista de artistas de la tienda
         while (iterador.hasNext()) {
             Artista ArtistaList = iterador.next();
             Artista nuevoArtista = ArtistaList;

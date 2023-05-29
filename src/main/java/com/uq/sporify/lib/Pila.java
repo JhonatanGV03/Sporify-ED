@@ -4,16 +4,25 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.EmptyStackException;
 
+/**
+ * Estructura de datos de tipo Stack Firts In Last Out
+ * @param <T>
+ */
 public class Pila<T> implements Serializable {
 	// Declaracion de variables
     private NodoPila<T> cima;
 
-    // Constructor de la clase Pila
+    /**
+     *Constructor de la clase Pila
+     */
     public Pila() {
         cima = null;
     }
 
-    // Agrega un elemento a una pila
+    /**
+     * Agrega un elemento a una pila
+     * @param elemento
+     */
     public void push(T elemento) {
         NodoPila<T> nuevoNodo = new NodoPila<>(elemento);
         if (isEmpty()) {
@@ -24,7 +33,10 @@ public class Pila<T> implements Serializable {
         }
     }
 
-    // elimina y devuelve el elemento en la parte superior de la pila
+    /**
+     * Elimina y devuelve el elemento en la parte superior de la pila
+     * @return
+     */
     public T pop() {
         if (isEmpty()) {
             throw new EmptyStackException();
@@ -34,7 +46,10 @@ public class Pila<T> implements Serializable {
         return elemento;
     }
 
-    // Devuelve el objeto en la parte superior de la pila
+    /**
+     * Devuelve el objeto en la parte superior de la pila
+     * @return
+     */
     public T peek() {
         if (isEmpty()) {
             throw new EmptyStackException();
@@ -42,7 +57,10 @@ public class Pila<T> implements Serializable {
         return cima.elemento;
     }
 
-    // Recibe una colección de valores y agrega cada valor al final
+    /**
+     * Recibe una colección de valores y agrega cada valor al final
+     * @param valores
+     */
     public void addAll(Collection<T> valores) {
         for (T valor : valores) {
             push(valor);
@@ -65,18 +83,28 @@ public class Pila<T> implements Serializable {
         return contador;
     }
 
-    // Vacia la pila
+    //
+
+    /**
+     *
+     */
     public void vaciar() {
         cima = null;
     }
 
-    // Clase privada estatica NodoPila
+    /**
+     * Clase privada estatica NodoPila
+     * @param <T>
+     */
     private static class NodoPila<T> implements Serializable {
     	// Atributos
         private T elemento;
         private NodoPila<T> siguiente;
 
-        // Constructor
+        /**
+         * Constructor
+         * @param elemento
+         */
         public NodoPila(T elemento) {
             this.elemento = elemento;
             siguiente = null;
