@@ -18,8 +18,7 @@ public class Cancion implements Serializable {
     private String album;
 
     // Constructor super de la clase Cancion
-    public Cancion(String nombre, String artista, String caratula, String anio, String urlYoutube,
-				   int duracion, String genero, String album) {
+    public Cancion(String nombre, String artista, String caratula, String anio, String urlYoutube, int duracion, String genero, String album) {
 		super();
 		this.codigo = generarCodigo();
 		this.nombre = nombre;
@@ -31,8 +30,8 @@ public class Cancion implements Serializable {
 		this.genero = genero;
 		this.album = album;
 	}
-	public Cancion(String codigo, String nombre, String artista, String caratula, String anio, String urlYoutube,
-				   int duracion, String genero, String album) {
+
+	public Cancion(String codigo, String nombre, String artista, String caratula, String anio, String urlYoutube, int duracion, String genero, String album) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -143,8 +142,8 @@ public class Cancion implements Serializable {
 	public void setAlbum(String album) {
 		this.album = album;
 	}
-	public void editar(String nombre, String artista, String caratula, String anio, String urlYoutube,
-					   int duracion, String genero, String album){
+
+	public void editar(String nombre, String artista, String caratula, String anio, String urlYoutube, int duracion, String genero, String album){
 		this.nombre=nombre;
 		this.artista=artista;
 		this.album=album;

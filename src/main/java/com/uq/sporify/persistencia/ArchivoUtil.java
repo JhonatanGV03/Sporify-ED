@@ -25,21 +25,18 @@ public class ArchivoUtil {
                 T objeto = listaObjetos.obtener(i);
                 encoder.writeObject(objeto);
             }
-
             // Cerrar los flujos de salida.
             encoder.close();
             fileOut.close();
-
             System.out.println("Lista de objetos guardada en el archivo " + nombreArchivo);
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo.");
         }
     }
 
-//metodo definitivo para leer un xml y guardarlo en la lista de objetos
+    //metodo definitivo para leer un xml y guardarlo en la lista de objetos
     public static <T> ListaDobleEnlazada<T> leerListaObjetosXML(String nombreArchivo) {
         ListaDobleEnlazada<T> listaObjetos = new ListaDobleEnlazada<>();
-
         try {
             // Crear un objeto FileInputStream para leer el archivo.
             FileInputStream fileIn = new FileInputStream(nombreArchivo);
@@ -56,18 +53,16 @@ public class ArchivoUtil {
                     break;
                 }
             }
-
             // Cerrar los flujos de entrada.
             decoder.close();
             fileIn.close();
-
             System.out.println("Lista de objetos leída del archivo " + nombreArchivo);
         } catch (IOException e) {
             System.out.println("Error al leer el archivo.");
         }
-
         return listaObjetos;
     }
+
     // Metodo recibe un file como parametro, y recorre el archivo y lo carga
     public static void cargarInformacion(File archivo) throws FileNotFoundException {
         ListaDobleEnlazada<Artista> artistas = new ListaDobleEnlazada<>();

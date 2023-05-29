@@ -40,7 +40,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
      * @param nodo
      * @param valor
      * @return
-     */
+     **/
     private NodoArbolBinario<T> agregar(NodoArbolBinario<T> nodo, T valor) {
     	//si el arbol esta vacio o si es una hoja agrega el valor
         if (nodo == null) {
@@ -59,7 +59,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
     /**
      * Metodo que invoca a la funcion eliminar
      * @param valor
-     */
+     **/
     public void eliminar(T valor) {
         this.raiz = eliminar(this.raiz, valor);
     }
@@ -69,7 +69,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
      * @param nodo
      * @param valor
      * @return
-     */
+     **/
     private NodoArbolBinario<T> eliminar(NodoArbolBinario<T> nodo, T valor) {
         if (nodo == null) { // Compara si el nodo esta vacio
             return null; // y retorna null es caso de que se cumpla la condicion
@@ -95,7 +95,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
      *  Metodo que busca el valor minimo del arbol binario, siempre es el valor
      *  que esta mas a la izquierda
      *  @param nodo
-     */
+     **/
     private NodoArbolBinario<T> encontrarMinimo(NodoArbolBinario<T> nodo) {
         while (nodo.obtenerHijoIzquierdo() != null) {
             nodo = nodo.obtenerHijoIzquierdo();
@@ -111,12 +111,12 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         return buscar(this.raiz, valor);
     }
 
-    /*
+    /**
      * Metodo recursivo que permite buscar los nodos del arbol binario
      * @param nodo
      * @param valor
      * @return
-     */
+     **/
     private boolean buscar(NodoArbolBinario<T> nodo, T valor) {
         if (nodo == null) { // compara si el valor del nodo es null y retorna false
             return false;
@@ -144,7 +144,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
      * @param nodo
      * @param valor
      * @return
-     */
+     **/
     private T encontrar(NodoArbolBinario<T> nodo, T valor) {
         if (nodo == null) { // compara si el valor del nodo es null
             return null;
@@ -168,7 +168,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
     /*
      * Metodo para realizar el recorrido en preorden del arbol binario
      * @param nodo
-     */
+     **/
     private void recorridoPreorden(NodoArbolBinario<T> nodo) {
         if (nodo != null) { // compara si el nodo es diferente de null y realiza las acciones
             System.out.print(nodo.obtenerValor() + " "); // Imprime el valor del nodo mas un mensaje
@@ -188,7 +188,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
     /*
      *Metodo para realizar el recorrido inorden del arbol binario
      *@param nodo
-     */
+     **/
     private void recorridoInorden(NodoArbolBinario<T> nodo) {
         if (nodo != null) { //compara si el nodo es diferente de null y realiza las acciones
             recorridoInorden(nodo.obtenerHijoIzquierdo()); // Obtiene el hijo izquierdo del arbol
@@ -208,7 +208,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
     /*
      *Metodo para realizar el recorrido posorden del arbol binario
      *@param nodo
-     */
+     **/
     private void recorridoPostorden(NodoArbolBinario<T> nodo) {
         if (nodo != null) { //compara si el nodo es diferente de null y realiza las acciones
             recorridoPostorden(nodo.obtenerHijoIzquierdo()); // Obtiene el hijo izquierdo del arbol
@@ -219,7 +219,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
 
     /*
      * Metodo para obtener el tamaño del arbol binario
-     */
+     **/
     public int obtenerTamanio() {
         return obtenerTamanioRecursivo(this.raiz);
     }
@@ -243,7 +243,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
 
     /*
      * Metodo privado que busca canciones que coinciden con alguna descripcion  a traves del thread
-     */
+     **/
     private ListaDobleEnlazada buscarO(ListaDobleEnlazada<Cancion> resultado,NodoArbolBinario raiz,String[] arrayString) {
         if (raiz == null) {
             return resultado;
@@ -261,14 +261,13 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         return resultado;
     }
 
     /*
      * Metodo de buscar en O que busca en el arbol binario que canciones coinciden con
      * al menos un de los atributos ingresados por el usuario y los agrega a una lista de canciones
-     */
+     **/
     private void buscarO(NodoArbolBinario nodo, ListaDobleEnlazada<Cancion> resultado,String[] arrayString) {
     	Artista art = (Artista) nodo.obtenerValor();
     	ListaDobleEnlazada<Cancion> listaCanciones = art.getListaCanciones();
@@ -282,7 +281,6 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
                 }
             }
         }
-
         buscarO(nodo.obtenerHijoIzquierdo(), resultado, arrayString);
         buscarO(nodo.obtenerHijoDerecho(), resultado, arrayString);
     }
@@ -296,20 +294,17 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
 
 	 /*
      * Metodo privado que busca canciones que coinciden con todas descripcion ingresadas por el usuario a traves del thread
-     */
+     **/
 	private ListaDobleEnlazada buscarY(ListaDobleEnlazada<Cancion> resultado,NodoArbolBinario raiz,String atributo1,String atributo2,String atributo3) {
 	    if (raiz == null) {
 	        return resultado;
 	    }
-
 	    // Crear hilos para el lado izquierdo y derecho
 	    Thread hiloIzquierdo = new Thread(() -> buscarY(raiz.hijoIzquierdo, resultado,atributo1,atributo2,atributo3));
 	    Thread hiloDerecho = new Thread(() -> buscarY(raiz.hijoDerecho, resultado,atributo1,atributo2,atributo3));
-
 	    // Iniciar los hilos
 	    hiloIzquierdo.start();
 	    hiloDerecho.start();
-
 	    // Esperar a que ambos hilos terminen su trabajo
 	    try {
 	        hiloIzquierdo.join();
@@ -317,14 +312,13 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();
 	    }
-
 	    return resultado;
 	}
 
 	/*
      * Metodo de buscar en Y que busca en el arbol binario que canciones coinciden con
      * todos los atributos ingresados por el usuario y los agrega a una lista de canciones
-     */
+     **/
 	private void buscarY(NodoArbolBinario nodo, ListaDobleEnlazada<Cancion> resultado,String atributo1,String atributo2,String atributo3) {
 		Artista art = (Artista) nodo.obtenerValor();
 		ListaDobleEnlazada<Cancion> listaCanciones = art.getListaCanciones();
@@ -342,14 +336,14 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
 
 	/*
 	 * Metodo publico del Iterador, devuelve un iterador para recorrer los elementos de un �rbol binario
-	 */
+	*/
     public Iterator<T> iterator() {
         return new IteradorArbolBinario<T>(this.raiz);
     }
 
     /*
      * Clase publica de NodoArbolBinario que extiende de Comparable
-     */
+     **/
     public class NodoArbolBinario<T extends Comparable<T>> implements Serializable{
 
     	// Declaracion de variables
@@ -398,7 +392,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
     /*
      * Clase publica denominada IteradorArbolBinario que extiende de Comparable
      * e implementa de Iterator, sirve para recorrer el arbol e insertar los valores
-     */
+     **/
     public class IteradorArbolBinario<T extends Comparable<T>> implements Iterator<T> {
 
     	// Declaracion de variables dentro la clase
@@ -408,7 +402,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
          * En el Constructor se inicializa una pila con el nodo ra�z y todos sus hijos izquierdos.
          * Esto se hace para que el primer elemento devuelto por el iterador
          * sea el nodo m�s a la izquierda del �rbol.
-         */
+         **/
         public IteradorArbolBinario(NodoArbolBinario<T> raiz) {
             this.pila = new Pila<NodoArbolBinario<T>>();
             while (raiz != null) {
@@ -425,7 +419,7 @@ public class ArbolBinario  <T extends Comparable<T>>  implements Iterable<T>, Se
          * devuelve el valor del nodo en la parte superior de la pila y luego agrega a la pila todos los
          * hijos izquierdos del hijo derecho del nodo que acaba de ser retirado de la pila.
          * Esto asegura que los nodos se devuelvan en orden.
-         */
+         **/
         public T next() {
             NodoArbolBinario<T> nodo = this.pila.pop();
             T valor = nodo.obtenerValor();

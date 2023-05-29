@@ -256,18 +256,19 @@ public class TiendaMusica implements Serializable {
 			String aux = auxuser.getFavoritos();
 			if(aux != null){
 			String[] arreglo = aux.split(";");
-			for (int i=0;i<arreglo.length;i++){
+				for (int i=0;i<arreglo.length;i++){
 
-				for (Cancion cancion: listaCanciones){
+					for (Cancion cancion: listaCanciones){
 					String codCancion = cancion.getCodigo();
-					if (codCancion.equals(arreglo[i])){
+						if (codCancion.equals(arreglo[i])){
 						this.tienda.listaUsuarios.get(usuario.getKey()).guardarCancion(cancion);
+						}
 					}
 				}
 			}
 		}
-		}
 	}
+
 	public void AgregarPorArchivo (File archivo){
 		try {
 			ArchivoUtil.cargarInformacion(archivo);
@@ -383,8 +384,7 @@ public class TiendaMusica implements Serializable {
 	}
 		return aux;
 	}
-	public HashMap<String,Usuario> depurarPlayList()
-	{
+	public HashMap<String,Usuario> depurarPlayList() {
 		TiendaMusica sporify = TiendaMusica.getInstance();
 		HashMap<String,Usuario> auxUsuarios = sporify.getListaUsuarios();
 		for(Map.Entry<String,Usuario> users:auxUsuarios.entrySet()){
@@ -450,6 +450,5 @@ public class TiendaMusica implements Serializable {
 		}
 		return song;
 	}
-
 }
 

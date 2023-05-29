@@ -55,7 +55,6 @@ public static void cargarRecursoSporifyXML() {
 	 for (Cancion cancion : listaCanciones){
 		 auxCanciones.agregarAlFinal(cancion);
 	 }
-
 	 Iterator<Map.Entry<String, Usuario>> it = (listaUsuarios).entrySet().iterator();
 	 while (it.hasNext()) {
 		 Map.Entry<String, Usuario> entry = it.next(); // Si el nombre de usuario o la contrase�a

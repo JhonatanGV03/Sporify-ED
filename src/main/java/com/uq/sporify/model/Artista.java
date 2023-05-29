@@ -17,8 +17,7 @@ public class Artista implements Comparable<Artista>, Serializable {
     private ListaDobleEnlazada<Cancion> listaCanciones = new ListaDobleEnlazada<>();
 
     // Constructor de la clase Astista
-	public Artista(String nombre, String nacionalidad, Boolean grupo,
-			ListaDobleEnlazada<Cancion> listaCanciones) {
+	public Artista(String nombre, String nacionalidad, Boolean grupo, ListaDobleEnlazada<Cancion> listaCanciones) {
 		super();
 		this.nombre = nombre;
 		this.nacionalidad = nacionalidad;
@@ -37,6 +36,7 @@ public class Artista implements Comparable<Artista>, Serializable {
 		this.listaCanciones = new ListaDobleEnlazada<>();
 		this.reproducciones=0;
 	}
+
 	public Artista(String codigo, String nombre, String nacionalidad, Boolean grupo) {
 		super();
 		this.codigo = codigo;
@@ -47,7 +47,7 @@ public class Artista implements Comparable<Artista>, Serializable {
 		this.reproducciones=0;
 	}
 
-	// Segundo constructor de la clase
+	// constructor de la clase
 	public Artista() {
 		super();
 		this.nombre="";
@@ -62,30 +62,39 @@ public class Artista implements Comparable<Artista>, Serializable {
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getNacionalidad() {
 		return nacionalidad;
 	}
+
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
 	}
+
 	public String getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
+
 	public Boolean getGrupo() {
 		return grupo;
 	}
+
 	public void setGrupo(Boolean grupo) {
 		this.grupo = grupo;
 	}
+
 	public ListaDobleEnlazada<Cancion> getListaCanciones() {
 		return listaCanciones;
 	}
+
 	public void setListaCanciones(ListaDobleEnlazada<Cancion> listaCanciones) {
 		this.listaCanciones = listaCanciones;
 	}
@@ -93,15 +102,17 @@ public class Artista implements Comparable<Artista>, Serializable {
 	public int getReproducciones() {
 		return reproducciones;
 	}
+
 	public void setReproducciones(int reproducciones) {
 		this.reproducciones = reproducciones;
 	}
-	public void editarArtista (String nombre, String nacionalidad, Boolean grupo){
+
+
+	public void editarArtista (String nombre, String nacionalidad, Boolean grupo) {
 		setNombre(nombre);
 		setNacionalidad(nacionalidad);
 		setGrupo(grupo);
 	}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Recibe un objeto de tipo Cancion y lo agrega al final de una lista de canciones
     public void agregarCancion(Cancion cancion) {
@@ -111,11 +122,9 @@ public class Artista implements Comparable<Artista>, Serializable {
 			if (cancion.comprobar(song)){
 				bandera = true;
 			}
-
 		}
 		if(bandera == false){
 			listaCanciones.agregarAlFinal(cancion);
-
 		}
     }
 
@@ -129,8 +138,7 @@ public class Artista implements Comparable<Artista>, Serializable {
 		listaCanciones.eliminar(indice);
 	}
 
-	public void eliminarPorValor (String codCancion)
-	{
+	public void eliminarPorValor (String codCancion) {
 		for (int i = 0; i<listaCanciones.tamanio();i++){
 			String aux = listaCanciones.obtener(i).getCodigo();
 			if (aux.equals(codCancion)){

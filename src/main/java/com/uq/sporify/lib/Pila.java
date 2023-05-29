@@ -72,7 +72,6 @@ public class Pila<T> implements Serializable {
 
     // Clase privada estatica NodoPila
     private static class NodoPila<T> implements Serializable {
-
     	// Atributos
         private T elemento;
         private NodoPila<T> siguiente;
@@ -82,9 +81,6 @@ public class Pila<T> implements Serializable {
             this.elemento = elemento;
             siguiente = null;
         }
-
     }
-
-
 }
 

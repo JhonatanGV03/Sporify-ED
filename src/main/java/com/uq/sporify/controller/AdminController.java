@@ -273,21 +273,342 @@ public class AdminController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+    //----------------------Metodos relacionados con el panel de edicion y adicion de artistas------------------------//
+    /**
+     * Metodo que se ejecuta al presionar el boton de guardar artista
+     * Verifica que los campos de texto no esten vacios y agrega el artista a la lista de artistas
+     * Verifica a traves de la bandera esNuevoArtCan si se esta editando o agregando un artista
+     */
+    @FXML
+    void onActionBtnGuardarArt(ActionEvent event) {
 
-    // METODO PARA CARGAR ARTISTAS EN EL TABLE VIEW
+        String nombre = tfNomArtAE.getText();
+        String nacionalidad = tfNacioArtAE.getText();
+        Boolean grupo ;
+        if (cbGrupoAE.isSelected())grupo = true;    //Verifica si el artista es un grupo o no
+        else grupo = false;
+
+        if (verificarCamposArtista()){
+            Artista x = new Artista(nombre, nacionalidad, grupo);
+            if(!sporify.getListaArtistas().buscar(x)) {   //Si no existe se crea un nuevo artista
+                sporify.agregarArtista(x);
+                System.out.println("Guardado " + sporify.getListaArtistas().encontrar(x));
+            }else if (!esNuevoArtCan){    //Si no es nuevo se edita el artista seleccionado
+                sporify.eliminarArtista(artSeleccionado);
+                listArtistas.remove(artSeleccionado);
+                sporify.agregarArtista(x);
+                System.out.println("Eliminado");
+
+            }else {
+                alerta(Alert.AlertType.ERROR, "---Error", "El artista ya existe");
+            }
+            cargarArtistas();   //Carga los artistas en la tabla
+            tvListaArtistas.refresh();
+
+            artSeleccionado = null;
+            paneEditArtista.setVisible(false);   //Cierra el panel de edicion de artistas
+            esNuevoArtCan = false;  //Se cambia la bandera a false para futuras ediciones o adiciones
+        }
+    }
+
+    /**
+     * Metodo que se ejecuta al presionar el boton de cancelar
+     * Cierra el panel de edicion de artistas y limpia los campos de texto
+     * (Sirve para cancelar la edicion o adicion de un artista y de una cancion)
+     **/
+    @FXML
+    void onActionBtnCancelar(ActionEvent event) {
+        paneEditCancion.setVisible(false);
+        paneEditArtista.setVisible(false);
+        paneEditCancion1.setVisible(false);
+        canSeleccionada = null;
+        rutaTemp = "";
+        esNuevoArtCan = false;
+    }
+
+    //----------------------Metodos relacionados con el panel de visualizacion de canciones---------------------------//
+
+    /**
+     * Metodo que se ejecuta al presionar la tabla de canciones
+     * Obtiene la cancion seleccionada y muestra su información
+     **/
+    @FXML
+    void seleccionarTvListCanciones(MouseEvent event) {
+        canSeleccionada = this.tvListaCanciones.getSelectionModel().getSelectedItem();
+        if (canSeleccionada != null) {
+            mostrarInfoCancion();
+        }
+        System.out.println(canSeleccionada);
+    }
+
+    /**
+     * Metodo que se ejecuta al presionar el boton de editar una cancion
+     * Debe tener seleccionada una cancion si no se mostrara un mensaje de error
+     * Muestra el panel de edicion de canciones y carga la informacion de la cancion seleccionada a los campos de texto
+     **/
+    @FXML
+    void onActionBtnEditarCan(ActionEvent event) {
+        if (canSeleccionada != null) {
+            esNuevoArtCan = false;
+            cambiarVNodo(paneInfoCancion, paneEditArtista,paneEditCancion);
+            lbCodCancionEA.setText(canSeleccionada.getCodigo());
+            tfNomCancionAE.setText(canSeleccionada.getNombre());
+            tfArtCancionAE.setText(canSeleccionada.getArtista());
+            tfAlbumAE.setText(canSeleccionada.getAlbum());
+            cbGeneroAE.setValue(canSeleccionada.getGenero());
+            tfUrlAE.setText(canSeleccionada.getUrlYoutube());
+            tfDuracionAE.setText(valueOf(canSeleccionada.getDuracion()));
+            tfAnioAE.setText(canSeleccionada.getAnio());
+            ivCaratula2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(canSeleccionada.getCaratula()))));
+        }else {
+            alerta(Alert.AlertType.WARNING, "Sporify - No Seleccionado" , "Asegurese de seleccionar una cancion antes de editarla");
+        }
+    }
+
+    /**
+     * Metodo que se ejecuta al presionar el boton de agregar una cancion nueva
+     * Muestra el panel de adicionar cancion y setea los campos de texto en blanco y la caratulapor defecto
+     **/
+    @FXML
+    void onActionBtnAddCanc(ActionEvent event) {
+        esNuevoArtCan = true;
+        cambiarVNodo(paneInfoCancion, paneEditArtista, paneEditCancion1);
+        lbCodCancionEA1.setText("Auto");
+        tfNomCancionAE1.setText("");
+        tfArtCancionAE1.setText(artSeleccionado.getNombre());
+        System.out.println(artSeleccionado.getNombre());
+        tfAlbumAE1.setText("");
+        cbGeneroAE1.setValue("");
+        tfUrlAE1.setText("");
+        tfDuracionAE1.setText("");
+        tfAnioAE1.setText("");
+        ivCaratula21.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/uq/sporify/caratulas/songNotFoundDefault.png"))));
+    }
+
+     /**
+     * Metodo que se ejecuta al presionar el boton eliminar cancion
+     * Elimina la cancion seleccionada de la lista de canciones, de la lista del artista y de la lista de reproduccion de los usuarios
+     **/
+    @FXML
+    void onActionBtnEliminarCan(ActionEvent event) {
+        if (canSeleccionada != null) {
+            sporify.retornarArtista(artSeleccionado.getNombre()).eliminarPorValor(canSeleccionada.getCodigo());
+            //System.out.println(sporify.retornarArtista(artSeleccionado.getNombre()).getListaCanciones());
+            sporify.eliminarCancion(canSeleccionada);
+            //System.out.println(sporify.getCancioncita(canSeleccionada.getCodigo()));
+            sporify.setListaUsuarios(sporify.depurarPlayList());
+            //System.out.println(canSeleccionada);
+            listCanciones.remove(canSeleccionada);
+            listCanciones.clear();
+            cargarCanciones();     //Carga las canciones en la tabla actualizada
+            tvListaArtistas.refresh();
+
+        }else {
+            alerta(Alert.AlertType.ERROR, "Sporify - No Seleccionado", "Asegurese de seleccionar una cancion antes de eliminarlo");
+        }
+        canSeleccionada = null;
+    }
+
+    /**
+     * Metodo que se ejecuta al presionar el boton de atras en el panel de visualizacion de canciones
+     * Cierra el panel de visualizacion de canciones y muestra el panel de visualizacion de artistas
+     **/
+    @FXML
+    void onActionBtnAtras(ActionEvent event) {
+        cambiarVNodo(vbCanArtista, vbArtistas);
+        artSeleccionado = new Artista();
+        listCanciones.clear();
+        tvListaCanciones.setItems(listCanciones);
+        paneEditCancion.setVisible(false);
+        paneEditCancion1.setVisible(false);
+        paneInfoCancion.setVisible(false);
+        btnAtras.setVisible(false);
+        rutaTemp= "";
+    }
+
+    //------------------Metodos relacionados con el panel de edicion y adicion de canciones--------------------//
+
+    /**
+     * Metodo que se ejecuta al presionar el boton de guardar una cancion en el panel de edicion de canciones
+     * Se verifica si los campos no estan vacios y actualiza la cancion seleccionada con la nueva informacion
+     **/
+    @FXML
+    void onActionBtnGuardarCan(ActionEvent event) { //Metodo para revision
+        String nombre = tfNomCancionAE.getText();
+        String artista = tfArtCancionAE.getText();
+        String album = tfAlbumAE.getText();
+        String anio = tfAnioAE.getText();
+        int duracion = Integer.parseInt(tfDuracionAE.getText());
+        String genero = cbGeneroAE.getValue();
+        String url = tfUrlAE.getText();
+        String caratula = rutaTemp;
+        Cancion x =canSeleccionada;
+        //Editar
+        if (verificarCamposCancion()){
+            if(canSeleccionada !=null) {
+                sporify.eliminarCancion(x);
+                sporify.retornarArtista(artSeleccionado.getNombre()).eliminarPorValor(canSeleccionada.getCodigo());
+                x.editar(nombre,artista,caratula,anio,url,duracion,genero,album);
+                sporify.guardarCancion(x);
+                sporify.retornarArtista(artSeleccionado.getNombre()).agregarCancion(x);
+                listCanciones.clear();
+                cargarCanciones();
+                tvListaCanciones.refresh();
+                esNuevoArtCan = false;
+                canSeleccionada = null;
+                paneEditCancion.setVisible(false);
+                rutaTemp = "";
+            }else{
+                alerta(Alert.AlertType.ERROR, "---Error", "La cancion ya existe");
+            }
+        }else{
+            alerta(Alert.AlertType.ERROR, "---Error", "No estan todos los campos completos");
+        }
+    }
+
+    /**
+     * Metodo que se ejecuta al presionar el boton de guardar una cancion en el panel de adicion de canciones
+     * Si es una cancion nueva, se agrega a la lista de canciones de la tienda y del artista seleccionado
+     **/
+    @FXML
+    void onActionBtnGuardarCan1(ActionEvent event) { //Metodo para revision
+        String nombre = tfNomCancionAE1.getText();
+        String artista = tfArtCancionAE1.getText();
+        String album = tfAlbumAE1.getText();
+        String anio = tfAnioAE1.getText();
+        int duracion = Integer.parseInt(tfDuracionAE1.getText());
+        String genero = cbGeneroAE1.getValue();
+        String url = tfUrlAE1.getText();
+        String caratula = rutaTemp;
+        Cancion x = new Cancion(nombre,artista,caratula,anio,url,duracion,genero,album);
+        //Agregar
+        if (verificarCamposCancion1()) {
+            if (!sporify.encontrarCancion(x)) {
+                sporify.guardarCancion(x);
+                sporify.retornarArtista(artSeleccionado.getNombre()).agregarCancion(x);
+                listCanciones.clear();
+                cargarCanciones();    //Carga las canciones en la tabla actualizada
+                tvListaCanciones.refresh();
+                esNuevoArtCan = false;   //Indica que ya no es una cancion nueva
+                canSeleccionada = null;   //Indica que no hay ninguna cancion seleccionada
+                paneEditCancion1.setVisible(false);    //Cierra el panel de adicion de canciones
+            } else {
+                alerta(Alert.AlertType.ERROR, "---Error", "La cancion ya existe");
+            }
+        }else {
+            alerta(Alert.AlertType.ERROR, "---Error", "No estan todos los campos completos");
+        }
+    }
+
+    /**
+     * Metodo que se ejecuta al presionar la imagen de la caratula en el panel de edicion de canciones
+     * Abre un explorador de archivos para seleccionar una imagen y la copia a la carpeta de caratulas
+     * obtiene la ruta de la imagen y la asigna a la cancion seleccionada.
+     * Si no se selecciona ninguna imagen, se asigna la imagen por defecto y se da aviso al usuario
+     **/
+    @FXML
+    void onActionEditIMG(ActionEvent event) {
+        File archivo = copiarArchivo();  //Copia el archivo seleccionado a la carpeta de caratulas y retorna el archivo
+        if (canSeleccionada != null && archivo != null && archivo.exists()) {
+            rutaTemp = "/com/uq/sporify/caratulas/" + archivo.getName(); //Guarda la ruta de la imagen en una variable temporal
+            if (rutaTemp.contains(" ")){
+                alerta(Alert.AlertType.ERROR, "Sporify - Error", "Archivo no valido - contiene espacios en el nombre");
+                canSeleccionada.setCaratula("/com/uq/sporify/caratulas/songNotFoundDefault.png");
+            }else {
+                canSeleccionada.setCaratula("/com/uq/sporify/caratulas/" + archivo.getName()); //Asigna la ruta de la imagen a la cancion seleccionada
+                System.out.println(canSeleccionada.getCaratula());
+                ivCaratula2.setImage(new Image(getClass().getResourceAsStream(canSeleccionada.getCaratula())));
+            }
+        } else {
+            alerta(Alert.AlertType.WARNING, "Sporify - No Seleccionado", "Asegurese de seleccionar un archivo de imagen valido");
+            canSeleccionada.setCaratula("/com/uq/sporify/caratulas/songNotFoundDefault.png");
+            rutaTemp = "/com/uq/sporify/caratulas/songNotFoundDefault.png";
+        }
+    }
+
+    /**
+     * Metodo que se ejecuta al presionar la imagen de la caratula en el panel de adicion de canciones
+     * Abre un explorador de archivos para seleccionar una imagen y la copia a la carpeta de caratulas
+     * obtiene la ruta de la imagen y la asigna a la cancion seleccionada.
+     * Si no se selecciona ninguna imagen, se asigna la imagen por defecto y se da aviso al usuario
+     **/
+    @FXML
+    void onActionCargarIMG(ActionEvent event) {
+        File archivo = copiarArchivo();
+        if (archivo != null){
+            rutaTemp = "/com/uq/sporify/caratulas/" + archivo.getName();
+            if (rutaTemp.contains(" ")){
+                alerta(Alert.AlertType.ERROR, "Sporify - Error", "Archivo no valido - contiene espacios en el nombre");
+                rutaTemp = "/com/uq/sporify/caratulas/songNotFoundDefault.png";
+            }else{
+                System.out.println(rutaTemp);
+                ivCaratula21.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(rutaTemp))));
+            }
+        } else{
+            alerta(Alert.AlertType.WARNING, "Sporify - No Seleccionado" , "Asegurese de seleccionar un archivo de imagenn valido");
+        }
+    }
+
+    //-------------Metodos relacionados con la seccion inferior y la ventana de reproduccion--------------------//
+
+    /**
+     * Metodo que se ejecuta al presionar el boton reproducir en la ventana de la lista de canciones
+     * Despliega la ventana de reproduccion y carga la cancion seleccionada en el reproductor
+     * Si no hay ninguna cancion seleccionada, se da aviso al usuario
+     **/
+    @FXML
+    void onActionBtnReproducir(ActionEvent event) {
+        if (canSeleccionada != null) {
+            //String url = organizarURL(canSeleccionada.getUrlYoutube());
+            webEngine.load(canSeleccionada.getUrlYoutube());
+            wbVideo.setOpacity(1);
+            cambiarVNodo(paneEditArtista, paneEditCancion, paneInfoCancion);
+            panelVideo.setVisible(true);
+            btnVideo.setStyle("-fx-background-color: red; -fx-background-radius: 40 " );
+            mostrarInfoCancion();
+            lbNomCancionR.setText(canSeleccionada.getNombre());
+            lbNomArtistaR.setText(canSeleccionada.getArtista());
+            lbNombreCVideo.setText(canSeleccionada.getNombre());
+            ivCaratulaR.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(canSeleccionada.getCaratula()))));
+            sporify.getListaArtistas().encontrar(artSeleccionado).setReproducciones(sporify.getListaArtistas().encontrar(artSeleccionado).getReproducciones()+1);
+            canSeleccionada = null;
+        }else {
+            alerta(Alert.AlertType.WARNING, "Sporify - No Seleccionado" , "Asegurese de seleccionar una cancion antes de reproducirla.");
+        }
+    }
+
+    /**
+     * Metodo que se ejecuta al presionar el boton de visualizar video en la ventana de reproduccion
+     * permite cambiar de ventana y visualizar el video de la cancion que se esta reproduciendo en el momento
+     **/
+    @FXML
+    void onActionBtnVideo(ActionEvent event) {
+        if (!panelVideo.isVisible()){
+            panelVideo.setVisible(true);
+            cambiarVNodo(paneEditArtista, paneEditCancion, paneInfoCancion);
+            paneEditCancion1.setVisible(false);
+            btnVideo.setStyle("-fx-background-color: red; -fx-background-radius: 40 " );
+        }else {
+            panelVideo.setVisible(false);
+            btnVideo.setStyle("-fx-background-color: #f3f3f3; -fx-background-radius: 40 " );
+        }
+    }
+
+    //-----------Metodos para cargar los datos de los artistas y canciones en las tablas-------------//
+    /**
+     * Metodo para cargar los artistas en la tabla
+     **/
     public void cargarArtistas(){
         /*
          * En este punto se cargan los datos de los artistas al table view
          */
         Iterator<Artista> iterador = sporify.getListaArtistas().iterator();
         while (iterador.hasNext()) {
-
             Artista ArtistaList = iterador.next();
             Artista nuevoArtista = ArtistaList;
             if(!this.listArtistas.contains(nuevoArtista)) {  //Verifica si ya se encuentra cargado el artista en la tabla
                 this.listArtistas.add(nuevoArtista);
             }
-
         }
         this.tvListaArtistas.setItems(listArtistas);   //Carga los artistas en la tabla
     }
@@ -322,7 +643,6 @@ public class AdminController implements Initializable {
     private String organizarURL(String urlYoutube) {
         String url = urlYoutube;
         String urlAux = "";
-
         for (int i = url.length()-1; i >= 0; i--) {
             if (url.charAt(i) == '=' || url.charAt(i) == '/') {
                  i=0;
@@ -411,7 +731,6 @@ public class AdminController implements Initializable {
                 cumple = true;
             }
             return cumple;
-
     }
 
     //-----------------------------------------Metodos para bloques de codigo repetidos-------------------------------//
@@ -485,11 +804,11 @@ public class AdminController implements Initializable {
             lbAlbumI.setText(canSeleccionada.getAlbum());
             lbGeneroI.setText(canSeleccionada.getGenero());
             lbUrlI.setText(canSeleccionada.getUrlYoutube());
-            lbDuracionI.setText(String.valueOf(canSeleccionada.getDuracion()));
+            lbDuracionI.setText(valueOf(canSeleccionada.getDuracion()));
             lbAnioCancionI.setText(canSeleccionada.getAnio());
             System.out.println(canSeleccionada.getCaratula());
             ivCaratulaI.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(canSeleccionada.getCaratula()))));
             cambiarVNodo(paneEditArtista, paneEditCancion, paneInfoCancion);
         }
     }
-    }
+}

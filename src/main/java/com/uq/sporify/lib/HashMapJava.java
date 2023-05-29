@@ -11,7 +11,6 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
     private Entry<K, V>[] tabla;
     private int tamanio;
 
-
     @SuppressWarnings("unchecked")
     /*
      *  Constructor de la clase HasMapJava que no contiene argumentos
@@ -43,7 +42,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
     /*
      *  metodo que recibe una llave como parámetro y devuelve un valor
      *  booleano que indica si la tabla hash contiene esa llave o no
-     */
+     **/
     public boolean contieneLLave(K llave) {
         int hashCode = llave.hashCode();
         int index = hashCode % tabla.length;
@@ -60,7 +59,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
     /*
      *  método que recibe una llave como parámetro y devuelve un valor
      *  booleano que indica si la tabla hash contiene esa valor o no
-     */
+     **/
     public boolean contieneValor(V valor) {
         for (int i = 0; i < tabla.length; i++) { // Recorre la tabla
             Entry<K, V> entry = tabla[i];
@@ -78,7 +77,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
      * Devuelve el valor asociado a la llave en la tabla hash, calcula el índice de la tabla hash utilizando
      * la función hash de la llave, Si encuentra una entrada con la misma llave
      * devuelve el valor asociado a esa entrada, de lo contrario, devuelve null.
-     */
+     **/
     public V obtener(K llave) {
         int hashCode = llave.hashCode();
         int index = hashCode % tabla.length;
@@ -96,7 +95,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
      * Metodo que agrega una entrada a la tabla hash. Si encuentra
      * una entrada con la misma llave, actualiza el valor asociado a esa entrada
      * y devuelve el valor antiguo
-     */
+     **/
     public V agregar(K llave, V valor) {
         int hashCode = llave.hashCode();
         int index = hashCode % tabla.length;
@@ -119,7 +118,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
     /*
      * Metodo que recibe una colección de entradas y agrega cada entrada a la tabla hash
      * a traves de la funcion agregar
-     */
+     **/
     public void addAll(Collection<Entry<K,V>> valores) {
         for (Entry<K, V> entry : tabla) {
 			agregar(entry.key,entry.value);
@@ -129,7 +128,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
     /*
      * Metodo que elimina una entrada de la tabla hash
      * si existe una entrada con la llave especificada
-     */
+     **/
     public V eliminar(K llave) {
         int hashCode = llave.hashCode();
         int index = hashCode % tabla.length;
@@ -172,14 +171,12 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         private K key;
         private V value;
         private Entry<K, V> next;
-
         // Constructor de Entry
         public Entry(K key, V value) {
             this.key = key;
             this.value = value;
             this.next = null;
         }
-
         // Devuelve la clave
         public K getKey() {
             return key;
@@ -196,7 +193,6 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
             this.value = value;
             return oldValue;
         }
-
         // Devuelve el siguiente nodo
         public Entry<K, V> getNext() {
             return next;
@@ -213,25 +209,19 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
 		}
     }
 
-    /*
-     *  Clase privada HashMapIterator, implementa de Iterator
-     */
+    // Clase privada HashMapIterator, implementa de Iterator
     private class HashMapIterator implements Iterator<Entry<K, V>>, Serializable{
     	// Declaracion de las variables
         private int currentIndex = -1;
         private Entry<K, V> currentEntry = null;
         private Entry<K, V> lastReturnedEntry = null;
 
-
-
 		@SuppressWarnings("unused")
 		public void setLastReturnedEntry(Entry<K, V> lastReturnedEntry) {
 			this.lastReturnedEntry = lastReturnedEntry;
 		}
 
-		/*
-		 * Comprueba si hay más elementos en la tabla hash para recorrer
-		 */
+		// Comprueba si hay más elementos en la tabla hash para recorrer
 		public boolean hasNext() {
             if (currentEntry != null && currentEntry.getNext() != null) {
                 return true;
@@ -244,9 +234,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
             return false;
         }
 
-		/*
-		 * Devuelve el siguiente elemento en la tabla hash y actualiza el estado del iterador
-		 */
+		// Devuelve el siguiente elemento en la tabla hash y actualiza el estado del iterador
         public Entry<K, V> next() {
             if (currentEntry != null && currentEntry.getNext() != null) {
                 currentEntry = currentEntry.getNext();
@@ -264,9 +252,7 @@ public class HashMapJava<K, V> implements Iterable<HashMapJava.Entry<K, V>>, Ser
         }
 
         @SuppressWarnings("unused")
-        /*
-         * elimina el último elemento devuelto por next() de la tabla hash
-         */
+        // elimina el último elemento devuelto por next() de la tabla hash
 		public void eliminar() {
             if (lastReturnedEntry == null) {
                 throw new IllegalStateException();

@@ -21,13 +21,11 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
         // variables detro de la clase privada
     	T valor;
         Nodo<T> siguiente;
-
         // Constructor de Nodo
         Nodo(T valor) {
             this.valor = valor;
             siguiente = this;
         }
-
         // Metodos getter and setter
     	public T getValor() {
     		return valor;
@@ -134,7 +132,6 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
     public Iterator<T> iterator() {
         return new Iterador();
     }
-
     // Clase pivada Iterator que implementa de Iterator
     private class Iterador implements Iterator<T> , Serializable{
        // Atributos

@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.Objects;
 @XmlRootElement
 public class Usuario implements Serializable {
+    // Atributos
     private String usuario;
     private String contrasenia;
     private String email;
@@ -17,6 +18,48 @@ public class Usuario implements Serializable {
     private String favoritos;
     public String getUsuario() {
         return usuario;
+    }
+
+    // Constructor de la clase
+    public Usuario(String usuario, String contrasenia, String email) {
+        super();
+        this.cambiosAnteriores=new Pila<>();
+        this.cambiosPosteriores=new Pila<>();
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+        this.email = email;
+        this.listaCanciones = new ListaCircular<Cancion>();
+    }
+
+    public Usuario() {
+        super();
+        this.usuario="";
+        this.contrasenia ="";
+        this.email="";
+        this.listaCanciones= new ListaCircular<>();
+        this.cambiosPosteriores = new Pila<>();
+        this.cambiosAnteriores = new Pila<>();
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(contrasenia, email, listaCanciones, usuario);
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Usuario other = (Usuario) obj;
+        return Objects.equals(contrasenia, other.contrasenia) && Objects.equals(email, other.email)
+                && Objects.equals(listaCanciones, other.listaCanciones) && Objects.equals(usuario, other.usuario);
+    }
+    @Override
+    public String toString() {
+        return "Usuario [usuario=" + usuario + ", contraseña=" + contrasenia + ", email=" + email + ", listaCanciones="
+                + listaCanciones + "]";
     }
 
     public String getFavoritos() {
@@ -39,41 +82,50 @@ public class Usuario implements Serializable {
     }
     return bandera;
     }
+
+    // Metodos getter and setter
     public void setFavoritos(String favoritos) {
         this.favoritos = favoritos;
     }
+
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
     public String getContrasenia() {
         return contrasenia;
     }
+
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
+
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public ListaCircular<Cancion> getListaCanciones() {
         return listaCanciones;
     }
+
     public void setListaCanciones(ListaCircular<Cancion> listaCanciones) {
         this.listaCanciones = listaCanciones;
     }
 
+    // Agrega la cancion a la lista
     public void guardarCancion(Cancion cancion) {
         listaCanciones.agregar(cancion);
         actualizarFavoritos();
-
     }
 
+    // Elimina la cancion de la lista
     public void eliminarCancion(Cancion cancion) {
         listaCanciones.eliminar(cancion);
         actualizarFavoritos();
-        //cambiosRecientes.push(cancion);
     }
 
 

@@ -154,7 +154,6 @@ public class UserController implements Initializable {
         btnRehacer1.setVisible(false);
         btnGuardarF.setVisible(true);
         paneInfoBusqueda.setVisible(false);
-
         lbmusica.setText("Música");
         cambiarVNodo(vbBuscar, vbIncio);
         paneInfoBusqueda.setVisible(false);
@@ -171,7 +170,6 @@ public class UserController implements Initializable {
     void onActionBtnBuscar(ActionEvent event) {
         btnBuscar.setStyle("-fx-text-fill: white;" + "-fx-background-color: #121212");
         btnInicio.setStyle("-fx-text-fill: #ababab;" + "-fx-background-color: #121212");
-
         cambiarVNodo(vbIncio, vbBuscar);
         cambiarVNodo(paneInfoCancion, paneInfoBusqueda);
         canSeleccionada = null;
@@ -444,7 +442,6 @@ public class UserController implements Initializable {
         sporify.agregarCancionesArtista();
         artistaEncontrado = sporify.retornarArtista(tfBuscador.getText().trim());
         listCanciones.clear();
-
         if (!artistaEncontrado.getNombre().equals("")){
             System.out.println(artistaEncontrado.getListaCanciones());
             tNomArtistaE.setText(artistaEncontrado.getNombre());
@@ -477,9 +474,7 @@ public class UserController implements Initializable {
         btnBusquedaO.setStyle("-fx-background-color: #d0d0d0; -fx-text-fill: Black; -fx-background-radius:20");
         String estilo = "-fx-background-color: #121212; -fx-text-fill: 9e9e9e; -fx-background-radius:20";
         cambiarEstiloNodos(btnBusquedaArtista, btnBusquedaY, estilo);
-
         cargarCancionesBusquedaOY();
-
         if(!this.tfBuscador.getText().isEmpty()){
             cambiarVNodo(vbSugerencias, vbBArtista, vbBusquedaOY);
         }
@@ -496,10 +491,8 @@ public class UserController implements Initializable {
         esBusquedaY = true;
         btnBusquedaY.setStyle("-fx-background-color: #d0d0d0; -fx-text-fill: Black; -fx-background-radius:20");
         cargarCancionesBusquedaOY();
-
         String estilo = "-fx-background-color: #121212; -fx-text-fill: 9e9e9e; -fx-background-radius:20";
         cambiarEstiloNodos(btnBusquedaArtista, btnBusquedaO, estilo);
-
         if(!this.tfBuscador.getText().isEmpty()){
             cambiarVNodo(vbSugerencias, vbBArtista, vbBusquedaOY);
         }
@@ -912,7 +905,6 @@ public class UserController implements Initializable {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-
         Stage stage2 = (Stage) btnVideo.getScene().getWindow();
         stage2.close();
     }
@@ -925,7 +917,6 @@ public class UserController implements Initializable {
     private String organizarURL(String urlYoutube) {
         String url = urlYoutube;
         String urlAux = "";
-
         for (int i = url.length()-1; i >= 0; i--) {
             if (url.charAt(i) == '=' || url.charAt(i) == '/') {
                 i=0;

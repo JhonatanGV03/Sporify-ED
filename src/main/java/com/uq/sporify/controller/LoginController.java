@@ -141,7 +141,6 @@ public class LoginController implements Initializable {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-
         Stage stage2 = (Stage) btnRegistrarse.getScene().getWindow();
         stage2.close();
     }
