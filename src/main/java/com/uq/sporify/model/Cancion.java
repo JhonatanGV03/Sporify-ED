@@ -60,7 +60,7 @@ public class Cancion implements Serializable {
 
 	public String setearCaratula(String ruta){
 		String rutaCaratul;
-		if(ruta.equals("")){
+		if(getClass().getResourceAsStream(ruta) == null){
 			rutaCaratul="/com/uq/sporify/caratulas/songNotFoundDefault.png";
 		}else {
 			rutaCaratul = ruta;

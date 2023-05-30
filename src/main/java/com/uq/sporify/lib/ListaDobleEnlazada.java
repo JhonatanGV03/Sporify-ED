@@ -28,7 +28,7 @@ public class ListaDobleEnlazada<T> implements Iterable<T>, Serializable {
 	public void setPrimero(Nodo primero) {
 		this.primero = primero;
 	}
-	
+
 	/**
 	 * Agrega un valor al inicio de una lista doblemente enlazada
 	 * La función toma un valor de tipo genérico T

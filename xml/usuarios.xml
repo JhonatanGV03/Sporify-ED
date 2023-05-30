@@ -2,20 +2,6 @@
 <java version="17" class="java.beans.XMLDecoder">
  <object class="com.uq.sporify.model.Usuario">
   <void property="contrasenia">
-   <string>123</string>
-  </void>
-  <void property="email">
-   <string>123@123.com</string>
-  </void>
-  <void property="favoritos">
-   <string></string>
-  </void>
-  <void property="usuario">
-   <string>123</string>
-  </void>
- </object>
- <object class="com.uq.sporify.model.Usuario">
-  <void property="contrasenia">
    <string>321</string>
   </void>
   <void property="email">
@@ -30,10 +16,52 @@
    <string>123</string>
   </void>
   <void property="email">
+   <string>123@123.com</string>
+  </void>
+  <void property="favoritos">
+   <string></string>
+  </void>
+  <void property="usuario">
+   <string>123</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Usuario">
+  <void property="contrasenia">
+   <string>alex</string>
+  </void>
+  <void property="email">
+   <string>alex@.com</string>
+  </void>
+  <void property="favoritos">
+   <string>ABC009;</string>
+  </void>
+  <void property="usuario">
+   <string>alex</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Usuario">
+  <void property="contrasenia">
+   <string>123</string>
+  </void>
+  <void property="email">
+   <string>robinson@gmail.com</string>
+  </void>
+  <void property="favoritos">
+   <string>ABC010;</string>
+  </void>
+  <void property="usuario">
+   <string>robinson</string>
+  </void>
+ </object>
+ <object class="com.uq.sporify.model.Usuario">
+  <void property="contrasenia">
+   <string>123</string>
+  </void>
+  <void property="email">
    <string>user@gmail.com</string>
   </void>
   <void property="favoritos">
-   <string>ABC006;</string>
+   <string></string>
   </void>
   <void property="usuario">
    <string>user</string>

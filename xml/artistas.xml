@@ -2,20 +2,6 @@
 <java version="17" class="java.beans.XMLDecoder">
  <object class="com.uq.sporify.model.Artista">
   <void property="codigo">
-   <string>000001</string>
-  </void>
-  <void property="nacionalidad">
-   <string>USA</string>
-  </void>
-  <void property="nombre">
-   <string>Bruno Mars</string>
-  </void>
-  <void property="reproducciones">
-   <int>1</int>
-  </void>
- </object>
- <object class="com.uq.sporify.model.Artista">
-  <void property="codigo">
    <string>000004</string>
   </void>
   <void property="nacionalidad">
@@ -23,17 +9,6 @@
   </void>
   <void property="nombre">
    <string>Cancerbero</string>
-  </void>
- </object>
- <object class="com.uq.sporify.model.Artista">
-  <void property="codigo">
-   <string>000007</string>
-  </void>
-  <void property="nacionalidad">
-   <string>USA</string>
-  </void>
-  <void property="nombre">
-   <string>Eminem</string>
   </void>
   <void property="reproducciones">
    <int>1</int>
@@ -48,9 +23,6 @@
   </void>
   <void property="nombre">
    <string>Ivy Queen</string>
-  </void>
-  <void property="reproducciones">
-   <int>1</int>
   </void>
  </object>
  <object class="com.uq.sporify.model.Artista">
@@ -75,7 +47,7 @@
    <string>Michael Jackson</string>
   </void>
   <void property="reproducciones">
-   <int>2</int>
+   <int>4</int>
   </void>
  </object>
  <object class="com.uq.sporify.model.Artista">
@@ -111,7 +83,7 @@
    <string>USA</string>
   </void>
   <void property="nombre">
-   <string>Twenty One Pilots</string>
+   <string>TwentyOnePilots</string>
   </void>
  </object>
 </java>

@@ -132,9 +132,10 @@ public class UserController implements Initializable {
         cbOdenarPor.setValue("Nombre");
         cbOdenarPor.setOnAction(this::ordenarLista);
         sporify.getUsuarioActual().ordenarPorAtributo("Nombre");
-        cargarCancionesTienda(); //Carga las canciones de la tienda de musica
         artistasSugeridos(); //Carga los artistas sugeridos en la busqueda
         cancionesSugeridas(); //Carga las canciones sugeridas en la busqueda
+        cargarCancionesTienda(); //Carga las canciones de la tienda de musica
+        System.out.println(sporify.getListaCanciones());
     }
 
     //------------------------Metodos de accion de los botones y otros elementos de la vista-----------------------------//
@@ -276,10 +277,10 @@ public class UserController implements Initializable {
             Cancion ultimaCancion = sporify.getUsuarioActual().getNextStates().pop();
             sporify.getUsuarioActual().eliminarCancion(ultimaCancion);
             sporify.getUsuarioActual().addPreviusStates(ultimaCancion);
-            sporify.getUsuarioActual().actualizarFavoritos();
         }
         btnDeshacer1.setDisable(false);
         btnRehacer1.setDisable(true);
+        listCanciones.clear();
         cargarCancionesPlaylist();
         canSeleccionada = null;
         paneInfoCancion.setVisible(false);
@@ -291,10 +292,10 @@ public class UserController implements Initializable {
             Cancion ultimaCancion = sporify.getUsuarioActual().getPreviusStates().pop();
             sporify.getUsuarioActual().guardarCancion(ultimaCancion);
             sporify.getUsuarioActual().addNextStates(ultimaCancion);
-            sporify.getUsuarioActual().actualizarFavoritos();
         }
         btnDeshacer1.setDisable(true);
         btnRehacer1.setDisable(false);
+        listCanciones.clear();
         cargarCancionesPlaylist();
         canSeleccionada = null;
         paneInfoCancion.setVisible(false);
@@ -333,23 +334,24 @@ public class UserController implements Initializable {
      **/
     @FXML
     void onActionBtnEliminar(ActionEvent event) {
-        listCanciones.clear();
         if (canSeleccionada != null) {
             System.out.println("Selected song: " + canSeleccionada); // add this line
             if (sporify.getUsuarioActual().existeCancion(canSeleccionada)) {
                 sporify.getUsuarioActual().eliminarCancion(canSeleccionada);
                 System.out.println("Deleted song: " + canSeleccionada); // add this line
                 sporify.getUsuarioActual().addPreviusStates(canSeleccionada);
-                sporify.getUsuarioActual().ClearNextStates();
+                //sporify.getUsuarioActual().ClearNextStates();
+                listCanciones.clear();
+                cargarCancionesPlaylist();
                 alerta(Alert.AlertType.INFORMATION, "Sporify - Cancion Eliminada", "La cancion seleccionada se ha eliminado de su lista de reproduccion.");
             } else {
                 alerta(Alert.AlertType.WARNING, "Sporify - Cancion No Encontrada", "La cancion seleccionada no se encuentra en su lista de reproduccion.");
             }
-            paneInfoCancion.setVisible(false);
+
         }
-        sporify.getUsuarioActual().actualizarFavoritos();
         canSeleccionada = null;
-        cargarCancionesPlaylist();
+        paneInfoCancion.setVisible(false);
+
     }
 
     //---------------------Metodos relacionados con la busuqeda---------------------//
@@ -460,6 +462,7 @@ public class UserController implements Initializable {
         if(!this.tfBuscador.getText().isEmpty()){
             cambiarVNodo(vbSugerencias, vbBusquedaOY, vbBArtista);
         }
+        canSeleccionada = null;
     }
 
     /**
@@ -478,6 +481,7 @@ public class UserController implements Initializable {
         if(!this.tfBuscador.getText().isEmpty()){
             cambiarVNodo(vbSugerencias, vbBArtista, vbBusquedaOY);
         }
+        canSeleccionada = null;
     }
 
     /**
@@ -496,6 +500,7 @@ public class UserController implements Initializable {
         if(!this.tfBuscador.getText().isEmpty()){
             cambiarVNodo(vbSugerencias, vbBArtista, vbBusquedaOY);
         }
+        canSeleccionada = null;
     }
 
     //----------Metodos relacionados con el reproductor inferior y la visualizacion del video ---------//
@@ -744,8 +749,7 @@ public class UserController implements Initializable {
      **/
     public void cargarCancionesPlaylist() {
         System.out.println("Loading songs into playlist...");
-        listCanciones.clear();
-        sporify.getUsuarioActual().actualizarFavoritos();
+        //sporify.getUsuarioActual().actualizarFavoritos();
         ListaCircular<Cancion> cancionList = sporify.getUsuarioActual().getListaCanciones();
         for (Cancion cancion : cancionList) {
             Boolean bandera = false;
@@ -956,6 +960,7 @@ public class UserController implements Initializable {
             lbUrl.setText(canSeleccionada.getUrlYoutube());
             lbDuracion.setText(String.valueOf(canSeleccionada.getDuracion()));
             lbAnioCancion.setText(canSeleccionada.getAnio());
+            if (getClass().getResourceAsStream(canSeleccionada.getCaratula()) == null) canSeleccionada.setCaratula("/com/uq/sporify/caratulas/songNotFoundDefault.png");
             ivCaratula.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(canSeleccionada.getCaratula()))));
             cambiarVNodo(paneInfoBusqueda, paneInfoCancion);
         }

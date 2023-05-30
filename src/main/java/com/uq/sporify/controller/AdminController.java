@@ -197,7 +197,6 @@ public class AdminController implements Initializable {
             sporify.setListaCanciones(sporify.depurarArtistayCanciones(artSeleccionado));  //Elimina las canciones del artista de la lista de canciones de la tienda
             sporify.setListaUsuarios(sporify.depurarPlayList());    //Elimina las canciones del artista de las playlist de los usuarios
             listArtistas.remove(artSeleccionado);  //Elimina el artista de la lista de seguimiento de artistas
-
             listArtistas.clear();
             cargarArtistas();   //Carga los artistas en la tabla
             tvListaArtistas.refresh();  //Actualiza la tabla de artistas
@@ -359,6 +358,7 @@ public class AdminController implements Initializable {
             tfUrlAE.setText(canSeleccionada.getUrlYoutube());
             tfDuracionAE.setText(valueOf(canSeleccionada.getDuracion()));
             tfAnioAE.setText(canSeleccionada.getAnio());
+            if (getClass().getResourceAsStream(canSeleccionada.getCaratula()) == null) canSeleccionada.setCaratula("/com/uq/sporify/caratulas/songNotFoundDefault.png");
             ivCaratula2.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(canSeleccionada.getCaratula()))));
         }else {
             alerta(Alert.AlertType.WARNING, "Sporify - No Seleccionado" , "Asegurese de seleccionar una cancion antes de editarla");
@@ -398,7 +398,7 @@ public class AdminController implements Initializable {
             //System.out.println(sporify.getCancioncita(canSeleccionada.getCodigo()));
             sporify.setListaUsuarios(sporify.depurarPlayList());
             //System.out.println(canSeleccionada);
-            listCanciones.remove(canSeleccionada);
+            //listCanciones.remove(canSeleccionada);
             listCanciones.clear();
             cargarCanciones();     //Carga las canciones en la tabla actualizada
             tvListaArtistas.refresh();
@@ -407,6 +407,7 @@ public class AdminController implements Initializable {
             alerta(Alert.AlertType.ERROR, "Sporify - No Seleccionado", "Asegurese de seleccionar una cancion antes de eliminarlo");
         }
         canSeleccionada = null;
+        paneInfoCancion.setVisible(false);
     }
 
     /**
@@ -416,7 +417,7 @@ public class AdminController implements Initializable {
     @FXML
     void onActionBtnAtras(ActionEvent event) {
         cambiarVNodo(vbCanArtista, vbArtistas);
-        artSeleccionado = new Artista();
+        artSeleccionado = null;
         listCanciones.clear();
         tvListaCanciones.setItems(listCanciones);
         paneEditCancion.setVisible(false);
@@ -454,13 +455,13 @@ public class AdminController implements Initializable {
                 listCanciones.clear();
                 cargarCanciones();
                 tvListaCanciones.refresh();
-                esNuevoArtCan = false;
-                canSeleccionada = null;
-                paneEditCancion.setVisible(false);
-                rutaTemp = "";
+                rutaTemp = "/com/uq/sporify/caratulas/songNotFoundDefault.png";
             }else{
                 alerta(Alert.AlertType.ERROR, "---Error", "La cancion ya existe");
             }
+            esNuevoArtCan = false;
+            paneEditCancion.setVisible(false);
+            canSeleccionada = null;
         }else{
             alerta(Alert.AlertType.ERROR, "---Error", "No estan todos los campos completos");
         }
@@ -511,9 +512,10 @@ public class AdminController implements Initializable {
         File archivo = copiarArchivo();  //Copia el archivo seleccionado a la carpeta de caratulas y retorna el archivo
         if (canSeleccionada != null && archivo != null && archivo.exists()) {
             rutaTemp = "/com/uq/sporify/caratulas/" + archivo.getName(); //Guarda la ruta de la imagen en una variable temporal
-            if (rutaTemp.contains(" ")){
-                alerta(Alert.AlertType.ERROR, "Sporify - Error", "Archivo no valido - contiene espacios en el nombre");
+            if (getClass().getResourceAsStream(rutaTemp) == null){
+                alerta(Alert.AlertType.ERROR, "Sporify - Error", "Archivo no valido - Nombre del archivo no valido");
                 canSeleccionada.setCaratula("/com/uq/sporify/caratulas/songNotFoundDefault.png");
+                rutaTemp= "/com/uq/sporify/caratulas/songNotFoundDefault.png";
             }else {
                 canSeleccionada.setCaratula("/com/uq/sporify/caratulas/" + archivo.getName()); //Asigna la ruta de la imagen a la cancion seleccionada
                 System.out.println(canSeleccionada.getCaratula());
@@ -537,7 +539,7 @@ public class AdminController implements Initializable {
         File archivo = copiarArchivo();
         if (archivo != null){
             rutaTemp = "/com/uq/sporify/caratulas/" + archivo.getName();
-            if (rutaTemp.contains(" ")){
+            if (getClass().getResourceAsStream(rutaTemp) == null){
                 alerta(Alert.AlertType.ERROR, "Sporify - Error", "Archivo no valido - contiene espacios en el nombre");
                 rutaTemp = "/com/uq/sporify/caratulas/songNotFoundDefault.png";
             }else{
@@ -804,6 +806,7 @@ public class AdminController implements Initializable {
             lbDuracionI.setText(valueOf(canSeleccionada.getDuracion()));
             lbAnioCancionI.setText(canSeleccionada.getAnio());
             System.out.println(canSeleccionada.getCaratula());
+            if (getClass().getResourceAsStream(canSeleccionada.getCaratula()) == null) canSeleccionada.setCaratula("/com/uq/sporify/caratulas/songNotFoundDefault.png");
             ivCaratulaI.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(canSeleccionada.getCaratula()))));
             cambiarVNodo(paneEditArtista, paneEditCancion, paneInfoCancion);
         }

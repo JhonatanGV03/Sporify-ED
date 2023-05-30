@@ -1,28 +1,16 @@
 #Artistas
 000000;Michael Jackson;USA;false
-000001;Bruno Mars;USA;false
 000002;Nanpa Basico;Colombia;false
 000003;Ivy Queen;Puerto Rico;false
 000004;Cancerbero;Venezuela;false
-000005;Twenty One Pilots;USA;true
+000005;TwentyOnePilots;USA;true
 000006;Tego Calderon;Puerto Rico;false
-000007;Eminem;USA;false
 000008;Lionel Richie;USA;false
 
 #Canciones
-ABC001;Michael Jackson;Billie Jean;Thriller;1982;240;Pop;https://www.youtube.com/watch?v=Zi_XLOBDo_Y
-ABC002;Michael Jackson;Beat It;Thriller;1982;270;Pop;https://www.youtube.com/watch?v=oRdxUFDoQe0
 ABC003;Lionel Richie;Hello;Hello;1984;240;Rock;https://www.youtube.com/watch?v=mHONNcZbwDY
 ABC004;Lionel Richie;All Night Long;All Night Long;1983;240;Rock;https://www.youtube.com/watch?v=nqAvFx3NxUM
-ABC005;Bruno Mars;That's What I Like;24K Magic;2017;300;Pop;https://www.youtube.com/watch?v=PMivT7MJ41M
-ABC006;Bruno Mars;Leave The Door Open;Silk Sonic;2021;240;Pop;https://www.youtube.com/watch?v=adLGHcj_fmA
-ABC007;Bruno Mars;Gorila;Unorthodox Jukebox;2014;360;Pop;https://www.youtube.com/watch?v=AHDtXqjgEj4
-ABC008;Nanpa Basico;Nunca Tuve Tanto;Nunca Tuve Tanto;2023;180;Reggaeton;https://www.youtube.com/watch?v=je8ZAs2CkG8
-ABC009;Ivy Queen;La Vida Es Asi;La Vida Es Asi;2023;220;Pop;https://www.youtube.com/watch?v=Lbpr-mEEnRo
 ABC010;Cancerbero;Jeremias 17:5;Muerte;2012;360;Rap;https://www.youtube.com/watch?v=a9jxNusr0tE
-ABC011;Cancerbero;Tripolar;Vida;2014;380;Rap;https://www.youtube.com/watch?v=6Vbq5JFbsjY
 ABC012;Cancerbero;De La Vida Como Una Pelicula;Vida;2013;410;Rap;https://www.youtube.com/watch?v=OfxYngFCVms
-ABC013;Twenty One Pilots;Heathens;Suicide Squad;2015;210;Rap;https://www.youtube.com/watch?v=UprcpdwuwCg
+ABC013;TwentyOnePilots;Heathens;Suicide Squad;2015;210;Rap;https://www.youtube.com/watch?v=UprcpdwuwCg
 ABC014;Tego Calderon;La Receta;2023;190;Raggaeton;https://www.youtube.com/watch?v=LGRxyz2W2Og
-ABC015;Eminem;Till I Collapse;The Eminem Show;2014;260;Rap;https://www.youtube.com/watch?v=Pi3_Zs-oRUo
-ABC016;Eminem;Lose Yourself;The Eminem Show;2014;330;Rap;https://www.youtube.com/watch?v=_Yhyp-_hX2s

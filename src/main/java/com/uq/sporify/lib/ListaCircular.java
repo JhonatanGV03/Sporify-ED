@@ -63,13 +63,12 @@ public class ListaCircular<T> implements Iterable<T>, Serializable {
     // Agrega un nuevo nodo con un valor específico a la lista enlazada
     public void agregar(T valor) {
         Nodo<T> nuevo = new Nodo<T>(valor);
-        if (estaVacia()) { // Verifica si la lista no está vacía
+        if (estaVacia()) {
             nuevo.siguiente = nuevo;
             actual = nuevo;
         } else {
             nuevo.siguiente = actual.siguiente;
             actual.siguiente = nuevo;
-            actual = nuevo;
         }
         tamanio++;
     }
